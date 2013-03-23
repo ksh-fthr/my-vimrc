@@ -108,21 +108,22 @@ let g:netrw_altv = 1
 " 'o'でファイルを開くときは下側に開く。(デフォルトが上側なので入れ替え)
 let g:netrw_alto = 1
 
+"*******************************************************
+" NERDTree の設定
+"*******************************************************
 " 引数なしで実行したとき、NERDTreeを実行する
 let file_name = expand("%:p")
 if has('vim_starting') &&  file_name == ""
     autocmd VimEnter * call ExecuteNERDTree()
 endif
  
-"*******************************************************
 " カーソルが外れているときは自動的にnerdtreeを隠す
-"*******************************************************
 function! ExecuteNERDTree()
     "b:nerdstatus = 1 : NERDTree 表示中
     "b:nerdstatus = 2 : NERDTree 非表示中
- 
+
     if !exists('g:nerdstatus')
-        execute 'NERDTree D:/GitHub'
+        execute 'NERDTree ~/'
         let g:windowWidth = winwidth(winnr())
         let g:nerdtreebuf = bufnr('')
         let g:nerdstatus = 1 
