@@ -304,7 +304,8 @@ Bundle 'https://github.com/tpope/vim-bundler.git'
 Bundle 'https://github.com/Shougo/neocomplcache.git'
 Bundle 'https://github.com/Shougo/neosnippet.git'
 Bundle 'https://github.com/Shougo/neocomplcache-rsense.git'
-
+Bundle 'https://github.com/gregsexton/Muon.git'
+Bundle 'https://github.com/sickill/vim-monokai.git'
 
 "*******************************************************
 " タブエディタとしての設定
