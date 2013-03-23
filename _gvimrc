@@ -17,7 +17,7 @@ let g:hybrid_use_Xresources = 1
 "*******************************************************
 " カラー設定:
 "*******************************************************
-colorscheme chocolate-cyan
+colorscheme throne
 
 "*******************************************************
 " フォント設定:
@@ -305,8 +305,8 @@ Bundle 'https://github.com/tpope/vim-bundler.git'
 Bundle 'https://github.com/Shougo/neocomplcache.git'
 Bundle 'https://github.com/Shougo/neosnippet.git'
 Bundle 'https://github.com/Shougo/neocomplcache-rsense.git'
-Bundle 'https://github.com/ksh-fthr/vim-chocolate-magenta.git'
-Bundle 'https://github.com/ksh-fthr/vim-chocolate-cyan.git'
+Bundle 'https://github.com/ksh-fthr/vim-throne.git'
+Bundle 'https://github.com/ksh-fthr/vim-zabanya.git'
 
 "*******************************************************
 " タブエディタとしての設定
