@@ -17,7 +17,7 @@ let g:hybrid_use_Xresources = 1
 "*******************************************************
 " カラー設定:
 "*******************************************************
-colorscheme throne
+colorscheme zabanya
 
 "*******************************************************
 " フォント設定:
@@ -109,38 +109,38 @@ let g:netrw_altv = 1
 let g:netrw_alto = 1
 
 "*******************************************************
-" NERDTree の設定
+" NERDTree の設定（VimFiler に変えたので設定はコメントアウト）
 "*******************************************************
-" 引数なしで実行したとき、NERDTreeを実行する
-let file_name = expand("%:p")
-if has('vim_starting') &&  file_name == ""
-    autocmd VimEnter * call ExecuteNERDTree()
-endif
- 
-" カーソルが外れているときは自動的にnerdtreeを隠す
-function! ExecuteNERDTree()
-    "b:nerdstatus = 1 : NERDTree 表示中
-    "b:nerdstatus = 2 : NERDTree 非表示中
-
-    if !exists('g:nerdstatus')
-        execute 'NERDTree ~/'
-        let g:windowWidth = winwidth(winnr())
-        let g:nerdtreebuf = bufnr('')
-        let g:nerdstatus = 1 
- 
-    elseif g:nerdstatus == 1 
-        execute 'wincmd t'
-        execute 'vertical resize' 0 
-        execute 'wincmd p'
-        let g:nerdstatus = 2 
-    elseif g:nerdstatus == 2 
-        execute 'wincmd t'
-        execute 'vertical resize' g:windowWidth
-        let g:nerdstatus = 1 
- 
-    endif
-endfunction
-noremap <c-e> :<c-u>:call ExecuteNERDTree()<cr>
+"" 引数なしで実行したとき、NERDTreeを実行する
+"let file_name = expand("%:p")
+"if has('vim_starting') &&  file_name == ""
+"    autocmd VimEnter * call ExecuteNERDTree()
+"endif
+" 
+"" カーソルが外れているときは自動的にnerdtreeを隠す
+"function! ExecuteNERDTree()
+"    "b:nerdstatus = 1 : NERDTree 表示中
+"    "b:nerdstatus = 2 : NERDTree 非表示中
+"
+"    if !exists('g:nerdstatus')
+"        execute 'NERDTree ~/'
+"        let g:windowWidth = winwidth(winnr())
+"        let g:nerdtreebuf = bufnr('')
+"        let g:nerdstatus = 1 
+" 
+"    elseif g:nerdstatus == 1 
+"        execute 'wincmd t'
+"        execute 'vertical resize' 0 
+"        execute 'wincmd p'
+"        let g:nerdstatus = 2 
+"    elseif g:nerdstatus == 2 
+"        execute 'wincmd t'
+"        execute 'vertical resize' g:windowWidth
+"        let g:nerdstatus = 1 
+" 
+"    endif
+"endfunction
+"noremap <c-e> :<c-u>:call ExecuteNERDTree()<cr>
 
 "*******************************************************
 " asp/inc/css/js ファイルの設定
@@ -289,11 +289,11 @@ Bundle 'https://github.com/slim-template/vim-slim.git'
 Bundle 'https://github.com/w0ng/vim-hybrid.git'
 Bundle 'https://github.com/bcaccinolo/bclose.git'
 Bundle 'https://github.com/jpo/vim-railscasts-theme.git'
-Bundle 'https://github.com/jistr/vim-nerdtree-tabs.git'
+"Bundle 'https://github.com/jistr/vim-nerdtree-tabs.git'
 Bundle 'https://github.com/corntrace/bufexplorer.git'
 Bundle 'https://github.com/kchmck/vim-coffee-script.git'
 Bundle 'https://github.com/fholgado/minibufexpl.vim.git'
-Bundle 'https://github.com/scrooloose/nerdtree.git'
+"Bundle 'https://github.com/scrooloose/nerdtree.git'
 Bundle 'https://github.com/vim-scripts/ruby-matchit.git'
 Bundle 'https://github.com/vim-scripts/FuzzyFinder.git'
 Bundle 'https://github.com/vim-scripts/L9.git'
@@ -305,6 +305,8 @@ Bundle 'https://github.com/tpope/vim-bundler.git'
 Bundle 'https://github.com/Shougo/neocomplcache.git'
 Bundle 'https://github.com/Shougo/neosnippet.git'
 Bundle 'https://github.com/Shougo/neocomplcache-rsense.git'
+Bundle 'https://github.com/Shougo/vimfiler.git'
+Bundle 'https://github.com/Shougo/unite.vim'
 Bundle 'https://github.com/ksh-fthr/vim-throne.git'
 Bundle 'https://github.com/ksh-fthr/vim-zabanya.git'
 
@@ -365,4 +367,35 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expan
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+"*******************************************************
+" VimFiler をエクスプローラーとして使用する
+"*******************************************************
+"vimfiler {{{
+"vimデフォルトのエクスプローラをvimfilerで置き換える
+let g:vimfiler_as_default_explorer = 1
+" カレントディレクトリを「F2」ボタンで IDE 風のエクスプローラで開く
+nnoremap <F2> :VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
+
+autocmd! FileType vimfiler call g:my_vimfiler_settings()
+function! g:my_vimfiler_settings()
+  nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+  nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<Cr>
+  nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<Cr>
+endfunction
+
+let s:my_action = { 'is_selectable' : 1 }
+function! s:my_action.func(candidates)
+  wincmd p
+  exec 'split '. a:candidates[0].action__path
+endfunction
+call unite#custom_action('file', 'my_split', s:my_action)
+
+let s:my_action = { 'is_selectable' : 1 }                     
+function! s:my_action.func(candidates)
+  wincmd p
+  exec 'vsplit '. a:candidates[0].action__path
+endfunction
+call unite#custom_action('file', 'my_vsplit', s:my_action)
+"}}}
 
