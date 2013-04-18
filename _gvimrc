@@ -26,7 +26,7 @@ if has('win32')
   " Windows用
   "set guifont=MS_Gothic:h12:cSHIFTJIS
   "set guifont=Migu\ 1M:h12
-  set guifont=Ricty:h13
+  set guifont=Ricty:h14
   " 行間隔の設定
   set linespace=1
   " 一部のUCS文字の幅を自動計測して決める
