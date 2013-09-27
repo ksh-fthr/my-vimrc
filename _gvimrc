@@ -306,6 +306,7 @@ Bundle 'https://github.com/Shougo/neosnippet.git'
 Bundle 'https://github.com/Shougo/neocomplcache-rsense.git'
 Bundle 'https://github.com/ksh-fthr/vim-throne.git'
 Bundle 'https://github.com/ksh-fthr/vim-zabanya.git'
+Bundle 'https://github.com/alpaca-tc/alpaca_tags'
 
 "*******************************************************
 " タブエディタとしての設定
@@ -364,4 +365,17 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expan
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+"*******************************************************
+" AlpacaTags 
+"*******************************************************
+augroup AlpacaTags
+  autocmd!
+    if exists(':Tags')
+      autocmd BufWritePost Gemfile TagsBundle
+      autocmd BufEnter * TagsSet
+      " 毎回保存と同時更新する場合はコメントを外す
+      " autocmd BufWritePost * TagsUpdate
+    endif
+augroup END
 
