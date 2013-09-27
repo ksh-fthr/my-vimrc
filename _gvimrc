@@ -209,7 +209,7 @@ nmap <c-b> :BufExplorer<CR>
  " FufFileのキーバインド
 nmap <c-f> :FufFile<CR>
 " 新規バッファ生成
-nmap <c-n> :Scratch<CR>
+nmap <c-n> :enew<CR>
 " grepのキーバインド
 nmap <c-g> :vimgrep /\<<C-R><C-W>\>/ **/*.* | cw
 " vim.railsのキーバインド(Rails開発専用)
