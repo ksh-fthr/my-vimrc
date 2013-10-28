@@ -205,9 +205,9 @@ set cursorline
 " キーマップ設定
 "*******************************************************
 " バッファ一覧
-nmap <c-b> :BufExplorer<CR> 
+nmap <c-b><c-l> :BufExplorer<CR> 
  " FufFileのキーバインド
-nmap <c-f> :FufFile<CR>
+nmap <c-f><c-l> :FufFile<CR>
 " 新規バッファ生成
 nmap <c-n> :enew<CR>
 " grepのキーバインド
@@ -215,7 +215,7 @@ nmap <c-g> :vimgrep /\<<C-R><C-W>\>/ **/*.* | cw
 " vim.railsのキーバインド(Rails開発専用)
 nmap <c-m> :R<CR>
 " Bcloseのキーバインド
-nmap <c-d> :Bclose<CR>
+nmap <c-d> :bw<CR>
 " 保存のキーバインドを設定
 nmap <c-s> :w<CR>
 " バッファ移動（次へ）
