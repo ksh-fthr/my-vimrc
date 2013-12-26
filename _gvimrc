@@ -217,7 +217,8 @@ nmap <c-m> :R<CR>
 " Bcloseのキーバインド
 nmap <c-d> :bw<CR>
 " 保存のキーバインドを設定
-nmap <c-s> :w<CR>
+" └ ダイアログを表示して保存する
+nmap <c-s> :bro w<CR>
 " バッファ移動（次へ）
 nmap <c-l> :bn<CR>
 " バッファ移動（前へ）
