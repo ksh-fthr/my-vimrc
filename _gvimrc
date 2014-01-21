@@ -112,6 +112,14 @@ let g:netrw_alto = 1
 "*******************************************************
 " NERDTree の設定
 "*******************************************************
+" F2で右にファイラ画面を表示したり閉じたりする
+nnoremap <f2> :NERDTreeToggle<CR>
+
+""最後に残ったウィンドウがNERDTREEのみのときはvimを閉じる
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeDirArrows=0
+let g:NERDTreeMouseMode=0
+
 " 引数なしで実行したとき、NERDTreeを実行する
 let file_name = expand("%:p")
 if has('vim_starting') &&  file_name == ""
