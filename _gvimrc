@@ -224,6 +224,12 @@ nmap <c-l> :bn<CR>
 " バッファ移動（前へ）
 nmap <c-h> :bp<CR>
 
+
+" デフォルト定義されているEXコマンドを独自のものでおきかえる
+" :bdと:BDを交換する
+AlterCommand bd BD
+AlterCommand BD bd
+
 "*******************************************************
 " 関数一覧を表示させるための設定
 "*******************************************************
@@ -281,8 +287,9 @@ hi PmenuSbar guibg=#333333
 "*******************************************************
 " vundleを使ってプラグインを管理する
 "*******************************************************
-set rtp+=~/.vim/bundle/vundle.git/
-call vundle#rc()
+filetype off
+set rtp+=$VIM/plugins/vundle.git
+call vundle#rc('$VIM/plugins')
 
 Bundle 'https://github.com/flazz/vim-colorschemes.git'
 Bundle 'https://github.com/groenewege/vim-less.git'
@@ -308,6 +315,8 @@ Bundle 'https://github.com/Shougo/neocomplcache-rsense.git'
 Bundle 'https://github.com/ksh-fthr/vim-throne.git'
 Bundle 'https://github.com/ksh-fthr/vim-zabanya.git'
 Bundle 'https://github.com/alpaca-tc/alpaca_tags'
+Bundle 'https://github.com/tyru/vim-altercmd'
+filetype plugin indent on
 
 "*******************************************************
 " タブエディタとしての設定
