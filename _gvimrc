@@ -163,21 +163,35 @@ au BufNewFile,BufRead *.js set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 "*******************************************************
 "  括弧の自動補完
 "*******************************************************
+" () の自動補完
 inoremap ( ()<ESC>i
 inoremap <expr> ) ClosePair(')')
+
+" {} の自動補完
 inoremap { {}<ESC>i
 inoremap <expr> } ClosePair('}')
+
+" [] の自動補完
 inoremap [ []<ESC>i
 inoremap <expr> ] ClosePair(']')
+
+" <> の自動補完
+inoremap < <><ESC>i
+inoremap <expr> > ClosePair('>')
+
 " pair close checker.
 " from othree vimrc ( http://github.com/othree/rc/blob/master/osx/.vimrc )
-function ClosePair(char)
-    if getline('.')[col('.') - 1] == a:char
-        return "\<Right>"
-    else
-        return a:char
-    endif
-endf
+
+" ClosePairは起動時のみ実行するようにする
+if has('vim_starting')
+    function ClosePair(char)
+        if getline('.')[col('.') - 1] == a:char
+            return "\<Right>"
+        else
+            return a:char
+        endif
+    endf
+ endif
 
 "*******************************************************
 " minibufexpl.vim : タブエディタ風にバッファ管理ウィンドウを表示
@@ -231,6 +245,10 @@ nmap <c-s> :bro w<CR>
 nmap <c-l> :bn<CR>
 " バッファ移動（前へ）
 nmap <c-h> :bp<CR>
+" _gvimrc の再読込み
+noremap <F5> :<C-u>source $MYGVIMRC<CR>
+" _gvimrc を開く
+noremap <F6> :e $MYGVIMRC<CR>
 
 
 " デフォルト定義されているEXコマンドを独自のものでおきかえる
