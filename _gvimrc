@@ -222,8 +222,8 @@ nmap <c-n> :enew<CR>
 nmap <c-g> :vimgrep /\<<C-R><C-W>\>/ **/*.* | cw
 " vim.railsのキーバインド(Rails開発専用)
 nmap <c-m> :R<CR>
-" Bcloseのキーバインド
-nmap <c-d> :bd<CR>
+" バッファを閉じ際のキーバインド
+nmap <c-d> :Kwbd<CR>
 " 保存のキーバインドを設定
 " └ ダイアログを表示して保存する
 nmap <c-s> :bro w<CR>
@@ -397,4 +397,15 @@ augroup AlpacaTags
       " autocmd BufWritePost * TagsUpdate
     endif
 augroup END
+
+"*******************************************************
+" Kwbd のスクリプトを直接書く
+" Usag:
+"   :Kwbd でカレントウィンドウのバッファを閉じる
+" 参考URL:
+"   http://nanasi.jp/articles/vim/kwbd_vim.html
+"*******************************************************
+com! Kwbd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn
+
+
 
