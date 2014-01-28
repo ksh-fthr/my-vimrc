@@ -313,37 +313,39 @@ hi PmenuSbar guibg=#333333
 "*******************************************************
 " vundleを使ってプラグインを管理する
 "*******************************************************
-filetype off
-set rtp+=$VIM/plugins/vundle.git
-call vundle#rc('$VIM/plugins')
-
-Bundle 'https://github.com/flazz/vim-colorschemes.git'
-Bundle 'https://github.com/groenewege/vim-less.git'
-Bundle 'https://github.com/slim-template/vim-slim.git'
-Bundle 'https://github.com/w0ng/vim-hybrid.git'
-Bundle 'https://github.com/bcaccinolo/bclose.git'
-Bundle 'https://github.com/jpo/vim-railscasts-theme.git'
-Bundle 'https://github.com/corntrace/bufexplorer.git'
-Bundle 'https://github.com/kchmck/vim-coffee-script.git'
-Bundle 'https://github.com/fholgado/minibufexpl.vim.git'
-Bundle 'https://github.com/scrooloose/nerdtree.git'
-Bundle 'https://github.com/vim-scripts/ruby-matchit.git'
-Bundle 'https://github.com/vim-scripts/FuzzyFinder.git'
-Bundle 'https://github.com/vim-scripts/L9.git'
-Bundle 'https://github.com/vim-scripts/taglist.vim.git'
-Bundle 'https://github.com/tpope/vim-rails.git'
-Bundle 'https://github.com/tpope/vim-surround.git'
-Bundle 'https://github.com/tpope/vim-endwise.git'
-Bundle 'https://github.com/tpope/vim-bundler.git'
-Bundle 'https://github.com/Shougo/neocomplcache.git'
-Bundle 'https://github.com/Shougo/neosnippet.git'
-Bundle 'https://github.com/Shougo/neocomplcache-rsense.git'
-Bundle 'https://github.com/ksh-fthr/vim-throne.git'
-Bundle 'https://github.com/ksh-fthr/vim-zabanya.git'
-Bundle 'https://github.com/alpaca-tc/alpaca_tags'
-Bundle 'https://github.com/tyru/vim-altercmd'
-Bundle 'https://github.com/vim-scripts/bufkill.vim'
-filetype plugin indent on
+" neobundle で管理するので不要
+"filetype off
+"set rtp+=$VIM/plugins/vundle.git
+"call vundle#rc('$VIM/plugins')
+"
+"Bundle 'https://github.com/flazz/vim-colorschemes.git'
+"Bundle 'https://github.com/groenewege/vim-less.git'
+"Bundle 'https://github.com/slim-template/vim-slim.git'
+"Bundle 'https://github.com/w0ng/vim-hybrid.git'
+"Bundle 'https://github.com/bcaccinolo/bclose.git'
+"Bundle 'https://github.com/jpo/vim-railscasts-theme.git'
+"Bundle 'https://github.com/corntrace/bufexplorer.git'
+"Bundle 'https://github.com/kchmck/vim-coffee-script.git'
+"Bundle 'https://github.com/fholgado/minibufexpl.vim.git'
+"Bundle 'https://github.com/scrooloose/nerdtree.git'
+"Bundle 'https://github.com/vim-scripts/ruby-matchit.git'
+"Bundle 'https://github.com/vim-scripts/FuzzyFinder.git'
+"Bundle 'https://github.com/vim-scripts/L9.git'
+"Bundle 'https://github.com/vim-scripts/taglist.vim.git'
+"Bundle 'https://github.com/tpope/vim-rails.git'
+"Bundle 'https://github.com/tpope/vim-surround.git'
+"Bundle 'https://github.com/tpope/vim-endwise.git'
+"Bundle 'https://github.com/tpope/vim-bundler.git'
+"Bundle 'https://github.com/Shougo/neocomplcache.git'
+"Bundle 'https://github.com/Shougo/neosnippet.git'
+"Bundle 'https://github.com/Shougo/neocomplcache-rsense.git'
+"Bundle 'https://github.com/ksh-fthr/vim-throne.git'
+"Bundle 'https://github.com/ksh-fthr/vim-zabanya.git'
+"Bundle 'https://github.com/alpaca-tc/alpaca_tags'
+"Bundle 'https://github.com/tyru/vim-altercmd'
+"Bundle 'https://github.com/vim-scripts/bufkill.vim'
+"Bundle 'https://github.com/Shougo/neobundle.vim'
+"filetype plugin indent on
 
 "*******************************************************
 " タブエディタとしての設定
