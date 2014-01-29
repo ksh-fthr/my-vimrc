@@ -112,9 +112,6 @@ let g:netrw_alto = 1
 "*******************************************************
 " NERDTree の設定
 "*******************************************************
-" F2で右にファイラ画面を表示したり閉じたりする
-nnoremap <f2> :NERDTreeToggle<CR>
-
 ""最後に残ったウィンドウがNERDTREEのみのときはvimを閉じる
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let g:NERDTreeDirArrows=0
@@ -245,11 +242,28 @@ nmap <c-s> :bro w<CR>
 nmap <c-l> :bn<CR>
 " バッファ移動（前へ）
 nmap <c-h> :bp<CR>
+
+"*******************************************************
+" ファンクションキーの割当て
+"*******************************************************
+" F2で右にファイラ画面を表示したり閉じたりする
+nnoremap <F2> :NERDTreeToggle<CR>
+
+" カラースキーマの切り替え
+noremap <F3> :colorscheme throne<CR>
+noremap <F4> :colorscheme rainbow_neon<CR>
+
 " _gvimrc の再読込み
 noremap <F5> :<C-u>source $MYGVIMRC<CR>
+
 " _gvimrc を開く
 noremap <F6> :e $MYGVIMRC<CR>
 
+" FufFile でファイル探し
+noremap <F11> :FufFile<CR>
+
+" バッファ一覧を表示する
+noremap <F12> :BufExplorer<CR>
 
 " デフォルト定義されているEXコマンドを独自のものでおきかえる
 " :bdと:BDを交換する
