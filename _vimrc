@@ -36,6 +36,7 @@ NeoBundle 'https://github.com/alpaca-tc/alpaca_tags'
 NeoBundle 'https://github.com/tyru/vim-altercmd'
 NeoBundle 'https://github.com/vim-scripts/bufkill.vim'
 NeoBundle 'https://github.com/Shougo/neobundle.vim'
+NeoBundle 'https://github.com/Shougo/neosnippet-snippets'
 
 filetype plugin indent on
 
