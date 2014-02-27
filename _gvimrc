@@ -234,7 +234,9 @@ nmap <c-g> :vimgrep /\<<C-R><C-W>\>/ **/*.* | cw
 " vim.railsのキーバインド(Rails開発専用)
 nmap <c-m> :R<CR>
 " バッファを閉じ際のキーバインド
-nmap <c-d> :Kwbd<CR>
+nmap <c-d> :Bclose<CR>
+"nmap <c-d> :bd<CR>
+"nmap <c-d> :Kwbd<CR>
 " 保存のキーバインドを設定
 " └ ダイアログを表示して保存する
 nmap <c-s> :bro w<CR>
@@ -267,8 +269,8 @@ noremap <F12> :BufExplorer<CR>
 
 " デフォルト定義されているEXコマンドを独自のものでおきかえる
 " :bdと:BDを交換する
-AlterCommand bd BD
-AlterCommand BD bd
+"AlterCommand bd BD
+"AlterCommand BD bd
 
 "*******************************************************
 " 関数一覧を表示させるための設定
