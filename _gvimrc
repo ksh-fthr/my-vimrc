@@ -443,5 +443,8 @@ augroup END
 "*******************************************************
 com! Kwbd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn
 
-
+"*******************************************************
+" vimgrep したときに自動で検索結果画面を開く
+"*******************************************************
+autocmd QuickFixCmdPost *grep* cwindow
 
