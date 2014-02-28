@@ -422,19 +422,6 @@ if has('conceal')
 endif
 
 "*******************************************************
-" AlpacaTags 
-"*******************************************************
-augroup AlpacaTags
-  autocmd!
-    if exists(':Tags')
-      autocmd BufWritePost Gemfile TagsBundle
-      autocmd BufEnter * TagsSet
-      " 毎回保存と同時更新する場合はコメントを外す
-      " autocmd BufWritePost * TagsUpdate
-    endif
-augroup END
-
-"*******************************************************
 " Kwbd のスクリプトを直接書く
 " Usag:
 "   :Kwbd でカレントウィンドウのバッファを閉じる
