@@ -269,6 +269,9 @@ noremap <F5> :<C-u>source $MYGVIMRC<CR>
 " _gvimrc を開く
 noremap <F6> :e $MYGVIMRC<CR>
 
+" Tlist で関数一覧を表示する
+noremap <F10> :Tlist<CR>
+
 " FufFile でファイル探し
 noremap <F11> :FufFile<CR>
 
