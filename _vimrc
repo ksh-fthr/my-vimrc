@@ -30,12 +30,16 @@ NeoBundle 'https://github.com/tpope/vim-bundler.git'
 NeoBundle 'https://github.com/Shougo/neocomplcache.git'
 NeoBundle 'https://github.com/Shougo/neosnippet.git'
 NeoBundle 'https://github.com/Shougo/neocomplcache-rsense.git'
+NeoBundle 'https://github.com/Shougo/neobundle.vim'
+NeoBundle 'https://github.com/Shougo/neosnippet-snippets'
+NeoBundle "https://github.com/Shougo/neocomplete.vim"
 NeoBundle 'https://github.com/ksh-fthr/vim-throne.git'
 NeoBundle 'https://github.com/ksh-fthr/vim-zabanya.git'
 NeoBundle 'https://github.com/tyru/vim-altercmd'
 NeoBundle 'https://github.com/vim-scripts/bufkill.vim'
-NeoBundle 'https://github.com/Shougo/neobundle.vim'
-NeoBundle 'https://github.com/Shougo/neosnippet-snippets'
+NeoBundle "https://github.com/t9md/vim-quickhl"
+NeoBundle "https://github.com/tyru/caw.vim"
+NeoBundle "https://github.com/osyo-manga/vim-marching"
 
 filetype plugin indent on
 
