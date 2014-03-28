@@ -252,6 +252,9 @@ nmap <c-h> :bp<CR>
 nmap <c-t> :pop<CR>
 " タグスタックを進む
 nmap <c-y> :tag<CR>
+" タグファイルを生成する
+nmap <c-\> :Tagsgen<CR>
+
 
 "*******************************************************
 " ファンクションキーの割当て
@@ -284,9 +287,29 @@ noremap <F12> :BufExplorer<CR>
 "AlterCommand BD bd
 
 "*******************************************************
-" 関数一覧を表示させるための設定
+" ctagsに関する設定
 "*******************************************************
 set tags=tags
+
+"*******************************************************
+"auto-ctags.vim に関する設定(Windows 非対応)
+"*******************************************************
+"let g:auto_ctags_directory_list = ['./']
+"let g:auto_ctags = 1
+"let g:auto_ctags_tags_name = 'tags'
+"let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
+"let g:auto_ctags_filetype_mode = 1
+
+"*******************************************************
+" vim-tags(Windows 非対応)
+"*******************************************************
+"let g:vim_tags_directories = ['./']
+"let g:vim_tags_auto_generate = 1
+"let g:vim_tags_project_tags_command = "ctags -R {OPTIONS} {DIRECTORY} 2>/dev/null"
+"let g:vim_tags_gems_tags_command = "ctags -R {OPTIONS} `bundle show --paths` 2>/dev/null"
+"let g:vim_tags_use_vim_dispatch = 1
+"let g:vim_tags_use_ycm = 1
+"let g:vim_tags_main_file = 'tags'
 
 "*******************************************************
  " バッファが変更されているとき、コマンドをエラーにするのでなく、保存する
@@ -336,43 +359,6 @@ hi PmenuSbar guibg=#333333
 :set guioptions+=a
 " ヤンクした箇所をクリップボードにコピー
 ":set clipboard+=unnamed
-
-"*******************************************************
-" vundleを使ってプラグインを管理する
-"*******************************************************
-" neobundle で管理するので不要
-"filetype off
-"set rtp+=$VIM/plugins/vundle.git
-"call vundle#rc('$VIM/plugins')
-"
-"Bundle 'https://github.com/flazz/vim-colorschemes.git'
-"Bundle 'https://github.com/groenewege/vim-less.git'
-"Bundle 'https://github.com/slim-template/vim-slim.git'
-"Bundle 'https://github.com/w0ng/vim-hybrid.git'
-"Bundle 'https://github.com/bcaccinolo/bclose.git'
-"Bundle 'https://github.com/jpo/vim-railscasts-theme.git'
-"Bundle 'https://github.com/corntrace/bufexplorer.git'
-"Bundle 'https://github.com/kchmck/vim-coffee-script.git'
-"Bundle 'https://github.com/fholgado/minibufexpl.vim.git'
-"Bundle 'https://github.com/scrooloose/nerdtree.git'
-"Bundle 'https://github.com/vim-scripts/ruby-matchit.git'
-"Bundle 'https://github.com/vim-scripts/FuzzyFinder.git'
-"Bundle 'https://github.com/vim-scripts/L9.git'
-"Bundle 'https://github.com/vim-scripts/taglist.vim.git'
-"Bundle 'https://github.com/tpope/vim-rails.git'
-"Bundle 'https://github.com/tpope/vim-surround.git'
-"Bundle 'https://github.com/tpope/vim-endwise.git'
-"Bundle 'https://github.com/tpope/vim-bundler.git'
-"Bundle 'https://github.com/Shougo/neocomplcache.git'
-"Bundle 'https://github.com/Shougo/neosnippet.git'
-"Bundle 'https://github.com/Shougo/neocomplcache-rsense.git'
-"Bundle 'https://github.com/ksh-fthr/vim-throne.git'
-"Bundle 'https://github.com/ksh-fthr/vim-zabanya.git'
-"Bundle 'https://github.com/alpaca-tc/alpaca_tags'
-"Bundle 'https://github.com/tyru/vim-altercmd'
-"Bundle 'https://github.com/vim-scripts/bufkill.vim'
-"Bundle 'https://github.com/Shougo/neobundle.vim'
-"filetype plugin indent on
 
 "*******************************************************
 " タブエディタとしての設定

@@ -40,6 +40,13 @@ NeoBundle 'https://github.com/vim-scripts/bufkill.vim'
 NeoBundle "https://github.com/t9md/vim-quickhl"
 NeoBundle "https://github.com/tyru/caw.vim"
 NeoBundle "https://github.com/osyo-manga/vim-marching"
+NeoBundle 'hokorobi/vim-tagsgen' 
+NeoBundle 'scrooloose/syntastic.git'
+
+" « Windows ”ñ‘Î‰ «
+"NeoBundle 'soramugi/auto-ctags.vim'
+"NeoBundle 'szw/vim-tags'
+" ª Windows ”ñ‘Î‰ ª
 
 filetype plugin indent on
 
