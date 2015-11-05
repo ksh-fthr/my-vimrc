@@ -11,12 +11,12 @@
    endif
 
    " Required:
-   set runtimepath+=C:/Program\ Files/vim74-kaoriya-win64/plugins/neobundle.vim
+   set runtimepath+=D:/bin/vim74-kaoriya-win64/plugins/neobundle.vim
 
  endif
 
  " Required:
- call neobundle#begin(expand('C:/Program\ Files/vim74-kaoriya-win64/plugins'))
+ call neobundle#begin(expand('D:/bin/vim74-kaoriya-win64/plugins'))
 
 
 " ŠÇ—‚·‚éƒvƒ‰ƒOƒCƒ“‚ğ—ñ‹“
