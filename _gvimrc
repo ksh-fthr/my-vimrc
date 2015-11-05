@@ -3,6 +3,7 @@
 "==============================================================================
 set noundofile
 set nobackup
+set noundofile
 set nu
 set ts=4 sw=4 tw=0 expandtab
 set nowrap
