@@ -11,12 +11,12 @@
    endif
 
    " Required:
-   set runtimepath+=C:/Program\ Files/vim74-kaoriya-win64/plugins/neobundle.vim
+   set runtimepath+=C:/bin/vim74-kaoriya-win64/plugins/neobundle.vim
 
  endif
 
  " Required:
- call neobundle#begin(expand('C:/Program\ Files/vim74-kaoriya-win64/plugins'))
+ call neobundle#begin(expand('C:/bin/vim74-kaoriya-win64/plugins'))
 
 
 " ŠÇ—‚·‚éƒvƒ‰ƒOƒCƒ“‚ğ—ñ‹“
@@ -40,6 +40,7 @@ NeoBundleFetch 'https://github.com/tpope/vim-endwise.git'
 NeoBundleFetch 'https://github.com/tpope/vim-bundler.git'
 NeoBundleFetch 'https://github.com/Shougo/neocomplcache.git'
 NeoBundleFetch 'https://github.com/Shougo/neosnippet.git'
+NeoBundleFetch 'https://github.com/Shougo/neosnippet-snippets.git'
 NeoBundleFetch 'https://github.com/Shougo/neocomplcache-rsense.git'
 NeoBundleFetch 'https://github.com/Shougo/neobundle.vim'
 NeoBundleFetch 'https://github.com/Shougo/neosnippet-snippets'
@@ -54,6 +55,15 @@ NeoBundleFetch "https://github.com/tyru/caw.vim"
 NeoBundleFetch "https://github.com/osyo-manga/vim-marching"
 NeoBundleFetch 'hokorobi/vim-tagsgen' 
 NeoBundleFetch 'scrooloose/syntastic.git'
+NeoBundleFetch 'https://github.com/hokorobi/vim-tagsgen'
+NeoBundleFetch 'https://github.com/jelera/vim-javascript-syntax'
+NeoBundleFetch 'https://github.com/mattn/jscomplete-vim'
+NeoBundleFetch 'https://github.com/majutsushi/tagbar'
+NeoBundleFetch 'https://github.com/hail2u/vim-css3-syntax'
+NeoBundleFetch 'https://github.com/nathanaelkane/vim-indent-guides'
+NeoBundleFetch 'https://github.com/bronson/vim-trailing-whitespace'
+NeoBundleFetch 'https://github.com/othree/html5.vim'
+NeoBundleFetch 'https://github.com/Chiel92/vim-autoformat'
 
 " « Windows ”ñ‘Î‰ «
 "NeoBundleFetch 'soramugi/auto-ctags.vim'

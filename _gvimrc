@@ -153,10 +153,10 @@ noremap <c-e> :<c-u>:call ExecuteNERDTree()<cr>
 "│asp/inc/css/js ファイルの設定                                       │
 "└──────────────────────────────────┘
 "タブ幅をリセット
-au BufNewFile,BufRead *.asp set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-au BufNewFile,BufRead *.inc set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-au BufNewFile,BufRead *.css set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-au BufNewFile,BufRead *.js set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+au BufNewFile,BufRead *.asp set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+au BufNewFile,BufRead *.inc set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+au BufNewFile,BufRead *.css set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+au BufNewFile,BufRead *.js set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
 "┌──────────────────────────────────┐
 "│括弧の自動補完                                                      │
@@ -272,6 +272,10 @@ noremap <F5> :<C-u>source $MYGVIMRC<CR>
 
 " _gvimrc を開く
 noremap <F6> :e $MYGVIMRC<CR>
+noremap <F7> :e $MYVIMRC<CR>
+
+" Tagbar: a class outline viewer for Vim
+nmap <F8> :TagbarToggle<CR>
 
 " Tlist で関数一覧を表示する
 noremap <F10> :Tlist<CR>
@@ -493,4 +497,36 @@ let g:neocomplete#force_omni_input_patterns.cpp =
 "└──────────────────────────────────┘
 function! s:cpp()
 endfunction
+
+"┌──────────────────────────────────┐
+"│ javascript Syntax Activate                                         │
+"└──────────────────────────────────┘
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+au FileType javascript call JavaScriptFold()
+
+"┌──────────────────────────────────┐
+"│jscomplete-vim Setting                                              │
+"└──────────────────────────────────┘
+" . や [ 後のプロパティを補完する
+autocmd FileType javascript
+  \ :setl omnifunc=jscomplete#CompleteJS
+" DOM 系の補完リスト, Mozilla JavaScript の追加リストを追加
+let g:jscomplete_use = ['dom', 'moz']
+
+"┌──────────────────────────────────┐
+"│vim-css3-syntax                                                     │
+"└──────────────────────────────────┘
+augroup VimCSS3Syntax
+  autocmd!
+
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+"┌──────────────────────────────────┐
+"│Indent Guides                                                       │
+"└──────────────────────────────────┘
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
 
