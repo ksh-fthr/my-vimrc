@@ -53,7 +53,6 @@ NeoBundleFetch 'https://github.com/vim-scripts/bufkill.vim'
 NeoBundleFetch "https://github.com/t9md/vim-quickhl"
 NeoBundleFetch "https://github.com/tyru/caw.vim"
 NeoBundleFetch "https://github.com/osyo-manga/vim-marching"
-NeoBundleFetch 'hokorobi/vim-tagsgen' 
 NeoBundleFetch 'scrooloose/syntastic.git'
 NeoBundleFetch 'https://github.com/hokorobi/vim-tagsgen'
 NeoBundleFetch 'https://github.com/jelera/vim-javascript-syntax'
