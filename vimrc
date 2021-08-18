@@ -134,7 +134,7 @@ endif
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/vimfiles/plugged')
+call plug#begin('~/.vim/plugged')
 
   " vim-list
   " https://github.com/mattn/vim-lsp-settings
@@ -142,7 +142,6 @@ call plug#begin('~/vimfiles/plugged')
   Plug 'mattn/vim-lsp-settings'
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'lighttiger2505/deoplete-vim-lsp'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'posva/vim-vue'
 
@@ -154,3 +153,4 @@ call plug#end()
 " ファンクションキーの割当て
 ""=========================================
 " TBD...
+
