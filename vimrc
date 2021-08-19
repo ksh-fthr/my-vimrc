@@ -144,7 +144,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'posva/vim-vue'
-
+  " ファイラ
+  " https://github.com/lambdalisue/fern.vim
+  Plug 'lambdalisue/fern.vim'
 
 " Initialize plugin system
 call plug#end()
