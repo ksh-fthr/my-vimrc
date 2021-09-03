@@ -20,6 +20,8 @@ set wildmenu
 set laststatus=2
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set showtabline=2
+set guifontwide=Monospace\ 14  " linux 環境, 全角文字
+set guifont=Monospace\ 14      " linux 環境, 半角文字
 
 colorscheme zabanya
 
