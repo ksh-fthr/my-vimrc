@@ -46,6 +46,10 @@ let g:netrw_altv = 1
 " 'o'でファイルを開くときは下側に開く。(デフォルトが上側なので入れ替え)
 let g:netrw_alto = 1
 
+" タブラインの設定
+" 要: vim-airline
+" https://github.com/vim-airline/vim-airline
+let g:airline#extensions#tabline#enabled = 1
 
 ""=========================================
 " 括弧の自動補完
@@ -147,8 +151,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'posva/vim-vue'
   " ファイラ
-  " https://github.com/lambdalisue/fern.vim
   Plug 'lambdalisue/fern.vim'
+  " ファイルツリー上に git 差分を表示
+  Plug 'lambdalisue/fern-git-status.vim'
+  " git 差分
+  Plug 'airblade/vim-gitgutter'
+  " ステータスバー
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 
 " Initialize plugin system
 call plug#end()
