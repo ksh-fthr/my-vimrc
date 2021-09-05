@@ -84,9 +84,21 @@ let g:fern_git_status#disable_submodules = 1
 " Disable listing status of directories
 let g:fern_git_status#disable_directories = 1
 
-
 "" 反映時間を短くする(デフォルトは4000ms)
 set updatetime=250
+
+""=========================================
+" ファイラのリロード
+" 要: fern-mapping-reload-all.vim
+" https://github.com/LumaKernel/fern-mapping-reload-all.vim
+""=========================================
+function s:init_fern_mapping_reload_all()
+    nmap <buffer> R <Plug>(fern-action-reload:all)
+endfunction
+augroup my-fern-mapping-reload-all
+    autocmd! *
+    autocmd FileType fern call s:init_fern_mapping_reload_all()
+augroup END
 
 ""=========================================
 " 括弧の自動補完
@@ -191,6 +203,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'lambdalisue/fern.vim'
   " ファイルツリー上に git 差分を表示
   Plug 'lambdalisue/fern-git-status.vim'
+  " リロード
+  Plug 'LumaKernel/fern-mapping-reload-all.vim'
   " git 差分
   Plug 'airblade/vim-gitgutter'
   " ステータスバー
