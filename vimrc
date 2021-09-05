@@ -101,6 +101,25 @@ augroup my-fern-mapping-reload-all
 augroup END
 
 ""=========================================
+" ファイルフォーマッタ
+" 要: ALE (Asynchronous Lint Engine) 
+" https://github.com/dense-analysis/ale
+""=========================================
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
+let b:ale_fixers = {'javascript': ['prettier', 'eslint'],'vue': ['eslint', 'vls']}
+let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
+let b:ale_linters = {'javascript': ['prettier', 'eslint'],'vue': ['eslint', 'vls']}
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+let g:ale_linters_explicit = 1
+let g:airline#extensions#ale#enabled = 1
+
+""=========================================
 " 括弧の自動補完
 ""=========================================
 " () の自動補完
@@ -210,6 +229,8 @@ call plug#begin('~/.vim/plugged')
   " ステータスバー
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  " linter補助
+  Plug 'dense-analysis/ale'
 " Initialize plugin system
 call plug#end()
 
