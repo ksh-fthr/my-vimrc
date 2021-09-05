@@ -46,10 +46,47 @@ let g:netrw_altv = 1
 " 'o'でファイルを開くときは下側に開く。(デフォルトが上側なので入れ替え)
 let g:netrw_alto = 1
 
+""=========================================
 " タブラインの設定
 " 要: vim-airline
 " https://github.com/vim-airline/vim-airline
+""=========================================
 let g:airline#extensions#tabline#enabled = 1
+
+""=========================================
+" git 操作
+" 要: vim-gitgutter
+" https://github.com/airblade/vim-gitgutter
+""=========================================
+" ghでdiffをハイライトする
+nnoremap gh :GitGutterLineHighlightsToggle<CR>
+" gpでカーソル行のdiffを表示する
+nnoremap gp :GitGutterPreviewHunk<CR>
+" 記号の色を変更する
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=blue
+highlight GitGutterDelete ctermfg=red
+
+""=========================================
+" git の差分を fern 上に表示する
+" 要: fern-git-status.vim
+" https://github.com/lambdalisue/fern-git-status.vim
+""=========================================
+" Disable listing ignored files/directories
+let g:fern_git_status#disable_ignored = 1
+
+" Disable listing untracked files
+let g:fern_git_status#disable_untracked = 1
+
+" Disable listing status of submodules
+let g:fern_git_status#disable_submodules = 1
+
+" Disable listing status of directories
+let g:fern_git_status#disable_directories = 1
+
+
+"" 反映時間を短くする(デフォルトは4000ms)
+set updatetime=250
 
 ""=========================================
 " 括弧の自動補完
@@ -159,7 +196,6 @@ call plug#begin('~/.vim/plugged')
   " ステータスバー
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-
 " Initialize plugin system
 call plug#end()
 
