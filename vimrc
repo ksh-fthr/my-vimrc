@@ -74,16 +74,12 @@ highlight GitGutterDelete ctermfg=red
 ""=========================================
 " Disable listing ignored files/directories
 let g:fern_git_status#disable_ignored = 1
-
 " Disable listing untracked files
 let g:fern_git_status#disable_untracked = 1
-
 " Disable listing status of submodules
 let g:fern_git_status#disable_submodules = 1
-
 " Disable listing status of directories
 let g:fern_git_status#disable_directories = 1
-
 "" 反映時間を短くする(デフォルトは4000ms)
 set updatetime=250
 
@@ -113,11 +109,20 @@ let b:ale_linters = {'javascript': ['prettier', 'eslint'],'vue': ['eslint', 'vls
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 0
+" Write this in your vimrc file
+"let g:ale_lint_on_text_changed = 'never'
+"let g:ale_lint_on_insert_leave = 0
+" if you don't want linters to run on opening a file
+"let g:ale_lint_on_enter = 0
 let g:ale_linters_explicit = 1
 let g:airline#extensions#ale#enabled = 1
+
+""=========================================
+" Vue のシンタックスハイライト
+" 要: posva/vim-vue
+" https://github.com/posva/vim-vue
+""=========================================
+let g:vue_pre_processors = 'detect_on_enter'
 
 ""=========================================
 " 括弧の自動補完
