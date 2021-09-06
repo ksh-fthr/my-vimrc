@@ -5,8 +5,8 @@ source $VIMRUNTIME/menu.vim
 set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set fileformats=unix,dos,mac
 set nu
-set columns=180
-set lines=50
+set columns=170
+set lines=45
 set noundofile
 set nobackup
 set noundofile
@@ -20,8 +20,8 @@ set wildmenu
 set laststatus=2
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set showtabline=2
-set guifontwide=Monospace\ 14  " linux 環境, 全角文字
-set guifont=Monospace\ 14      " linux 環境, 半角文字
+set guifontwide=Monospace\ 16  " linux 環境, 全角文字
+set guifont=Monospace\ 16      " linux 環境, 半角文字
 
 colorscheme zabanya
 
@@ -79,6 +79,11 @@ highlight GitGutterChange ctermfg=blue
 highlight GitGutterDelete ctermfg=red
 
 ""=========================================
+" Fern 上でドットファイルを表示する
+""=========================================
+let g:fern#default_hidden=1
+
+""=========================================
 " git の差分を fern 上に表示する
 " 要: fern-git-status.vim
 " https://github.com/lambdalisue/fern-git-status.vim
@@ -113,9 +118,9 @@ augroup END
 " https://github.com/dense-analysis/ale
 ""=========================================
 " Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
+let b:ale_linter_aliases = ['javascript', 'vue']
+let b:ale_linters = ['eslint', 'vls']
 let b:ale_fixers = {'javascript': ['prettier', 'eslint'],'vue': ['eslint', 'vls']}
-let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
 let b:ale_linters = {'javascript': ['prettier', 'eslint'],'vue': ['eslint', 'vls']}
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -127,6 +132,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "let g:ale_lint_on_enter = 0
 let g:ale_linters_explicit = 1
 let g:airline#extensions#ale#enabled = 1
+let g:ale_fix_on_save = 1
 
 ""=========================================
 " Vue のシンタックスハイライト
