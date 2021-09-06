@@ -11,6 +11,7 @@ set noundofile
 set nobackup
 set noundofile
 set ts=4 sw=4 tw=0 expandtab
+set smartindent
 set nowrap
 set cmdheight=2
 set cursorline
@@ -21,7 +22,7 @@ set laststatus=2
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set showtabline=2
 set guifontwide=Monospace\ 16  " linux 環境, 全角文字
-set guifont=Monospace\ 16      " linux 環境, 半角文字
+set guifont=Monospace\ 16   " linux 環境, 半角文字
 
 colorscheme zabanya
 
@@ -33,6 +34,27 @@ set foldlevel=100
 
 " 改行時のコメントを無効にする
 autocmd FileType * setlocal formatoptions-=ro
+
+""=========================================
+" ファイルタイプごとにインデントを設定
+""=========================================
+if has("autocmd")
+  "ファイルタイプの検索を有効にする
+  filetype plugin on
+  "ファイルタイプに合わせたインデントを利用
+  filetype indent on
+  "sw=shiftwidth, sts=softtabstop, ts=tabstop, et=expandtabの略
+  autocmd FileType html        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType ts          setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType vue         setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType javascript  setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType js          setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType json        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType zsh         setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType python      setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType css         setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType scss        setlocal sw=2 sts=2 ts=2 et
+endif
 
 ""=========================================
 " netrwの設定
