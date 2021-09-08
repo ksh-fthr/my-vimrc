@@ -102,6 +102,8 @@ highlight GitGutterDelete ctermfg=red
 
 ""=========================================
 " Fern の設定
+" 要: fern.vim
+" https://github.com/lambdalisue/fern.vim
 ""=========================================
 " Fern 上でドットファイルを表示する
 let g:fern#default_hidden=1
@@ -119,7 +121,7 @@ augroup END
 " 要: nerdfont.vim
 " https://github.com/lambdalisue/nerdfont.vim
 "
-" 要: lambdalisue/fern-renderer-nerdfont.vim
+" 要: fern-renderer-nerdfont.vim
 " https://github.com/lambdalisue/fern-renderer-nerdfont.vim
 let g:fern#renderer = 'nerdfont'
 
