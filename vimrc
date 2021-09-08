@@ -101,9 +101,16 @@ highlight GitGutterChange ctermfg=blue
 highlight GitGutterDelete ctermfg=red
 
 ""=========================================
-" Fern 上でドットファイルを表示する
+" Fern の設定
 ""=========================================
+" Fern 上でドットファイルを表示する
 let g:fern#default_hidden=1
+
+" vim 起動時に fern を起動する
+augroup __fern__
+  au!
+  autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=%
+augroup END
 
 ""=========================================
 " git の差分を fern 上に表示する
