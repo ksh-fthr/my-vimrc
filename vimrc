@@ -112,6 +112,16 @@ augroup __fern__
   autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=%
 augroup END
 
+" アイコン表示
+let g:fern#renderer = 'nerdfont'
+
+" アイコンに色をつける
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
+
 ""=========================================
 " git の差分を fern 上に表示する
 " 要: fern-git-status.vim
@@ -271,6 +281,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'posva/vim-vue'
   " ファイラ
   Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/nerdfont.vim'               " アイコン表示のための拡張
+  Plug 'lambdalisue/fern-renderer-nerdfont.vim' " アイコン表示のための拡張
+  Plug 'lambdalisue/glyph-palette.vim'          " アイコン表示のための拡張
   " ファイルツリー上に git 差分を表示
   Plug 'lambdalisue/fern-git-status.vim'
   " リロード
