@@ -113,9 +113,19 @@ augroup __fern__
 augroup END
 
 " アイコン表示
+" 要: nerd-fonts
+" https://github.com/ryanoasis/nerd-fonts
+"
+" 要: nerdfont.vim
+" https://github.com/lambdalisue/nerdfont.vim
+"
+" 要: lambdalisue/fern-renderer-nerdfont.vim
+" https://github.com/lambdalisue/fern-renderer-nerdfont.vim
 let g:fern#renderer = 'nerdfont'
 
 " アイコンに色をつける
+" 要: glyph-palette.vim
+" https://github.com/lambdalisue/glyph-palette.vim
 augroup my-glyph-palette
   autocmd! *
   autocmd FileType fern call glyph_palette#apply()
