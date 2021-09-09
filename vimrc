@@ -186,11 +186,54 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_fix_on_save = 1
 
 ""=========================================
-" Vue のシンタックスハイライト
-" 要: posva/vim-vue
-" https://github.com/posva/vim-vue
+" ファイル検索
+" 要: fzf
+" https://github.com/junegunn/fzf
+" 要: fzf.vim
+" https://github.com/junegunn/fzf.vim
 ""=========================================
-let g:vue_pre_processors = 'detect_on_enter'
+" 設定の参照元:
+" https://qiita.com/youichiro/items/b4748b3e96106d25c5bc#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B
+"
+" Ctrl+pでファイル検索を開く
+" git管理されていれば:GFiles、そうでなければ:Filesを実行する
+fun! FzfOmniFiles()
+  let is_git = system('git status')
+  if v:shell_error
+    :Files
+  else
+    :GFiles
+  endif
+endfun
+nnoremap <C-p> :call FzfOmniFiles()<CR>
+
+" Ctrl+gで文字列検索を開く
+" <S-?>でプレビューを表示/非表示する
+command! -bang -nargs=* Rg
+\ call fzf#vim#grep(
+\ 'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+\ <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 3..'}, 'up:60%')
+\ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'right:50%:hidden', '?'),
+\ <bang>0)
+nnoremap <C-g> :Rg<CR>
+
+" frでカーソル位置の単語をファイル検索する
+nnoremap fr vawy:Rg <C-R>"<CR>
+" frで選択した単語をファイル検索する
+xnoremap fr y:Rg <C-R>"<CR>
+
+" fbでバッファ検索を開く
+nnoremap fb :Buffers<CR>
+" fpでバッファの中で1つ前に開いたファイルを開く
+nnoremap fp :Buffers<CR><CR>
+" flで開いているファイルの文字列検索を開く
+nnoremap fl :BLines<CR>
+" fmでマーク検索を開く
+nnoremap fm :Marks<CR>
+" fhでファイル閲覧履歴検索を開く
+nnoremap fh :History<CR>
+" fcでコミット履歴検索を開く
+nnoremap fc :Commits<CR>
 
 ""=========================================
 " 括弧の自動補完
@@ -246,6 +289,11 @@ augroup END  " }}}
 " syntax
 autocmd FileType vue syntax sync fromstart
 
+" Vue のシンタックスハイライト
+" 要: posva/vim-vue
+" https://github.com/posva/vim-vue
+let g:vue_pre_processors = 'detect_on_enter'
+
 " comment
 let g:ft = ''
 function! NERDCommenter_before()
@@ -282,7 +330,6 @@ endif
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
-
   " vim-list
   " https://github.com/mattn/vim-lsp-settings
   Plug 'prabirshrestha/vim-lsp'
@@ -307,7 +354,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   " linter補助
   Plug 'dense-analysis/ale'
-" Initialize plugin system
+  " ファイル検索
+  " 下記を実行してライブラリを入れておく
+  " ```
+  " $ brew install bat
+  " $ brew install ripgrep
+  " ```
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 ""=========================================
