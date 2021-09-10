@@ -174,6 +174,18 @@ nnoremap fh :History<CR>
 nnoremap fc :Commits<CR>
 
 ""=========================================
+" open-browser.vim の設定
+" 要: open-browser.vim
+" https://github.com/tyru/open-browser.vim
+""=========================================
+" URL にカーソルがある状態で `gx` -> ブラウザで URL が開く
+" 文字列にカーソルがある状態で `gx` -> ブラウザ上で google 検索
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+nnoremap <Leader>o :<C-u>execute "OpenBrowser" "file:///" . expand('%:p:gs?\\?/?')<CR>
+
+""=========================================
 " 括弧の自動補完
 ""=========================================
 " () の自動補完
@@ -300,6 +312,8 @@ call plug#begin('~/.vim/plugged')
   " ```
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  " URL リンクをブラウザで開く
+  Plug 'tyru/open-browser.vim'
 call plug#end()
 
 ""=========================================
