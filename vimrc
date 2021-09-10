@@ -211,7 +211,7 @@ endif
 " ファイル保存
 ""=========================================
 "ファイル保存時にディレクトリが無ければ自動作成する
-augroup vimrc-auto-mkdir  " {{{
+augroup __vimrc-auto-mkdir__  " {{{
   autocmd!
   autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'))
   function! s:auto_mkdir(dir)  " {{{

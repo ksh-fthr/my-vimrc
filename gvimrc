@@ -29,7 +29,7 @@ let g:fern#renderer = 'nerdfont'
 " アイコンに色をつける
 " 要: glyph-palette.vim
 " https://github.com/lambdalisue/glyph-palette.vim
-augroup my-glyph-palette
+augroup __glyph-palette__
   autocmd! *
   autocmd FileType fern call glyph_palette#apply()
   autocmd FileType nerdtree,startify call glyph_palette#apply()
@@ -59,7 +59,7 @@ set updatetime=250
 function s:init_fern_mapping_reload_all()
     nmap <buffer> R <Plug>(fern-action-reload:all)
 endfunction
-augroup my-fern-mapping-reload-all
+augroup __fern-mapping-reload-all__
     autocmd! *
     autocmd FileType fern call s:init_fern_mapping_reload_all()
 augroup END
