@@ -21,8 +21,8 @@ set wildmenu
 set laststatus=2
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set showtabline=2
-set guifontwide=Monospace\ 16  " linux 環境, 全角文字
-set guifont=Monospace\ 16   " linux 環境, 半角文字
+set guifontwide=MyricaM\ 16  " 全角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
+set guifont=MyricaM\ 16   " 半角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
 
 colorscheme zabanya
 
@@ -123,6 +123,7 @@ augroup END
 "
 " 要: fern-renderer-nerdfont.vim
 " https://github.com/lambdalisue/fern-renderer-nerdfont.vim
+set ambiwidth=double "全角記号を正しく表示する "全角記号を正しく表示する
 let g:fern#renderer = 'nerdfont'
 
 " アイコンに色をつける
