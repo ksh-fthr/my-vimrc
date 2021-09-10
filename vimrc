@@ -314,6 +314,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf.vim'
   " URL リンクをブラウザで開く
   Plug 'tyru/open-browser.vim'
+  " セッション管理
+  Plug 'skanehira/vsession'
 call plug#end()
 
 ""=========================================

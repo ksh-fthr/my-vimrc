@@ -1,6 +1,15 @@
 set guifontwide=MyricaM\ 16  " 全角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
 
 ""=========================================
+" セッションの設定
+" 要: skanehira/vesession
+" https://github.com/skanehira/vsession
+""=========================================
+augroup __load_session__
+  autocmd VimEnter * LoadSession
+augroup END
+
+""=========================================
 " Fern の設定
 " 要: fern.vim
 " https://github.com/lambdalisue/fern.vim
