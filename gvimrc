@@ -9,6 +9,10 @@ augroup __load_session__
   autocmd VimEnter * LoadSession
 augroup END
 
+nnoremap ss :SaveSession<CR>
+nnoremap ls :LoadSession<CR>
+nnoremap ds :DeleteSession<CR>
+
 ""=========================================
 " Fern の設定
 " 要: fern.vim
