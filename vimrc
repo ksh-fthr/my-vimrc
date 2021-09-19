@@ -298,6 +298,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tyru/open-browser.vim'
   " セッション管理
   Plug 'skanehira/vsession'
+  " GitHub を便利に
+  Plug 'tpope/vim-fugitive'
 call plug#end()
 
 ""=========================================
