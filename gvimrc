@@ -8,7 +8,7 @@ set guifontwide=MyricaM\ 16  " 全角文字 要: (MyricaM https://myrica.estable
 augroup __load_session__
   autocmd VimEnter * LoadSession
 augroup END
-
+" セッション管理のキーマップ
 nnoremap ss :SaveSession<CR>
 nnoremap ls :LoadSession<CR>
 nnoremap ds :DeleteSession<CR>
@@ -30,7 +30,17 @@ let g:airline#extensions#tabline#tab_min_count = 1     " minimum of 2 tabs neede
 let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline               
 let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers                                                              
 let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
-" タブ切り替えの設定
+let g:airline_theme = 'wombat'
+let g:airline_powerline_fonts=1
+" ステータスライン上に git branch を表示する
+let g:airline#extensions#hunks#enabled=0
+let g:airline#extensions#branch#enabled=1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+" タブ切り替えのキーマップ
 nmap <C-j> <Plug>AirlineSelectPrevTab
 nmap <C-k> <Plug>AirlineSelectNextTab
 
