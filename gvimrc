@@ -67,7 +67,7 @@ augroup END
 "
 " 要: fern-renderer-nerdfont.vim
 " https://github.com/lambdalisue/fern-renderer-nerdfont.vim
-set ambiwidth=double "全角記号を正しく表示する "全角記号を正しく表示する
+set ambiwidth=double "全角記号を正しく表示する
 let g:fern#renderer = 'nerdfont'
 
 " アイコンに色をつける
