@@ -3,20 +3,16 @@ set guifontwide=MyricaM\ 16  " 全角文字 要: (MyricaM https://myrica.estable
 ""=========================================
 " セッションの設定
 " 要: skanehira/vesession
-" https://github.com/skanehira/vsession
+" └https://github.com/skanehira/vsession
 ""=========================================
 augroup __load_session__
   autocmd VimEnter * LoadSession
 augroup END
-" セッション管理のキーマップ
-nnoremap ss :SaveSession<CR>
-nnoremap ls :LoadSession<CR>
-nnoremap ds :DeleteSession<CR>
 
 ""=========================================
 " タブラインの設定
 " 要: vim-airline
-" https://github.com/vim-airline/vim-airline
+" └https://github.com/vim-airline/vim-airline
 ""=========================================
 " 参考: https://www.reddit.com/r/vim/comments/crs61u/best_airline_settings/
 let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
@@ -40,14 +36,10 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 
-" タブ切り替えのキーマップ
-nmap <C-j> <Plug>AirlineSelectPrevTab
-nmap <C-k> <Plug>AirlineSelectNextTab
-
 ""=========================================
 " Fern の設定
 " 要: fern.vim
-" https://github.com/lambdalisue/fern.vim
+" └https://github.com/lambdalisue/fern.vim
 ""=========================================
 " Fern 上でドットファイルを表示する
 let g:fern#default_hidden=1
@@ -60,19 +52,19 @@ augroup END
 
 " アイコン表示
 " 要: nerd-fonts
-" https://github.com/ryanoasis/nerd-fonts
+" └https://github.com/ryanoasis/nerd-fonts
 "
 " 要: nerdfont.vim
-" https://github.com/lambdalisue/nerdfont.vim
+" └https://github.com/lambdalisue/nerdfont.vim
 "
 " 要: fern-renderer-nerdfont.vim
-" https://github.com/lambdalisue/fern-renderer-nerdfont.vim
+" └https://github.com/lambdalisue/fern-renderer-nerdfont.vim
 set ambiwidth=double "全角記号を正しく表示する
 let g:fern#renderer = 'nerdfont'
 
 " アイコンに色をつける
 " 要: glyph-palette.vim
-" https://github.com/lambdalisue/glyph-palette.vim
+" └https://github.com/lambdalisue/glyph-palette.vim
 augroup __glyph-palette__
   autocmd! *
   autocmd FileType fern call glyph_palette#apply()
@@ -82,7 +74,7 @@ augroup END
 ""=========================================
 " git の差分を fern 上に表示する
 " 要: fern-git-status.vim
-" https://github.com/lambdalisue/fern-git-status.vim
+" └https://github.com/lambdalisue/fern-git-status.vim
 ""=========================================
 " Disable listing ignored files/directories
 let g:fern_git_status#disable_ignored = 1
@@ -96,10 +88,19 @@ let g:fern_git_status#disable_directories = 1
 set updatetime=250
 
 ""=========================================
+" キーマッピング
+""=========================================
+" セッション管理のキーマップ
+nnoremap ss :SaveSession<CR>
+nnoremap ls :LoadSession<CR>
+nnoremap ds :DeleteSession<CR>
+" タブ切り替えのキーマップ
+nmap <C-j> <Plug>AirlineSelectPrevTab
+nmap <C-k> <Plug>AirlineSelectNextTab
+
 " ファイラのリロード
 " 要: fern-mapping-reload-all.vim
-" https://github.com/LumaKernel/fern-mapping-reload-all.vim
-""=========================================
+" └https://github.com/LumaKernel/fern-mapping-reload-all.vim
 function s:init_fern_mapping_reload_all()
     nmap <buffer> R <Plug>(fern-action-reload:all)
 endfunction
