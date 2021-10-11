@@ -94,9 +94,11 @@ set updatetime=250
 nnoremap ss :SaveSession<CR>
 nnoremap ls :LoadSession<CR>
 nnoremap ds :DeleteSession<CR>
-" タブ切り替えのキーマップ
+" バッファ(タブ)切り替えのキーマップ
 nmap <C-j> <Plug>AirlineSelectPrevTab
 nmap <C-k> <Plug>AirlineSelectNextTab
+" バッファを閉じる
+nmap <C-d> :bd<CR>
 
 " ファイラのリロード
 " 要: fern-mapping-reload-all.vim
