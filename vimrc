@@ -306,3 +306,11 @@ nnoremap fh :History<CR>
 " fcでコミット履歴検索を開く
 nnoremap fc :Commits<CR>
 
+" タグファイル生成
+" 要: universal-ctags
+" └https://ctags.io/
+" タグファイル生成
+nnoremap <C-c><C-t> :!ctags -R -f .tags<CR>
+" タグファイルセット
+nnoremap <C-s><C-t> :set tags=.tags<CR>
+
