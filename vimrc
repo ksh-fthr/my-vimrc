@@ -314,3 +314,6 @@ nnoremap <C-c><C-t> :!ctags -R -f .tags<CR>
 " タグファイルセット
 nnoremap <C-s><C-t> :set tags=.tags<CR>
 
+" Python の エラー、ワーニングの内容を確認
+nnoremap <C-l><C-d> :LspDocumentDiagnostics<CR>
+
