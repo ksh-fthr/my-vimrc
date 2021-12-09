@@ -246,6 +246,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'skanehira/vsession'
   " GitHub を便利に
   Plug 'tpope/vim-fugitive'
+  " マークダウンのプレビュー表示
+  " └ 要: https://github.com/MichaelMure/mdr
+  Plug 'skanehira/preview-markdown.vim'
 call plug#end()
 
 ""=========================================
@@ -316,4 +319,17 @@ nnoremap <C-s><C-t> :set tags=.tags<CR>
 
 " Python の エラー、ワーニングの内容を確認
 nnoremap <C-l><C-d> :LspDocumentDiagnostics<CR>
+
+""=========================================
+" マークダウンをプレビューする設定
+" 要:  preview-markdown.vim
+" └https://github.com/skanehira/preview-markdown.vim
+" 
+" 更に上記 plugin に必要なもの
+" └https://github.com/MichaelMure/mdr
+""=========================================
+" 新しいウィンドウを右に開く
+set splitright
+" プレビューを開く
+nnoremap <C-p><C-m> :PreviewMarkdown<CR>
 
