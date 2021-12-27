@@ -2,8 +2,8 @@ set encoding=utf-8
 source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_jp.utf-8
 source $VIMRUNTIME/menu.vim
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-set fileformats=unix,dos,mac
+set fileencodings=utf-8
+set fileformats=unix
 set nu
 set columns=170
 set lines=45
