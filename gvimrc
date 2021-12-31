@@ -105,7 +105,7 @@ nmap <C-d> :bd<CR>
 " 要: fern-mapping-reload-all.vim
 " └https://github.com/LumaKernel/fern-mapping-reload-all.vim
 function s:init_fern_mapping_reload_all()
-    nmap <buffer> R <Plug>(fern-action-reload:all)
+    nmap <buffer> <C-r> <Plug>(fern-action-reload:all)
 endfunction
 augroup __fern-mapping-reload-all__
     autocmd! *
