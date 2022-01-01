@@ -228,7 +228,7 @@ fun! FzfOmniFiles()
     :GFiles
   endif
 endfun
-nnoremap <C-p> :call FzfOmniFiles()<CR>
+nnoremap <C-f> :call FzfOmniFiles()<CR>
 
 " Ctrl+gで文字列検索を開く
 " <S-?>でプレビューを表示/非表示する
