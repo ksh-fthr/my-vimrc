@@ -228,7 +228,7 @@ fun! FzfOmniFiles()
     :GFiles
   endif
 endfun
-nnoremap <C-f> :call FzfOmniFiles()<CR>
+nnoremap <C-p> :call FzfOmniFiles()<CR>
 
 " Ctrl+gで文字列検索を開く
 " <S-?>でプレビューを表示/非表示する
@@ -382,9 +382,9 @@ let g:mkdp_filetypes = ['markdown']
 
 """ Key Mapping
 " normal/insert
-nmap <C-s> <Plug>MarkdownPreview
+nmap <C-m> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
-nmap <C-p> <Plug>MarkdownPreviewToggle
+nmap <C-o> <Plug>MarkdownPreviewToggle
 
 ""=========================================
 " for vim-plug
