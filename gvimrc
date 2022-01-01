@@ -88,27 +88,3 @@ let g:fern_git_status#disable_directories = 1
 "" 反映時間を短くする(デフォルトは4000ms)
 set updatetime=250
 
-""=========================================
-" キーマッピング
-""=========================================
-" セッション管理のキーマップ
-nnoremap ss :SaveSession<CR>
-nnoremap ls :LoadSession<CR>
-nnoremap ds :DeleteSession<CR>
-" バッファ(タブ)切り替えのキーマップ
-nmap <C-j> <Plug>AirlineSelectPrevTab
-nmap <C-k> <Plug>AirlineSelectNextTab
-" バッファを閉じる
-nmap <C-d> :bd<CR>
-
-" ファイラのリロード
-" 要: fern-mapping-reload-all.vim
-" └https://github.com/LumaKernel/fern-mapping-reload-all.vim
-function s:init_fern_mapping_reload_all()
-    nmap <buffer> <C-r> <Plug>(fern-action-reload:all)
-endfunction
-augroup __fern-mapping-reload-all__
-    autocmd! *
-    autocmd FileType fern call s:init_fern_mapping_reload_all()
-augroup END
-
