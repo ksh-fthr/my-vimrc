@@ -197,6 +197,30 @@ if &compatible
 endif
 
 ""=========================================
+" for javascript-libraries-syntax
+" └https://github.com/othree/javascript-libraries-syntax.vim
+""=========================================
+let g:used_javascript_libs = 'jquery,underscore,react,flux,jasmine,d3'
+autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_flux = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_jasmine = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_d3 = 1
+
+""=========================================
+" for vim-javascript
+" └https://github.com/pangloss/vim-javascript
+""=========================================
+let g:javascript_plugin_jsdoc = 1
+"let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
+
+""=========================================
 " for vim-plug
 " └https://github.com/junegunn/vim-plug
 ""=========================================
@@ -210,8 +234,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/vim-lsp-settings'
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  " 言語ごとのシンタックス関連プラグイン
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'posva/vim-vue'
+  " JavaScriptのSyntax関連プラグイン
+  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+  " React 関連
+  Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
+  Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+  Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
   " ファイラ
   Plug 'lambdalisue/fern.vim'
   Plug 'lambdalisue/nerdfont.vim'               " アイコン表示のための拡張
