@@ -32,6 +32,7 @@ set showtabline=2
 set guifontwide=MyricaM\ 16  " 全角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
 set guifont=MyricaM\ 16   " 半角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
 set clipboard=unnamedplus " ヤンクした内容をクリップボードと共有
+set clipboard+=autoselect
 
 colorscheme zabanya
 
