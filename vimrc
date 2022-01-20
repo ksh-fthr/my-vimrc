@@ -282,6 +282,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
   " コメントを便利に
   Plug 'tomtom/tcomment_vim'
+  " ファジーファインダ -> vim-go の GoDecls / GoDeclsDir を便利に
+  Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 
