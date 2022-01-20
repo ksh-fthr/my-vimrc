@@ -220,4 +220,10 @@ augroup __fern-mapping-reload-all__
     autocmd FileType fern call s:init_fern_mapping_reload_all()
 augroup END
 
+""=========================================
+" vim-lsp の定義ジャンプのキーバインド
+" 要: vim-lsp
+" └https://github.com/prabirshrestha/vim-lsp
+""=========================================
+nnoremap <expr> <C-]> execute('LspPeekDefinition') =~ "not supported" ? "\<C-]>" : ":LspDefinition<cr>"
 
