@@ -239,6 +239,8 @@ call plug#begin('~/.vim/plugged')
   " 言語ごとのシンタックス関連プラグイン
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'posva/vim-vue'
+  Plug 'godlygeek/tabular'
+  Plug 'preservim/vim-markdown'
   " JavaScriptのSyntax関連プラグイン
   Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
   " React 関連
