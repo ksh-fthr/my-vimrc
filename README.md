@@ -8,8 +8,14 @@ home ディレクトリで下記を実施して各ファイルのシンボリッ
 #
 # /path/to/my_vimrc はリポジトリルートへの path
 #
-% ln -s /path/to/my_vimrc/vimrc .vimrc
+
+# 各種 dotfiles のシンボリックリンク
+% ln -s /path/to/my-vimrc/vimrc .vimrc
 % ln -s /path/to/my-vimrc/gvimrc .gvimrc
 % ln -s /path/to/my-vimrc/script/keymapping.vim .keymapping.vim
+
+# vim-theme のシンボリックリンク
+% ln -s /path/to/my-vimrc/colors/throne.vim throne.vim
+% ln -s /path/to/my-vimrc/colors/zabanya.vim zabanya.vim
 ```
 
