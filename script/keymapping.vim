@@ -227,3 +227,22 @@ augroup END
 ""=========================================
 nnoremap <expr> <C-]> execute('LspPeekDefinition') =~ "not supported" ? "\<C-]>" : ":LspDefinition<cr>"
 
+""/////////////////////////////////////////
+" fern-preview.vim のキーバインド
+" 要: fern-preview.vim
+" └ https://github.com/yuki-yano/fern-preview.vim
+""/////////////////////////////////////////
+" 公式リポジトリを参考にキーマップを追加
+function! s:fern_settings() abort
+  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+  " ファイル検索のキーバインドと競合するのでコメントアウト
+  "nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+endfunction
+
+augroup fern-settings
+  autocmd!
+  autocmd FileType fern call s:fern_settings()
+augroup END
+
