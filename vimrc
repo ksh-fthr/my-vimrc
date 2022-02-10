@@ -255,7 +255,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'lambdalisue/fern-git-status.vim'        " ファイルツリー上に git 差分を表示
   Plug 'LumaKernel/fern-mapping-reload-all.vim' " リロード
   Plug 'yuki-yano/fern-preview.vim'             " ファイルプレビュー
-  Plug 'lambdalisue/fern-git-status.vim'        " ファイルごとに git ステータスを表示
   " git 差分
   Plug 'airblade/vim-gitgutter'
   " ステータスバー
