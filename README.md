@@ -13,6 +13,7 @@ home ディレクトリで下記を実施して各ファイルのシンボリッ
 % ln -s /path/to/my-vimrc/vimrc .vimrc
 % ln -s /path/to/my-vimrc/gvimrc .gvimrc
 % ln -s /path/to/my-vimrc/script/keymapping.vim .keymapping.vim
+% ln -s /path/to/my-vimrc/settings/fern-vim-settings.vim .fern-vim-settings.vim
 
 # vim-theme のシンボリックリンク
 % ln -s /path/to/my-vimrc/colors/throne.vim throne.vim
