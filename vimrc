@@ -252,10 +252,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'lambdalisue/nerdfont.vim'               " アイコン表示のための拡張
   Plug 'lambdalisue/fern-renderer-nerdfont.vim' " アイコン表示のための拡張
   Plug 'lambdalisue/glyph-palette.vim'          " アイコン表示のための拡張
-  " ファイルツリー上に git 差分を表示
-  Plug 'lambdalisue/fern-git-status.vim'
-  " リロード
-  Plug 'LumaKernel/fern-mapping-reload-all.vim'
+  Plug 'lambdalisue/fern-git-status.vim'        " ファイルツリー上に git 差分を表示
+  Plug 'LumaKernel/fern-mapping-reload-all.vim' " リロード
+  Plug 'yuki-yano/fern-preview.vim'             " ファイルプレビュー
   " git 差分
   Plug 'airblade/vim-gitgutter'
   " ステータスバー
