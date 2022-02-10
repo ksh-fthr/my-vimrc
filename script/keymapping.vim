@@ -237,6 +237,7 @@ function! s:fern_settings() abort
   nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
   " ファイル検索のキーバインドと競合するのでコメントアウト
   "nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+  " バッファを閉じる操作のキーバインドと競合するのでデフォルトの設定から割り当てるキーを変更.
   nmap <silent> <buffer> <C-j> <Plug>(fern-action-preview:scroll:down:half)
   nmap <silent> <buffer> <C-k> <Plug>(fern-action-preview:scroll:up:half)
 endfunction
