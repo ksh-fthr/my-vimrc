@@ -285,6 +285,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomtom/tcomment_vim'
   " ファジーファインダ -> vim-go の GoDecls / GoDeclsDir を便利に
   Plug 'ctrlpvim/ctrlp.vim'
-call plug#end()
+  " buffer を削除してもウィンドウはそのまま
+  Plug 'qpkorr/vim-bufkill'
+ call plug#end()
 
 
