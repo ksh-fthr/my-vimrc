@@ -8,8 +8,13 @@ nnoremap ds :DeleteSession<CR>
 " バッファ(タブ)切り替えのキーマップ
 nmap <C-j> <Plug>AirlineSelectPrevTab
 nmap <C-k> <Plug>AirlineSelectNextTab
+""=========================================
+" バッファを閉じた際にウィンドウはそのままとする
+" 要: vim-bufkill
+" └https://github.com/qpkorr/vim-bufkill
+""=========================================
 " バッファを閉じる
-nmap <C-d> :bd<CR>
+nmap <C-d> :BD<CR>
 
 " 要: vim-gitgutter
 " └https://github.com/airblade/vim-gitgutter
