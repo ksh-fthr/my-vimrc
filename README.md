@@ -9,11 +9,19 @@ home ディレクトリで下記を実施して各ファイルのシンボリッ
 # /path/to/my_vimrc はリポジトリルートへの path
 #
 
+#
 # 各種 dotfiles のシンボリックリンク
+#
+# vimrc, gvimrc
 % ln -s /path/to/my-vimrc/vimrc .vimrc
 % ln -s /path/to/my-vimrc/gvimrc .gvimrc
+
+# キーマッピング
 % ln -s /path/to/my-vimrc/script/keymapping.vim .keymapping.vim
-% ln -s /path/to/my-vimrc/settings/fern-vim-settings.vim .fern-vim-settings.vim
+
+# プラグインの設定
+% ln -s /path/to/my-vimrc/plugin-settings/fern-vim-settings.vim .fern-vim-settings.vim
+% ln -s /path/to/my-vimrc/plugin-settings/vim-airline-settings.vim .vim-airline-settings.vim
 
 # vim-theme のシンボリックリンク
 % ln -s /path/to/my-vimrc/colors/throne.vim throne.vim
