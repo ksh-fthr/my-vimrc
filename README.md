@@ -17,7 +17,7 @@ home ディレクトリで下記を実施して各ファイルのシンボリッ
 % ln -s /path/to/my-vimrc/gvimrc .gvimrc
 
 # キーマッピング
-% ln -s /path/to/my-vimrc/script/keymapping.vim .keymapping.vim
+% ln -s /path/to/my-vimrc/keymapping/keymapping.vim .keymapping.vim
 
 # プラグインの設定
 % ln -s /path/to/my-vimrc/plugin-settings/fern-vim-settings.vim .fern-vim-settings.vim
