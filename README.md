@@ -22,6 +22,7 @@ home ディレクトリで下記を実施して各ファイルのシンボリッ
 # プラグインの設定
 % ln -s /path/to/my-vimrc/plugin-settings/fern-vim-settings.vim .fern-vim-settings.vim
 % ln -s /path/to/my-vimrc/plugin-settings/vim-airline-settings.vim .vim-airline-settings.vim
+% ln -s /path/to/my-vimrc/plugin-settings/vesession-settings.vim .vesession-settings.vim
 
 # vim-theme のシンボリックリンク
 % ln -s /path/to/my-vimrc/colors/throne.vim throne.vim
