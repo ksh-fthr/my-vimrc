@@ -2,6 +2,11 @@
 vim の個人用設定ファイル.
 
 # 利用前の準備
+## vim-plug を導入する
+[公式](https://github.com/junegunn/vim-plug) の手順にそって `vim-plug` を導入する.
+
+
+## ドットファイルのシンボリックリンクを作成する
 home ディレクトリで下記を実施して各ファイルのシンボリックリンクを作成する.
 
 ```bash
@@ -31,4 +36,7 @@ home ディレクトリで下記を実施して各ファイルのシンボリッ
 % ln -s /path/to/my-vimrc/colors/throne.vim throne.vim
 % ln -s /path/to/my-vimrc/colors/zabanya.vim zabanya.vim
 ```
+
+## 各プラグインをインストールする
+`vim` を起動して `PlugInstall` を実行する.
 
