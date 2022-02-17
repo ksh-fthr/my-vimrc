@@ -17,3 +17,8 @@ source <sfile>:h/.vim-airline-settings.vim
 ""=========================================
 source <sfile>:h/.fern-vim-settings.vim
 
+""=========================================
+" バッファを閉じる設定
+""=========================================
+source <sfile>:h/.buffer-close-settings.vim
+

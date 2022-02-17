@@ -14,10 +14,20 @@ nmap <C-k> <Plug>AirlineSelectNextTab
 " └https://github.com/qpkorr/vim-bufkill
 ""=========================================
 " バッファを閉じる
-nmap <C-d> :BD<CR>
+" vim-bufkill を使用する場合はこちらを有効にする
+nmap <C-b><C-d> :BD<CR>
 
+""=========================================
+" バッファを閉じた際にウィンドウはそのままとする
+" └https://lsifrontend.blog.fc2.com/blog-entry-356.html
+""=========================================
+nmap <C-e><C-d> :Ebd<CR>
+
+""=========================================
+" git 関連
 " 要: vim-gitgutter
 " └https://github.com/airblade/vim-gitgutter
+""=========================================
 " ghでdiffをハイライトする
 nnoremap gh :GitGutterLineHighlightsToggle<CR>
 " gpでカーソル行のdiffを表示する

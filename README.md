@@ -24,6 +24,9 @@ home ディレクトリで下記を実施して各ファイルのシンボリッ
 % ln -s /path/to/my-vimrc/plugin-settings/vim-airline-settings.vim .vim-airline-settings.vim
 % ln -s /path/to/my-vimrc/plugin-settings/vesession-settings.vim .vesession-settings.vim
 
+# プラグイン以外の設定
+% ln -s /path/to/my-vimrc/my-settings/buffer-close-settings.vim .buffer-close-settings.vim
+
 # vim-theme のシンボリックリンク
 % ln -s /path/to/my-vimrc/colors/throne.vim throne.vim
 % ln -s /path/to/my-vimrc/colors/zabanya.vim zabanya.vim
