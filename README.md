@@ -28,6 +28,7 @@ home ディレクトリで下記を実施して各ファイルのシンボリッ
 % ln -s /path/to/my-vimrc/plugin-settings/fern-vim-settings.vim .fern-vim-settings.vim
 % ln -s /path/to/my-vimrc/plugin-settings/vim-airline-settings.vim .vim-airline-settings.vim
 % ln -s /path/to/my-vimrc/plugin-settings/vesession-settings.vim .vesession-settings.vim
+% ln -s /path/to/my-vimrc/plugin-settings/vim-gitgutter-settings.vim .vim-gitgutter-settings.vim
 
 # プラグイン以外の設定
 % ln -s /path/to/my-vimrc/my-settings/buffer-close-settings.vim .buffer-close-settings.vim
