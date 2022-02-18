@@ -32,6 +32,9 @@ nmap <C-x> :Ebd<CR>
 nnoremap gh :GitGutterLineHighlightsToggle<CR>
 " gpでカーソル行のdiffを表示する
 nnoremap gp :GitGutterPreviewHunk<CR>
+" nh を押せば次のハンク（変更点のかたまり）へ、ph を押せば前のハンクへ移動
+nnoremap nh :GitGutterNextHunk<CR>
+nnoremap ph :GitGutterPrevHunk<CR>
 
 ""=========================================
 " ファイル検索

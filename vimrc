@@ -2,6 +2,7 @@
 " スクリプトファイル読み込み
 ""=========================================
 source <sfile>:h/.keymapping.vim
+source <sfile>:h/.vim-gitgutter-settings.vim
 
 ""=========================================
 " 主だった設定
@@ -287,6 +288,5 @@ call plug#begin('~/.vim/plugged')
   Plug 'ctrlpvim/ctrlp.vim'
   " buffer を削除してもウィンドウはそのまま
   Plug 'qpkorr/vim-bufkill'
- call plug#end()
-
+call plug#end()
 
