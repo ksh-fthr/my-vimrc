@@ -80,17 +80,6 @@ let g:netrw_altv = 1
 let g:netrw_alto = 1
 
 ""=========================================
-" git 関連の設定
-" 要: vim-gitgutter
-" └https://github.com/airblade/vim-gitgutter
-""=========================================
-" 記号の色を変更する
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=blue
-highlight GitGutterDelete ctermfg=red
-
-
-""=========================================
 " ファイルフォーマッタ
 " 要: ALE (Asynchronous Lint Engine) 
 " └https://github.com/dense-analysis/ale
