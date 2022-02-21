@@ -15,28 +15,27 @@ home ディレクトリで下記を実施して各ファイルのシンボリッ
 #
 
 #
-# 各種 dotfiles のシンボリックリンク
+# 各種設定 のシンボリックリンク
 #
 # vimrc, gvimrc
 % ln -s /path/to/my-vimrc/vimrc .vimrc
 % ln -s /path/to/my-vimrc/gvimrc .gvimrc
 
-# キーマッピング
-% ln -s /path/to/my-vimrc/keymapping/keymapping.vim .keymapping.vim
 
-# プラグインの設定
-% ln -s /path/to/my-vimrc/plugin-settings/fern-vim-settings.vim .fern-vim-settings.vim
-% ln -s /path/to/my-vimrc/plugin-settings/vim-airline-settings.vim .vim-airline-settings.vim
-% ln -s /path/to/my-vimrc/plugin-settings/vesession-settings.vim .vesession-settings.vim
-% ln -s /path/to/my-vimrc/plugin-settings/vim-gitgutter-settings.vim .vim-gitgutter-settings.vim
-% ln -s /path/to/my-vimrc/plugin-settings/ale-settings.vim .ale-settings.vim
+# キーマップやプラグインの設定
+# home フォルダの .vim/ に設定用のディレクトリを作成して移動する
+% mkdir -p ~/.vim/settings
+% cd ~/.vim/settings/
 
-# プラグイン以外の設定
-% ln -s /path/to/my-vimrc/my-settings/buffer-close-settings.vim .buffer-close-settings.vim
+% ln -s /path/to/my-vimrc/settings/keymapping # キーマッピング
+% ln -s /path/to/my-vimrc/settings/plugin     # プラグインの設定
+% ln -s /path/to/my-vimrc/settings/one        # プラグイン以外の設定
+ 
 
-# vim-theme のシンボリックリンク
-% ln -s /path/to/my-vimrc/colors/throne.vim throne.vim
-% ln -s /path/to/my-vimrc/colors/zabanya.vim zabanya.vim
+# vim-theme のシンボリックリンク]
+cd ~/.vim/colors
+% ln -s /path/to/my-vimrc/settings/colors/throne.vim throne.vim
+% ln -s /path/to/my-vimrc/settings/colors/zabanya.vim zabanya.vim
 ```
 
 ## 各プラグインをインストールする

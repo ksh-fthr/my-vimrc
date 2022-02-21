@@ -1,9 +1,9 @@
 ""=========================================
 " スクリプトファイル読み込み
 ""=========================================
-source <sfile>:h/.keymapping.vim
-source <sfile>:h/.vim-gitgutter-settings.vim
-source <sfile>:h/.ale-settings.vim
+source <sfile>:h/.vim/settings/keymapping/keymapping.vim
+source <sfile>:h/.vim/settings/plugin/vim-gitgutter-settings.vim
+source <sfile>:h/.vim/settings/plugin/ale-settings.vim
 
 ""=========================================
 " 主だった設定
