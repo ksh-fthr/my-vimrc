@@ -5,20 +5,20 @@ set guioptions+=a
 ""=========================================
 " セッションの設定
 ""=========================================
-source <sfile>:h/.vesession-settings.vim
+source <sfile>:h/.vim/settings/plugin/vesession-settings.vim
 
 ""=========================================
 " タブラインの設定
 ""=========================================
-source <sfile>:h/.vim-airline-settings.vim
+source <sfile>:h/.vim/settings/plugin/vim-airline-settings.vim
 
 ""=========================================
 " Fern の設定
 ""=========================================
-source <sfile>:h/.fern-vim-settings.vim
+source <sfile>:h/.vim/settings/plugin/fern-vim-settings.vim
 
 ""=========================================
 " バッファを閉じる設定
 ""=========================================
-source <sfile>:h/.buffer-close-settings.vim
+source <sfile>:h/.vim/settings/one/buffer-close-settings.vim
 
