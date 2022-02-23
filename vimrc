@@ -1,11 +1,4 @@
 ""=========================================
-" スクリプトファイル読み込み
-""=========================================
-source <sfile>:h/.vim/settings/keymapping/keymapping.vim
-source <sfile>:h/.vim/settings/plugin/vim-gitgutter-settings.vim
-source <sfile>:h/.vim/settings/plugin/ale-settings.vim
-
-""=========================================
 " 主だった設定
 ""=========================================
 set encoding=utf-8
@@ -38,7 +31,6 @@ set clipboard+=autoselect
 
 colorscheme zabanya
 
-
 " 折りたたみ
 set foldmethod=syntax
 let perl_fold=1
@@ -58,10 +50,6 @@ if has("autocmd")
   "sw=shiftwidth, sts=softtabstop, ts=tabstop, et=expandtabの略
   autocmd FileType html        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType ts          setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType vue         setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType javascript  setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType js          setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType json        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType zsh         setlocal sw=2 sts=2 ts=2 et
   autocmd FileType python      setlocal sw=2 sts=2 ts=2 et
   autocmd FileType css         setlocal sw=2 sts=2 ts=2 et
@@ -113,7 +101,6 @@ if has('vim_starting')
     endf
 endif
 
-
 ""=========================================
 " ファイル保存
 ""=========================================
@@ -129,132 +116,12 @@ augroup __vimrc-auto-mkdir__  " {{{
 augroup END  " }}}
 
 ""=========================================
-" for Vue.js
+" 各種設定ファイルの読み込み
 ""=========================================
-" syntax
-autocmd FileType vue syntax sync fromstart
-
-" Vue のシンタックスハイライト
-" 要: posva/vim-vue
-" └https://github.com/posva/vim-vue
-let g:vue_pre_processors = 'detect_on_enter'
-
-" comment
-let g:ft = ''
-function! NERDCommenter_before()
-  if &ft == 'vue'
-    let g:ft = 'vue'
-    let stack = synstack(line('.'), col('.'))
-    if len(stack) > 0
-      let syn = synIDattr((stack)[0], 'name')
-      if len(syn) > 0
-        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
-      endif
-    endif
-  endif
-endfunction
-function! NERDCommenter_after()
-  if g:ft == 'vue'
-    setf vue
-    let g:ft = ''
-  endif
-endfunction
-
-" Note: Skip initialization for vim-tiny or vim-small.
-if 0 | endif
-
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-""=========================================
-" for javascript-libraries-syntax
-" └https://github.com/othree/javascript-libraries-syntax.vim
-""=========================================
-let g:used_javascript_libs = 'jquery,underscore,react,flux,jasmine,d3'
-autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
-autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1
-autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
-autocmd BufReadPre *.js let b:javascript_lib_use_flux = 1
-autocmd BufReadPre *.js let b:javascript_lib_use_jasmine = 1
-autocmd BufReadPre *.js let b:javascript_lib_use_d3 = 1
-
-""=========================================
-" for vim-javascript
-" └https://github.com/pangloss/vim-javascript
-""=========================================
-let g:javascript_plugin_jsdoc = 1
-"let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
-augroup javascript_folding
-    au!
-    au FileType javascript setlocal foldmethod=syntax
-augroup END
-
-""=========================================
-" for vim-plug
-" └https://github.com/junegunn/vim-plug
-""=========================================
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
-  " vim-list
-  " └https://github.com/mattn/vim-lsp-settings
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  " 言語ごとのシンタックス関連プラグイン
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-  Plug 'posva/vim-vue'
-  Plug 'godlygeek/tabular'
-  Plug 'preservim/vim-markdown'
-  " JavaScriptのSyntax関連プラグイン
-  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-  " React 関連
-  Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
-  Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
-  Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
-  " ファイラ
-  Plug 'lambdalisue/fern.vim'
-  Plug 'lambdalisue/nerdfont.vim'               " アイコン表示のための拡張
-  Plug 'lambdalisue/fern-renderer-nerdfont.vim' " アイコン表示のための拡張
-  Plug 'lambdalisue/glyph-palette.vim'          " アイコン表示のための拡張
-  Plug 'lambdalisue/fern-git-status.vim'        " ファイルツリー上に git 差分を表示
-  Plug 'LumaKernel/fern-mapping-reload-all.vim' " リロード
-  Plug 'yuki-yano/fern-preview.vim'             " ファイルプレビュー
-  " git 差分
-  Plug 'airblade/vim-gitgutter'
-  " ステータスバー
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  " linter補助
-  Plug 'dense-analysis/ale'
-  " ファイル検索
-  " 下記を実行してライブラリを入れておく
-  " ```
-  " $ brew install bat
-  " $ brew install ripgrep
-  " ```
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  " URL リンクをブラウザで開く
-  Plug 'tyru/open-browser.vim'
-  " セッション管理
-  Plug 'skanehira/vsession'
-  " GitHub を便利に
-  Plug 'tpope/vim-fugitive'
-  " マークダウンのプレビュー表示
-  " └ 要: https://github.com/MichaelMure/mdr
-  "Plug 'skanehira/preview-markdown.vim'
-  " https://github.com/iamcco/markdown-preview.nvim 
-  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-  " コメントを便利に
-  Plug 'tomtom/tcomment_vim'
-  " ファジーファインダ -> vim-go の GoDecls / GoDeclsDir を便利に
-  Plug 'ctrlpvim/ctrlp.vim'
-  " buffer を削除してもウィンドウはそのまま
-  Plug 'qpkorr/vim-bufkill'
-call plug#end()
+source <sfile>:h/.vim/settings/keymapping/keymapping.vim                " キーマッピング
+source <sfile>:h/.vim/settings/plugin/vim-plug-settings.vim             " プラグイン管理
+source <sfile>:h/.vim/settings/plugin/vim-gitgutter-settings.vim        " git 関連
+source <sfile>:h/.vim/settings/plugin/ale-settings.vim                  " ファイルフォーマット
+source <sfile>:h/.vim/settings/program-language/javascript-settings.vim " JavaScript
+source <sfile>:h/.vim/settings/program-language/vue-js-settings.vim     " Vue.js
 
