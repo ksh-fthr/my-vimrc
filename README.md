@@ -27,10 +27,10 @@ home ディレクトリで下記を実施して各ファイルのシンボリッ
 % mkdir -p ~/.vim/settings
 % cd ~/.vim/settings/
 
-% ln -s /path/to/my-vimrc/settings/keymapping # キーマッピング
-% ln -s /path/to/my-vimrc/settings/plugin     # プラグインの設定
-% ln -s /path/to/my-vimrc/settings/one        # プラグイン以外の設定
- 
+% ln -s /path/to/my-vimrc/settings/keymapping       # キーマッピング
+% ln -s /path/to/my-vimrc/settings/plugin           # プラグインの設定
+% ln -s /path/to/my-vimrc/settings/one              # プラグイン以外の設定
+% ln -s /path/to/my-vimrc/settings/program-language # プログラム言語の設定 
 
 # vim-theme のシンボリックリンク]
 cd ~/.vim/colors
