@@ -8,6 +8,9 @@ nnoremap ds :DeleteSession<CR>
 " バッファ(タブ)切り替えのキーマップ
 nmap <C-j> <Plug>AirlineSelectPrevTab
 nmap <C-k> <Plug>AirlineSelectNextTab
+" terminal を開く
+nnoremap <C-@> :bo terminal<CR>
+
 ""=========================================
 " バッファを閉じた際にウィンドウはそのままとする
 " 要: vim-bufkill
