@@ -123,6 +123,7 @@ source <sfile>:h/.vim/settings/plugin/vim-plug-settings.vim             " プラ
 source <sfile>:h/.vim/settings/plugin/vim-gitgutter-settings.vim        " git 関連
 source <sfile>:h/.vim/settings/plugin/ale-settings.vim                  " ファイルフォーマット
 source <sfile>:h/.vim/settings/plugin/markdown-preview-settings.vim     " マークダウンプレビュー
+source <sfile>:h/.vim/settings/plugin/vim-airline-settings.vim          " タブラインの設定
 source <sfile>:h/.vim/settings/program-language/javascript-settings.vim " JavaScript
 source <sfile>:h/.vim/settings/program-language/vue-js-settings.vim     " Vue.js
 
