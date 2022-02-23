@@ -1,5 +1,5 @@
 ""=========================================
-" スクリプトファイル読み込み
+" 各種設定ファイルの読み込み
 ""=========================================
 source <sfile>:h/.vim/settings/keymapping/keymapping.vim
 source <sfile>:h/.vim/settings/plugin/vim-gitgutter-settings.vim
