@@ -64,5 +64,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ctrlpvim/ctrlp.vim'
   " buffer を削除してもウィンドウはそのまま
   Plug 'qpkorr/vim-bufkill'
+  " colorschems
+  Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
 
