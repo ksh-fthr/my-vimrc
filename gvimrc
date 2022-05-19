@@ -1,5 +1,5 @@
 " 環境別設定
-if !as('unix')
+if has('unix')
     set guifontwide=MyricaM\ M\ 16  " 全角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
     set guifont=MyricaM\ M\ 16      " 半角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/) 
 endif
