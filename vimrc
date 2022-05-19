@@ -2,12 +2,18 @@
 " 主だった設定
 ""=========================================
 " 環境別設定
-if !has('mac')
-    set guifontwide=MyricaM\ 16  " 全角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
+if has('unix')
+    set guifontwide=MyricaM\ M\ 16  " 全角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
+    set guifont=MyricaM\ M\ 16      " 半角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
+    set columns=170
+    set lines=45
+endif
+if has('mac')
+    set guifontwide=MyricaM\ M:h16  " 全角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
+    set guifont=MyricaM\ M:h16      " 半角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
 endif
 
 " 共通設定
-set guifont=MyricaM\ 16   " 半角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
 set encoding=utf-8
 source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_jp.utf-8
@@ -15,8 +21,6 @@ source $VIMRUNTIME/menu.vim
 set fileencodings=utf-8
 set fileformats=unix
 set nu
-set columns=170
-set lines=45
 set noundofile
 set nobackup
 set noundofile
