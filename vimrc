@@ -1,6 +1,13 @@
 ""=========================================
 " 主だった設定
 ""=========================================
+" 環境別設定
+if !has('mac')
+    set guifontwide=MyricaM\ 16  " 全角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
+endif
+
+" 共通設定
+set guifont=MyricaM\ 16   " 半角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
 set encoding=utf-8
 source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_jp.utf-8
@@ -24,8 +31,6 @@ set wildmenu
 set laststatus=2
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set showtabline=2
-set guifontwide=MyricaM\ 16  " 全角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
-set guifont=MyricaM\ 16   " 半角文字 要: (MyricaM https://myrica.estable.jp/myricamhistry/)
 set clipboard=unnamedplus " ヤンクした内容をクリップボードと共有
 set clipboard+=autoselect
 
