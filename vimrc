@@ -37,6 +37,7 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V
 set showtabline=2
 set clipboard=unnamedplus " ヤンクした内容をクリップボードと共有
 set clipboard+=autoselect
+set clipboard+=unnamed " mac でヤンクできるようにする設定
 
 colorscheme zabanya
 
