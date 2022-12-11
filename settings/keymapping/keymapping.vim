@@ -39,6 +39,8 @@ nnoremap gp :GitGutterPreviewHunk<CR>
 nnoremap nh :GitGutterNextHunk<CR>
 nnoremap ph :GitGutterPrevHunk<CR>
 
+nnoremap gf :GitGutterDiffOrig<CR>
+
 ""=========================================
 " ファイル検索
 " 要: fzf
