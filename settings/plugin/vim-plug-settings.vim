@@ -10,9 +10,9 @@ call plug#begin('~/.vim/plugged')
   " vim-list
   " └https://github.com/mattn/vim-lsp-settings
   Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'mattn/vim-lsp-settings'
   " 言語ごとのシンタックス関連プラグイン
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'posva/vim-vue'
@@ -66,5 +66,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'qpkorr/vim-bufkill'
   " colorschems
   Plug 'rafi/awesome-vim-colorschemes'
+  " HTML を便利に
+  " 参考: https://marmooo.blogspot.com/2019/12/vim-html-bootstrap.html
+  Plug 'alvan/vim-closetag'
+  Plug 'andymass/vim-matchup'
+  Plug 'sukima/xmledit'
+  Plug 'skwp/vim-html-escape'
 call plug#end()
 
