@@ -31,15 +31,15 @@ nmap <C-x> :Ebd<CR>
 " 要: vim-gitgutter
 " └https://github.com/airblade/vim-gitgutter
 ""=========================================
-" ghでdiffをハイライトする
+" gh で dif fをハイライトする
 nnoremap gh :GitGutterLineHighlightsToggle<CR>
-" gpでカーソル行のdiffを表示する
+" gp でカーソル行のdiffを表示する
 nnoremap gp :GitGutterPreviewHunk<CR>
+" gf で diff を表示する
+nnoremap gf :GitGutterDiffOrig<CR>
 " nh を押せば次のハンク（変更点のかたまり）へ、ph を押せば前のハンクへ移動
 nnoremap nh :GitGutterNextHunk<CR>
 nnoremap ph :GitGutterPrevHunk<CR>
-
-nnoremap gf :GitGutterDiffOrig<CR>
 
 ""=========================================
 " ファイル検索
