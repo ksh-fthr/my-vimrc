@@ -53,17 +53,17 @@ autocmd FileType * setlocal formatoptions-=ro
 " ファイルタイプごとにインデントを設定
 ""=========================================
 if has("autocmd")
-  "ファイルタイプの検索を有効にする
-  filetype plugin on
-  "ファイルタイプに合わせたインデントを利用
-  filetype indent on
-  "sw=shiftwidth, sts=softtabstop, ts=tabstop, et=expandtabの略
-  autocmd FileType html        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType ts          setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType zsh         setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType python      setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType css         setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType scss        setlocal sw=2 sts=2 ts=2 et
+    "ファイルタイプの検索を有効にする
+    filetype plugin on
+    "ファイルタイプに合わせたインデントを利用
+    filetype indent on
+    "sw=shiftwidth, sts=softtabstop, ts=tabstop, et=expandtabの略
+    autocmd FileType html        setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType ts          setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType zsh         setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType python      setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType css         setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType scss        setlocal sw=2 sts=2 ts=2 et
 endif
 
 ""=========================================
@@ -93,12 +93,9 @@ inoremap <expr> } ClosePair('}')
 inoremap [ []<ESC>i
 inoremap <expr> ] ClosePair(']')
 
-" <> の自動補完
-inoremap < <><ESC>i
-inoremap <expr> > ClosePair('>')
-
-" pair close checker.
-" from othree vimrc ( http://github.com/othree/rc/blob/master/osx/.vimrc )
+" <> の自動補完(html は alvan/vim-closetag を使うので適用させない)
+autocmd FileType !html inoremap < <><ESC>i
+autocmd FileType !html inoremap <expr> > ClosePair('>')
 
 " ClosePairは起動時のみ実行するようにする
 if has('vim_starting')
@@ -116,13 +113,13 @@ endif
 ""=========================================
 "ファイル保存時にディレクトリが無ければ自動作成する
 augroup __vimrc-auto-mkdir__  " {{{
-  autocmd!
-  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'))
-  function! s:auto_mkdir(dir)  " {{{
-    if !isdirectory(a:dir)
-      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-    endif
-  endfunction  " }}}
+    autocmd!
+    autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'))
+    function! s:auto_mkdir(dir)  " {{{
+        if !isdirectory(a:dir)
+            call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+        endif
+    endfunction  " }}}
 augroup END  " }}}
 
 ""=========================================
