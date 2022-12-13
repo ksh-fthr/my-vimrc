@@ -38,6 +38,7 @@ set showtabline=2
 set clipboard=unnamedplus " ヤンクした内容をクリップボードと共有
 set clipboard+=autoselect
 set clipboard+=unnamed " mac でヤンクできるようにする設定
+set belloff=all
 
 colorscheme zabanya
 
