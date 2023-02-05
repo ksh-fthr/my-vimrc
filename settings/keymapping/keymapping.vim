@@ -31,7 +31,7 @@ nmap <C-x> :Ebd<CR>
 " 要: vim-gitgutter
 " └https://github.com/airblade/vim-gitgutter
 ""=========================================
-" gh で dif fをハイライトする
+" gh で diff をハイライトする
 nnoremap gh :GitGutterLineHighlightsToggle<CR>
 " gp でカーソル行のdiffを表示する
 nnoremap gp :GitGutterPreviewHunk<CR>
@@ -162,4 +162,11 @@ augroup fern-settings
   autocmd!
   autocmd FileType fern call s:fern_settings()
 augroup END
+
+""=========================================
+" tcomment のキーバインド
+" 要: tcomment
+" └https://github.com/tomtom/tcomment_vim
+""=========================================
+nnoremap <C-c><C-m> :TComment<CR>
 

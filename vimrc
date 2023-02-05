@@ -126,7 +126,6 @@ augroup END  " }}}
 ""=========================================
 " 各種設定ファイルの読み込み
 ""=========================================
-source <sfile>:h/.vim/settings/keymapping/keymapping.vim                " キーマッピング
 source <sfile>:h/.vim/settings/plugin/vim-plug-settings.vim             " プラグイン管理
 source <sfile>:h/.vim/settings/plugin/vim-gitgutter-settings.vim        " git 関連
 source <sfile>:h/.vim/settings/plugin/ale-settings.vim                  " ファイルフォーマット
@@ -134,4 +133,5 @@ source <sfile>:h/.vim/settings/plugin/markdown-preview-settings.vim     " マー
 source <sfile>:h/.vim/settings/plugin/vim-airline-settings.vim          " タブラインの設定
 source <sfile>:h/.vim/settings/program-language/javascript-settings.vim " JavaScript
 source <sfile>:h/.vim/settings/program-language/vue-js-settings.vim     " Vue.js
+source <sfile>:h/.vim/settings/keymapping/keymapping.vim                " キーマッピング
 
