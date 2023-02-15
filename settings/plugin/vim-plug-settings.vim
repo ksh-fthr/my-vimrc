@@ -72,5 +72,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'andymass/vim-matchup'
   Plug 'sukima/xmledit'
   Plug 'skwp/vim-html-escape'
+
+  " grep を便利に
+  Plug 'mhinz/vim-grepper'
 call plug#end()
 
