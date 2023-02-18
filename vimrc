@@ -35,12 +35,13 @@ set wildmenu
 set laststatus=2
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set showtabline=2
-set clipboard=unnamedplus " ヤンクした内容をクリップボードと共有
-set clipboard+=autoselect
-set clipboard+=unnamed " mac でヤンクできるようにする設定
+if has('nvim') == 0
+    set clipboard=unnamedplus " ヤンクした内容をクリップボードと共有
+    set clipboard+=autoselect
+    set clipboard+=unnamed " mac でヤンクできるようにする設定
+    colorscheme zabanya
+endif
 set belloff=all
-
-colorscheme zabanya
 
 " 折りたたみ
 set foldmethod=syntax
@@ -126,12 +127,24 @@ augroup END  " }}}
 ""=========================================
 " 各種設定ファイルの読み込み
 ""=========================================
-source <sfile>:h/.vim/settings/plugin/vim-plug-settings.vim             " プラグイン管理
-source <sfile>:h/.vim/settings/plugin/vim-gitgutter-settings.vim        " git 関連
-source <sfile>:h/.vim/settings/plugin/ale-settings.vim                  " ファイルフォーマット
-source <sfile>:h/.vim/settings/plugin/markdown-preview-settings.vim     " マークダウンプレビュー
-source <sfile>:h/.vim/settings/plugin/vim-airline-settings.vim          " タブラインの設定
-source <sfile>:h/.vim/settings/program-language/javascript-settings.vim " JavaScript
-source <sfile>:h/.vim/settings/program-language/vue-js-settings.vim     " Vue.js
-source <sfile>:h/.vim/settings/keymapping/keymapping.vim                " キーマッピング
+if has('nvim')
+	" neovim 限定の設定
+    source <sfile>:h/./settings/plugin/vim-plug-settings.vim             " プラグイン管理
+    source <sfile>:h/./settings/plugin/vim-gitgutter-settings.vim        " git 関連
+    source <sfile>:h/./settings/plugin/ale-settings.vim                  " ファイルフォーマット
+    source <sfile>:h/./settings/plugin/markdown-preview-settings.vim     " マークダウンプレビュー
+    source <sfile>:h/./settings/plugin/vim-airline-settings.vim          " タブラインの設定
+    source <sfile>:h/./settings/program-language/javascript-settings.vim " JavaScript
+    source <sfile>:h/./settings/program-language/vue-js-settings.vim     " Vue.js
+    source <sfile>:h/./settings/keymapping/keymapping.vim                " キーマッピング
+else
+    source <sfile>:h/.vim/settings/plugin/vim-plug-settings.vim             " プラグイン管理
+    source <sfile>:h/.vim/settings/plugin/vim-gitgutter-settings.vim        " git 関連
+    source <sfile>:h/.vim/settings/plugin/ale-settings.vim                  " ファイルフォーマット
+    source <sfile>:h/.vim/settings/plugin/markdown-preview-settings.vim     " マークダウンプレビュー
+    source <sfile>:h/.vim/settings/plugin/vim-airline-settings.vim          " タブラインの設定
+    source <sfile>:h/.vim/settings/program-language/javascript-settings.vim " JavaScript
+    source <sfile>:h/.vim/settings/program-language/vue-js-settings.vim     " Vue.js
+    source <sfile>:h/.vim/settings/keymapping/keymapping.vim                " キーマッピング
+endif
 
