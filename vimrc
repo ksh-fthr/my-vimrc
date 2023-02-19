@@ -35,13 +35,14 @@ set wildmenu
 set laststatus=2
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 set showtabline=2
+set belloff=all
+colorscheme zabanya
+
 if has('nvim') == 0
     set clipboard=unnamedplus " ヤンクした内容をクリップボードと共有
     set clipboard+=autoselect
     set clipboard+=unnamed " mac でヤンクできるようにする設定
-    colorscheme zabanya
 endif
-set belloff=all
 
 " 折りたたみ
 set foldmethod=syntax
