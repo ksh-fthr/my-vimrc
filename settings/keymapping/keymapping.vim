@@ -156,6 +156,12 @@ augroup END
 " └https://github.com/prabirshrestha/vim-lsp
 ""=========================================
 nnoremap <expr> <C-]> execute('LspPeekDefinition') =~ "not supported" ? "\<C-]>" : ":LspDefinition<cr>"
+nnoremap lh :LspHover<CR>
+nnoremap lr :LspReference<CR>
+nnoremap ld :LspDefinition<CR>
+nnoremap lD :LspDeclaration<CR>
+nnoremap lt :LspTypeDefinition<CR>
+
 
 ""/////////////////////////////////////////
 " fern-preview.vim のキーバインド
