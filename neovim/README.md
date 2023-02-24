@@ -16,5 +16,5 @@
 # init.lua のシンボリックリンク
 #
 % ln -s /path/to/my-vimrc/neovim/init.lua
-
+```
 
