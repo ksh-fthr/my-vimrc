@@ -363,6 +363,10 @@ return packer.startup(function(use)
   use({ "windwp/nvim-ts-autotag" })
 
   use({ "tomtom/tcomment_vim" })
+  use({ "norcalli/nvim-colorizer.lua" })
+  use({ "akinsho/nvim-bufferline.lua" })
+  use({ "lewis6991/gitsigns.nvim" })
+  use({ "dinhhuy258/git.nvim" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
