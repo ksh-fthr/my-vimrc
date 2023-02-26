@@ -2,6 +2,9 @@
 -- フォーマッタ
 -- ##############################################
 -- null-ls
+-- 準備:
+-- * `:MasonInstall eslint_d`
+-- * `sudo npm install -g eslint_d`
 local status, null_ls = pcall(require, "null-ls")
 if (not status) then return end
 

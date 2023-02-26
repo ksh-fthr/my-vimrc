@@ -43,7 +43,7 @@ packer.init({
 
 
 -- Install your plugins here
-return packer.startup(function(use)
+packer.startup(function(use)
   -- My plugins here
 
   use({ "wbthomason/packer.nvim" })
