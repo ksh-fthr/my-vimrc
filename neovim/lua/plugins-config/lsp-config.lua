@@ -18,10 +18,47 @@ local on_attach = function(client, bufnr)
 end
 
 -- TypeScript
+-- 事前準備
+-- * `npm install -g typescript typescript-language-server` を実行しておく
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  init_options = {
+    hostInfo = "neovim"
+  },
+  -- root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
   cmd = { "typescript-language-server", "--stdio" }
+}
+
+-- tailwind css
+nvim_lsp.tailwindcss.setup {
+  cmd = { "tailwindcss-language-server", "--stdio" },
+  init_options = {
+    userLanguages = {
+      eelixir = "html-eex",
+      eruby = "erb"
+    }
+  },
+  -- root_dir = nvim_lsp.util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts', 'package.json', 'node_modules', '.git')
+}
+
+-- go lang
+-- 事前準備
+-- * `go install github.com/nametake/golangci-lint-langserver@latest` を実行しておく
+-- * `go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest` を事項しておく
+-- nvim_lsp.golangci_lint_ls.setup {
+--   cmd = { "golangci-lint-langserver" },
+--   filetypes = { "go", "gomod" },
+--   init_options = {
+--     command = { "golangci-lint", "run", "--out-format", "json" }
+--   },
+--   -- root_dir = nvim_lsp.util.root_pattern('go.work') or root_pattern('go.mod', '.golangci.yaml', '.git')
+-- }
+
+nvim_lsp.gopls.setup {
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  -- root_dir = nvim_lsp.util.root_pattern("go.mod", ".git")
 }
 
 -- 1. LSP Sever management
