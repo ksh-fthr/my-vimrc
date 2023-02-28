@@ -1,6 +1,9 @@
 require("base")
 require("keymaps")
 
+-- Fern を起動する
+vim.cmd("autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=%")
+
 -- plugin 管理
 require("plugins")
 
