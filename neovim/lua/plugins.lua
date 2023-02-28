@@ -96,6 +96,14 @@ packer.startup(function(use)
   use({ "lewis6991/gitsigns.nvim" })
   use({ "dinhhuy258/git.nvim" })
 
+  use({'lambdalisue/fern.vim'})
+  -- use({'lambdalisue/nerdfont.vim'})                -- アイコン表示のための拡張
+  -- use({'lambdalisue/fern-renderer-nerdfont.vim'})  -- アイコン表示のための拡張
+  -- use({'lambdalisue/glyph-palette.vim'})           -- アイコン表示のための拡張
+  -- use({'lambdalisue/fern-git-status.vim'})         -- ファイルツリー上に git 差分を表示
+  -- use({'LumaKernel/fern-mapping-reload-all.vim'})  -- リロード
+  -- use({'yuki-yano/fern-preview.vim'})              -- ファイルプレビュー
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

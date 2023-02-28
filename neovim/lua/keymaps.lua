@@ -69,6 +69,8 @@ keymap("n",  "ff",  ":Telescope find_files<Return>",  opts)
 keymap("n",  "fb",  ":Telescope buffers<Return>",  opts)
 keymap("n",  "fg",  ":Telescope live_grep<Return>",  opts)
 
+-- バッファを閉じる
+keymap("n",  "<C-d>",  ":bd<Return>",  opts)
 
 -- Insert --
 -- Press jk fast to exit insert mode
@@ -87,5 +89,4 @@ keymap("v", "v", "$h", opts)
 
 -- 0番レジスタを使いやすくした
 keymap("v", "<C-p>", '"0p', opts)
-
 
