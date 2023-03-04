@@ -1,9 +1,6 @@
 require("base")
 require("keymaps")
 
--- Fern を起動する
-vim.cmd("autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=%")
-
 -- plugin 管理
 require("plugins")
 
@@ -17,4 +14,7 @@ require("plugins-config/tree-sitter-config")
 require("plugins-config/auto-tag-config")
 require("plugins-config/tab-config")
 require("plugins-config/telescope-config")
+
+-- Fern を起動する
+vim.cmd("autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=%")
 

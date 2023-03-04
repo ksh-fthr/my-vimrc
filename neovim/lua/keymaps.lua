@@ -20,7 +20,9 @@ vim.g.maplocalleader = " "
 --   term_mode = 't',
 --   command_mode = 'c',
 
--- Normal --
+-- ---------------------------------
+-- Normal Mode
+-- ---------------------------------
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -72,14 +74,21 @@ keymap("n",  "fg",  ":Telescope live_grep<Return>",  opts)
 -- バッファを閉じる
 keymap("n",  "<C-d>",  ":bd<Return>",  opts)
 
--- Insert --
+local opts = { noremap = true, silent = true }
+keymap("n", "fr", ":Fern . -drawer -stay -keep -toggle -reveal=%<Return>", opts)
+
+-- ---------------------------------
+-- Insert Mode
+-- ---------------------------------
 -- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
 
 -- コンマの後に自動的にスペースを挿入
 keymap("i", ",", ",<Space>", opts)
 
--- Visual --
+-- ---------------------------------
+-- Visual Mode
+-- ---------------------------------
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
