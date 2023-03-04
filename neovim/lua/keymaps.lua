@@ -74,7 +74,7 @@ keymap("n",  "fg",  ":Telescope live_grep<Return>",  opts)
 -- バッファを閉じる
 keymap("n",  "<C-d>",  ":bd<Return>",  opts)
 
-local opts = { noremap = true, silent = true }
+-- Fern 起動/停止 をトグルで
 keymap("n", "fr", ":Fern . -drawer -stay -keep -toggle -reveal=%<Return>", opts)
 
 -- ---------------------------------
