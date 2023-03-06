@@ -103,12 +103,11 @@ packer.startup(function(use)
 
   use({ "windwp/nvim-ts-autotag" })
 
-  use({ "tomtom/tcomment_vim" })
-  use({ "norcalli/nvim-colorizer.lua" })
-  use({ "akinsho/nvim-bufferline.lua" })
+  -- Git
   use({ "lewis6991/gitsigns.nvim" })
   use({ "dinhhuy258/git.nvim" })
 
+  -- Fern
   use({'lambdalisue/fern.vim'})
   -- use({'lambdalisue/nerdfont.vim'})                -- アイコン表示のための拡張
   -- use({'lambdalisue/fern-renderer-nerdfont.vim'})  -- アイコン表示のための拡張
@@ -116,6 +115,14 @@ packer.startup(function(use)
   -- use({'lambdalisue/fern-git-status.vim'})         -- ファイルツリー上に git 差分を表示
   -- use({'LumaKernel/fern-mapping-reload-all.vim'})  -- リロード
   -- use({'yuki-yano/fern-preview.vim'})              -- ファイルプレビュー
+
+  -- Wintabs
+  use({'zefei/vim-wintabs'})
+  use({'zefei/vim-wintabs-powerline'})
+
+  use({ "tomtom/tcomment_vim" })
+  use({ "norcalli/nvim-colorizer.lua" })
+  use({ "akinsho/nvim-bufferline.lua" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

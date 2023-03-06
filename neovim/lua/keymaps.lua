@@ -77,6 +77,11 @@ keymap("n",  "<C-d>",  ":bd<Return>",  opts)
 -- Fern 起動/停止 をトグルで
 keymap("n", "fr", ":Fern . -drawer -stay -keep -toggle -reveal=%<Return>", opts)
 
+-- wintab
+keymap('n', '<C-n>', '<cmd>bnext<cr>', opts)
+keymap('n', '<C-p>', '<cmd>bprevious<cr>', opts)
+keymap('n', '<C-q>', '<cmd>b#<cr><cmd>bd#<cr>', opts)
+
 -- ---------------------------------
 -- Insert Mode
 -- ---------------------------------
