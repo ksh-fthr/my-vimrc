@@ -17,4 +17,6 @@ require("plugins-config/telescope-config")
 
 -- Fern を起動する
 vim.cmd("autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=%")
+-- dotfiles を fern で表示する
+vim.cmd("let g:fern#default_hidden=1")
 
