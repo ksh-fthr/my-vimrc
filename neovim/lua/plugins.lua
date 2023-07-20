@@ -124,6 +124,11 @@ packer.startup(function(use)
   use({ "norcalli/nvim-colorizer.lua" })
   use({ "akinsho/nvim-bufferline.lua" })
 
+  -- markdown
+  -- see: https://github.com/preservim/vim-markdown
+  use({'godlygeek/tabular'})
+  use({'preservim/vim-markdown'})
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
