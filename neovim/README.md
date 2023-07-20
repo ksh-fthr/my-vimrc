@@ -65,3 +65,16 @@ typescript のための準備
 ```bash
 % npm install -g typescript typescript-language-server
 ```
+
+### prettier をインストールする
+neovim を起動して次のエラーがでたら...
+
+```text
+[prettier.vim] prettierd not found Did you forget to install it
+```
+
+下記を実行して prettierd をインストールする。
+
+```bash
+% sudo npm install -g @fsouza/prettierd
+```
