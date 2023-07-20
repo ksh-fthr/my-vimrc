@@ -14,6 +14,7 @@ require("plugins-config/tree-sitter-config")
 require("plugins-config/auto-tag-config")
 require("plugins-config/tab-config")
 require("plugins-config/telescope-config")
+require("plugins-config/markdown-config")
 
 -- Fern を起動する
 vim.cmd("autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=%")
