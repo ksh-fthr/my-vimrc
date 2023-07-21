@@ -129,6 +129,11 @@ packer.startup(function(use)
   use({'godlygeek/tabular'})
   use({'preservim/vim-markdown'})
 
+  -- markdown preview
+  -- see: https://github.com/iamcco/markdown-preview.nvim
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

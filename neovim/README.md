@@ -73,8 +73,27 @@ neovim を起動して次のエラーがでたら...
 [prettier.vim] prettierd not found Did you forget to install it
 ```
 
-下記を実行して prettierd をインストールする。
+下記を実行して `prettierd` をインストールする。
 
 ```bash
 % sudo npm install -g @fsouza/prettierd
 ```
+
+### Markdown Preview の設定
+`:PackerInstall` を実行したことで [markdown-preview](https://github.com/iamcco/markdown-preview.nvim) がインストールされているので、その利用のための準備を行う。<br />
+以下を実行して plugin を配置する。
+(See: https://github.com/iamcco/markdown-preview.nvim#install--usage)
+
+```bash
+% cd ~/.local/share/nvim/site/pack/packer/start/
+% git clone https://github.com/iamcco/markdown-preview.nvim.git
+% cd markdown-preview.nvim
+% yarn install # yarn がない場合は npm install で代替する
+% yarn build   # こちらも yarn がない場合は npm run build で代替する
+```
+
+これで Markdown ファイルを開いているときに `:MarkdownPreview` を実行すると、ブラウザが起動して Preview が確認できる。
+
+(補足)<br />
+上記コマンドのうち `yarn build` or `npm run build` は実行せずとも `:MarkdownPreview` は起動した。
+
