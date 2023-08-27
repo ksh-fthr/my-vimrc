@@ -71,16 +71,16 @@ keymap("n",  "ff",  ":Telescope find_files<Return>",  opts)
 keymap("n",  "fb",  ":Telescope buffers<Return>",  opts)
 keymap("n",  "fg",  ":Telescope live_grep<Return>",  opts)
 
--- バッファを閉じる
-keymap("n",  "<C-d>",  ":bd<Return>",  opts)
-
 -- Fern 起動/停止 をトグルで
 keymap("n", "fr", ":Fern . -drawer -stay -keep -toggle -reveal=%<Return>", opts)
 
 -- wintab
 keymap('n', '<C-n>', '<cmd>bnext<cr>', opts)
 keymap('n', '<C-p>', '<cmd>bprevious<cr>', opts)
+-- バッファを閉じる
 keymap('n', '<C-q>', '<cmd>b#<cr><cmd>bd#<cr>', opts)
+keymap('n', '<C-d>', '<cmd>b#<cr><cmd>bd#<cr>', opts)
+-- keymap("n",  "<C-d>",  ":bd<Return>",  opts)
 
 -- ---------------------------------
 -- Insert Mode
