@@ -44,10 +44,9 @@ packer.init({
 
 -- Install your plugins here
 packer.startup(function(use)
-  -- My plugins here
-
+  -- packer: プラグインマネージャ
   use({ "wbthomason/packer.nvim" })
-  use({ "nvim-lua/plenary.nvim" }) -- Common utilities
+  use({ "nvim-lua/plenary.nvim" }) -- Common utilities for Lua Library
 
   -- Colorschemes
   use({ "EdenEast/nightfox.nvim" }) -- Color scheme
@@ -60,13 +59,21 @@ packer.startup(function(use)
   -- cmp plugins
   use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
   use({ "hrsh7th/cmp-path" }) -- path completions
-  --use({ "hrsh7th/cmp-buffer" }) -- buffer completions
-  --use({ "hrsh7th/cmp-cmdline" }) -- cmdline completions
+  use({ "hrsh7th/cmp-buffer" }) -- buffer completions
+  use({ "hrsh7th/cmp-cmdline" }) -- cmdline completions
   use({ "hrsh7th/cmp-nvim-lsp"})
   use({ "hrsh7th/vim-vsnip"})
   use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
   use({ "hrsh7th/cmp-nvim-lua" })
   use({ "onsails/lspkind-nvim" })
+
+  -- signature: https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
+  use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
+  require'cmp'.setup {
+    sources = {
+      { name = 'nvim_lsp_signature_help' }
+    }
+  }
 
   -- snippets
   use({ "L3MON4D3/LuaSnip" }) --snippet engine
@@ -74,6 +81,8 @@ packer.startup(function(use)
   -- LSP
   use({ "neovim/nvim-lspconfig" }) -- enable LSP
   use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
+
+  -- LSP Configuration Support
   use({ 'williamboman/mason.nvim' })
   use({ 'williamboman/mason-lspconfig.nvim' })
 
@@ -94,12 +103,20 @@ packer.startup(function(use)
   -- Formatter
   use({ "MunifTanjim/prettier.nvim" })
 
-  -- Telescope
+  -- Telescope: ファイル検索・テキスト検索
   use({ "nvim-telescope/telescope.nvim" })
-
-  -- Treesitter
-  use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
   use({ "nvim-telescope/telescope-file-browser.nvim" })
+  -- https://github.com/nvim-telescope/telescope-frecency.nvim
+  use {
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function()
+      require("telescope").load_extension "frecency"
+    end,
+    requires = { "kkharji/sqlite.lua" },
+  }
+
+  -- Treesitter: シンタックスハイライトやインデントを高速に処理してくれる
+  use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
 
   use({ "windwp/nvim-ts-autotag" })
 
@@ -107,7 +124,7 @@ packer.startup(function(use)
   use({ "lewis6991/gitsigns.nvim" })
   use({ "dinhhuy258/git.nvim" })
 
-  -- Fern
+  -- Fern: ファイラ
   use({'lambdalisue/fern.vim'})
   -- use({'lambdalisue/nerdfont.vim'})                -- アイコン表示のための拡張
   -- use({'lambdalisue/fern-renderer-nerdfont.vim'})  -- アイコン表示のための拡張
@@ -116,7 +133,7 @@ packer.startup(function(use)
   -- use({'LumaKernel/fern-mapping-reload-all.vim'})  -- リロード
   -- use({'yuki-yano/fern-preview.vim'})              -- ファイルプレビュー
 
-  -- Wintabs
+  -- Wintabs: 開いているbufferをタブラインに表示する
   use({'zefei/vim-wintabs'})
   use({'zefei/vim-wintabs-powerline'})
 
