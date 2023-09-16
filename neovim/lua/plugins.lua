@@ -61,8 +61,16 @@ packer.startup(function(use)
   use({ "hrsh7th/cmp-path" }) -- path completions
   use({ "hrsh7th/cmp-buffer" }) -- buffer completions
   use({ "hrsh7th/cmp-cmdline" }) -- cmdline completions
-  use({ "hrsh7th/cmp-nvim-lsp"})
+  use({ "hrsh7th/cmp-nvim-lsp" })
+
+  -- 補完の展開を便利にする
   use({ "hrsh7th/vim-vsnip"})
+  use({ "hrsh7th/vim-vsnip-integ"})
+
+  -- autocomplete
+  use({ "prabirshrestha/asyncomplete.vim" })
+  use({ "prabirshrestha/asyncomplete-lsp.vim" })
+
   use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
   use({ "hrsh7th/cmp-nvim-lua" })
   use({ "onsails/lspkind-nvim" })
