@@ -158,6 +158,10 @@ packer.startup(function(use)
   -- see: https://github.com/iamcco/markdown-preview.nvim
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
+  -- svelte
+  use({'othree/html5.vim'})
+  use({'pangloss/vim-javascript'})
+  use({'evanleck/vim-svelte'})
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
