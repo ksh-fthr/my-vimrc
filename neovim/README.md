@@ -42,11 +42,33 @@
 ## 各種プラグインを使うための準備
 Lsp や Treesitter を導入しているので、それらを使用するための準備として下記を実行する。
 
-### Mason を実行して各言語の Lsp をインストール
+### Mason を実行して各言語の Lsp / Linter / Formatter をインストール
 
 ```bash
 # nvim 起動後下記を実行してリストから任意の Lsp をインストールする
 :Mason
+```
+
+**参考: 2024/04現在入れているモノ**
+```text
+  Installed
+    ◍ typescript-language-server
+    ◍ tailwindcss-language-server
+    ◍ eslint_d
+    ◍ glint
+    ◍ gofumpt
+    ◍ goimports
+    ◍ golangci-lint
+    ◍ golangci-lint-langserver
+    ◍ golines
+    ◍ gopls
+    ◍ html-lsp
+    ◍ htmlhint
+    ◍ json-lsp
+    ◍ prettier
+    ◍ quick-lint-js
+    ◍ svelte-language-server
+    ◍ vue-language-server
 ```
 
 ### TSInstall を実行して各言語のシンタックスハイライト等を整える
