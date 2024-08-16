@@ -21,3 +21,16 @@ vim.cmd("autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=
 -- dotfiles を fern で表示する
 vim.cmd("let g:fern#default_hidden=1")
 
+-- Nerdfont を使う
+vim.cmd('let g:fern#renderer="nerdfont"')
+
+-- アイコンに色をつける
+vim.cmd([[
+  augroup my-glyph-palette
+    autocmd! *
+    autocmd FileType fern call glyph_palette#apply()
+    autocmd FileType nerdtree,startify call glyph_palette#apply()
+  augroup END
+]])
+
+
