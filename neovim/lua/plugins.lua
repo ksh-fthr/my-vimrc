@@ -134,12 +134,12 @@ packer.startup(function(use)
 
   -- Fern: ファイラ
   use({'lambdalisue/fern.vim'})
-  -- use({'lambdalisue/nerdfont.vim'})                -- アイコン表示のための拡張
-  -- use({'lambdalisue/fern-renderer-nerdfont.vim'})  -- アイコン表示のための拡張
-  -- use({'lambdalisue/glyph-palette.vim'})           -- アイコン表示のための拡張
-  -- use({'lambdalisue/fern-git-status.vim'})         -- ファイルツリー上に git 差分を表示
-  -- use({'LumaKernel/fern-mapping-reload-all.vim'})  -- リロード
-  -- use({'yuki-yano/fern-preview.vim'})              -- ファイルプレビュー
+  use({'lambdalisue/nerdfont.vim'})                -- アイコン表示のための拡張
+  use({'lambdalisue/fern-renderer-nerdfont.vim'})  -- アイコン表示のための拡張
+  use({'lambdalisue/glyph-palette.vim'})           -- アイコン表示のための拡張
+  use({'lambdalisue/fern-git-status.vim'})         -- ファイルツリー上に git 差分を表示
+  use({'LumaKernel/fern-mapping-reload-all.vim'})  -- リロード
+  use({'yuki-yano/fern-preview.vim'})              -- ファイルプレビュー
 
   -- Wintabs: 開いているbufferをタブラインに表示する
   use({'zefei/vim-wintabs'})
