@@ -16,6 +16,9 @@ require("plugins-config/tab-config")
 require("plugins-config/telescope-config")
 require("plugins-config/markdown-config")
 
+-- *********************************************************
+-- Fern 関連はここで設定する
+-- *********************************************************
 -- Fern を起動する
 vim.cmd("autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=%")
 -- dotfiles を fern で表示する
@@ -26,7 +29,7 @@ vim.cmd("let g:fern#default_hidden=1")
 -- 参考: https://qiita.com/youichiro/items/b4748b3e96106d25c5bc#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%83%84%E3%83%AA%E3%83%BC%E3%81%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B
 vim.cmd('let g:fern#renderer="nerdfont"')
 
--- アイコンに色をつける
+-- Fern 上のアイコンに色をつける
 -- 参考: https://qiita.com/youichiro/items/b4748b3e96106d25c5bc#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%83%84%E3%83%AA%E3%83%BC%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E3%81%AB%E8%89%B2%E3%82%92%E3%81%A4%E3%81%91%E3%82%8B
 vim.cmd([[
   augroup my-glyph-palette
@@ -36,4 +39,15 @@ vim.cmd([[
   augroup END
 ]])
 
+-- Fern のツリー更新プラグインの設定
+-- https://github.com/LumaKernel/fern-mapping-reload-all.vim
+vim.cmd([[
+  function s:init_fern_mapping_reload_all()
+      nmap <buffer> R <Plug>(fern-action-reload:all)
+  endfunction
+  augroup my-fern-mapping-reload-all
+      autocmd! *
+      autocmd FileType fern call s:init_fern_mapping_reload_all()
+  augroup END
+]])
 
