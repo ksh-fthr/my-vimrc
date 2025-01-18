@@ -94,12 +94,24 @@ packer.startup(function(use)
   use({ 'williamboman/mason.nvim' })
   use({ 'williamboman/mason-lspconfig.nvim' })
 
-  -- reference: https://github.com/glepnir/lspsaga.nvim#packer
+  -- reference: https://github.com/nvimdev/lspsaga.nvim
   use({
-      "glepnir/lspsaga.nvim",
-      branch = "main",
+      'nvimdev/lspsaga.nvim',
+      after = 'nvim-lspconfig',
       config = function()
-          require("lspsaga").setup({})
+          require("lspsaga").setup({
+            border_style = "single",
+            symbol_in_winbar = {
+              enable = true,
+            },
+            code_action_lightbulb = {
+              enable = true,
+            },
+            show_outline = {
+              win_width = 50,
+              auto_preview = false,
+            },
+          })
       end,
       requires = {
           {"nvim-tree/nvim-web-devicons"},
