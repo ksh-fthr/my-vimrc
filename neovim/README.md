@@ -125,5 +125,6 @@ neovim を起動して次のエラーがでたら...
 そのために `ripgrep` が必要なので下記でインストールしておく｡
 
 ```bash
-brew install ripgrep
+% brew install ripgrep
 ```
+
