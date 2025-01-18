@@ -119,3 +119,12 @@ neovim を起動して次のエラーがでたら...
 (補足)<br />
 上記コマンドのうち `yarn build` or `npm run build` は実行せずとも `:MarkdownPreview` は起動した。
 
+### ripgrep のインストール
+
+`Telescope live_grep` で `grep` を実現させている｡
+そのために `ripgrep` が必要なので下記でインストールしておく｡
+
+```bash
+% brew install ripgrep
+```
+
