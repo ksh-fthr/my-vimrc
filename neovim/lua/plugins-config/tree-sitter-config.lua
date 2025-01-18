@@ -1,10 +1,7 @@
 -- ##############################################
 -- tree-sitter
 -- ##############################################
-local status, ts = pcall(require, "nvim-treesitter.configs")
-if (not status) then return end
-
-ts.setup {
+require('nvim-ts-autotag').setup {
   highlight = {
     enable = true,
     disable = {},
