@@ -22,7 +22,7 @@ end
 -- ---------------------------------
 -- 事前準備
 -- * `npm install -g typescript typescript-language-server` を実行しておく
-nvim_lsp.tsserver.setup {
+nvim_lsp.ts_ls.setup {
   on_attach = on_attach,
   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   init_options = {
