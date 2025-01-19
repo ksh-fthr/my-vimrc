@@ -1,13 +1,17 @@
 -- ##############################################
 -- keymap
 -- ##############################################
-local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
+local opts = {
+    noremap = true,
+    silent = true
+}
+local term_opts = {
+    silent = true
+}
 
---local keymap = vim.keymap
 local keymap = vim.api.nvim_set_keymap
 
---Remap space as leader key
+-- Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -67,9 +71,9 @@ keymap("n", "<Space>q", ":<C-u>q!<Return>", opts)
 keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", opts)
 
 -- Telescope
-keymap("n",  "ff",  ":Telescope find_files<Return>",  opts)
-keymap("n",  "fb",  ":Telescope buffers<Return>",  opts)
-keymap("n",  "fg",  ":Telescope live_grep<Return>",  opts)
+keymap("n", "ff", ":Telescope find_files<Return>", opts)
+keymap("n", "fb", ":Telescope buffers<Return>", opts)
+keymap("n", "fg", ":Telescope live_grep<Return>", opts)
 
 -- Fern 起動/停止 をトグルで
 keymap("n", "fr", ":Fern . -drawer -stay -keep -toggle -reveal=%<Return>", opts)
@@ -104,3 +108,22 @@ keymap("v", "v", "$h", opts)
 -- 0番レジスタを使いやすくした
 keymap("v", "<C-p>", '"0p', opts)
 
+-- ターミナルを使う
+-- akinsho/toggleterm.nvim プラグインを使う
+require("toggleterm").setup {
+    -- open_mapping = [[<c-\>]], -- Ctrl + \ でターミナルをトグル
+    -- size = 20, -- ターミナルウィンドウの高さ
+    -- direction = 'float' -- ターミナルの表示方向（horizontal, vertical, float）
+    size = 20,
+    open_mapping = [[<c-\>]],
+    direction = 'float',  -- ターミナルの方向 (horizontal, vertical, float)
+    shading_factor = 2,
+    shade_terminals = true,
+    start_in_insert = true,
+}
+
+-- ターミナルをトグルするためのキーバインディング
+keymap('n', 'tt', '<cmd>ToggleTerm<CR>', {
+    noremap = true,
+    silent = true
+})
