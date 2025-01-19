@@ -53,7 +53,9 @@ packer.startup(function(use)
 
   use({ "nvim-lualine/lualine.nvim" }) -- Statusline
   use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
-  use({ "kyazdani42/nvim-web-devicons" }) -- File icons
+  -- use({ "kyazdani42/nvim-web-devicons" }) -- File icons
+  use({"nvim-tree/nvim-web-devicons"}) -- File icons
+
   use({ "akinsho/bufferline.nvim" })
 
   -- cmp plugins
@@ -73,7 +75,7 @@ packer.startup(function(use)
 
   use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
   use({ "hrsh7th/cmp-nvim-lua" })
-  use({ "onsails/lspkind-nvim" })
+  use({ "onsails/lspkind.nvim" })
 
   -- signature: https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
   use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
@@ -94,31 +96,27 @@ packer.startup(function(use)
   use({ 'williamboman/mason.nvim' })
   use({ 'williamboman/mason-lspconfig.nvim' })
 
+  -- lspsaga はエラーになるので読み込まない(バージョンアップされたら治っているか試す)
   -- reference: https://github.com/nvimdev/lspsaga.nvim
-  use({
-      'nvimdev/lspsaga.nvim',
-      after = 'nvim-lspconfig',
-      config = function()
-          require("lspsaga").setup({
-            border_style = "single",
-            symbol_in_winbar = {
-              enable = true,
-            },
-            code_action_lightbulb = {
-              enable = true,
-            },
-            show_outline = {
-              win_width = 50,
-              auto_preview = false,
-            },
-          })
-      end,
-      requires = {
-          {"nvim-tree/nvim-web-devicons"},
-          --Please make sure you install markdown and markdown_inline parser
-          {"nvim-treesitter/nvim-treesitter"}
-      }
-  })
+  -- use({
+  --     'nvimdev/lspsaga.nvim',
+  --     after = 'nvim-lspconfig',
+  --     config = function()
+  --         require("lspsaga").setup({
+  --           border_style = "single",
+  --           symbol_in_winbar = {
+  --             enable = true,
+  --           },
+  --           code_action_lightbulb = {
+  --             enable = true,
+  --           },
+  --           show_outline = {
+  --             win_width = 50,
+  --             auto_preview = false,
+  --           },
+  --         })
+  --     end
+  -- })
 
   -- Formatter
   use({ "MunifTanjim/prettier.nvim" })
@@ -126,17 +124,20 @@ packer.startup(function(use)
   -- Telescope: ファイル検索・テキスト検索
   use({ "nvim-telescope/telescope.nvim" })
   use({ "nvim-telescope/telescope-file-browser.nvim" })
+
+  -- telescope-frecency.nvim をいれるとファイル読み込みの際にエラーになるのでコメントアウトしておく(バージョンアップされたら治っているか試す)
   -- https://github.com/nvim-telescope/telescope-frecency.nvim
-  use {
-    "nvim-telescope/telescope-frecency.nvim",
-    config = function()
-      require("telescope").load_extension "frecency"
-    end,
-    requires = { "kkharji/sqlite.lua" },
-  }
+  -- use {
+  --   "nvim-telescope/telescope-frecency.nvim",
+  --   config = function()
+  --     require("telescope").load_extension "frecency"
+  --   end,
+  --   requires = { "kkharji/sqlite.lua" },
+  -- }
 
   -- Treesitter: シンタックスハイライトやインデントを高速に処理してくれる
-  use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
+  -- use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
+  use({ "nvim-treesitter/nvim-treesitter" })
 
   use({ "windwp/nvim-ts-autotag" })
 
@@ -181,6 +182,22 @@ packer.startup(function(use)
   -- gitの差分を表示する
   use({'airblade/vim-gitgutter'})
 
+  -- ターミナルを使う
+  use {
+    "akinsho/toggleterm.nvim",
+    tag = '*',
+    config = function()
+      require("toggleterm").setup {
+        size = 20,
+        open_mapping = [[<c-\>]],
+        direction = 'horizontal',  -- ターミナルの方向 (horizontal, vertical, float)
+        shading_factor = 2,
+        shade_terminals = true,
+        start_in_insert = true,
+      }
+    end
+  }
+  
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
