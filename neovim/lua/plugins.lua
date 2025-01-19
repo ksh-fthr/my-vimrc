@@ -187,14 +187,7 @@ packer.startup(function(use)
     "akinsho/toggleterm.nvim",
     tag = '*',
     config = function()
-      require("toggleterm").setup {
-        size = 20,
-        open_mapping = [[<c-\>]],
-        direction = 'horizontal',  -- ターミナルの方向 (horizontal, vertical, float)
-        shading_factor = 2,
-        shade_terminals = true,
-        start_in_insert = true,
-      }
+      require("toggleterm").setup()
     end
   }
   

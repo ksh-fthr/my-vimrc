@@ -213,14 +213,3 @@ end, { noremap = true, silent = true })
 keymap('n', 'co', function()
   vim.lsp.buf.outgoing_calls()  -- 現在の関数の呼び出し先を取得して表示
 end, { noremap = true, silent = true })
-
--- ターミナルを使う
--- akinsho/toggleterm.nvim プラグインを使う
-require("toggleterm").setup{
-  open_mapping = [[<c-\>]],  -- Ctrl + \ でターミナルをトグル
-  size = 20,                 -- ターミナルウィンドウの高さ
-  direction = 'float',  -- ターミナルの表示方向（horizontal, vertical, float）
-}
-
--- ターミナルをトグルするためのキーバインディング
-keymap('n', 'tt', '<cmd>ToggleTerm<CR>', { noremap = true, silent = true })
