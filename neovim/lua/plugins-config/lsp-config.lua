@@ -36,6 +36,7 @@ nvim_lsp.ts_ls.setup {
 -- tailwind css
 -- ---------------------------------
 nvim_lsp.tailwindcss.setup {
+  on_attach = on_attach,
   cmd = { "tailwindcss-language-server", "--stdio" },
   init_options = {
     userLanguages = {
@@ -50,6 +51,7 @@ nvim_lsp.tailwindcss.setup {
 -- go lang
 -- ---------------------------------
 nvim_lsp.gopls.setup {
+  on_attach = on_attach,
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
   -- root_dir = nvim_lsp.util.root_pattern("go.mod", ".git")
@@ -134,3 +136,91 @@ cmp.setup({
   },
 })
 
+local keymap = vim.keymap.set
+
+-- 定義にジャンプ
+keymap('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true })
+
+-- 型定義にジャンプ
+keymap('n', 'gt', vim.lsp.buf.type_definition, { noremap = true, silent = true })
+
+-- 参照を表示
+keymap('n', 'gr', vim.lsp.buf.references, { noremap = true, silent = true })
+
+-- ドキュメントの表示
+keymap('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true })
+
+-- コードアクションを実行するキーマッピング
+keymap('n', 'ca', vim.lsp.buf.code_action, { noremap = true, silent = true })
+
+-- リネームを実行するキーマッピング
+keymap('n', 'rn', vim.lsp.buf.rename, { noremap = true, silent = true })
+
+-- 現在行の診断情報を表示するためのキーマッピング(なぜかこいつエラーになるのでコメントアウトしておく)
+-- keymap('n', 'sl', vim.lsp.diagnostic.show_line_diagnostics, { noremap = true, silent = true })
+
+-- 現在のカーソル位置に関連する診断情報をポップアップで表示
+keymap('n', 'sc', vim.diagnostic.open_float, { noremap = true, silent = true })
+
+-- バッファ内のすべての診断情報をクイックフィックスリストに表示
+keymap('n', 'sb', function()
+  -- 診断情報の表示方法をカスタマイズ
+  vim.diagnostic.config({
+    virtual_text = true,           -- 仮想テキストとして診断メッセージを行内に表示
+    signs = true,                  -- 診断アイコンを表示
+    update_in_insert = false,      -- 挿入モード中に診断を更新しない
+    underline = true,              -- 診断がある箇所をアンダーラインで表示
+    severity_sort = true,          -- 診断の重大度に基づいて並べ替え
+  })
+
+  -- バッファ内の診断情報をクイックフィックスリストにセット
+  vim.diagnostic.setqflist()
+
+  -- クイックフィックスリストを開く
+  vim.cmd('copen')
+end, { noremap = true, silent = true })
+
+-- 前の診断情報にジャンプ
+keymap('n', 'cp', vim.diagnostic.goto_prev, { noremap = true, silent = true })
+
+-- 次の診断情報にジャンプ
+keymap('n', 'cn', vim.diagnostic.goto_next, { noremap = true, silent = true })
+
+-- 前のエラー診断にジャンプ
+keymap('n', '[e', function()
+  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, { noremap = true, silent = true })
+
+-- 次のエラー診断にジャンプ
+keymap('n', ']e', function()
+  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, { noremap = true, silent = true })
+
+-- バッファ内のシンボルをクイックフィックスリストに表示
+keymap('n', 'ol', function()
+  vim.lsp.buf.document_symbol()  -- 現在のバッファのシンボルを取得
+
+  -- シンボルをクイックフィックスリストに追加
+  vim.cmd('copen')  -- クイックフィックスリストを開く
+end, { noremap = true, silent = true })
+
+-- 現在カーソル位置の関数の呼び出し元を表示
+keymap('n', 'ci', function()
+  vim.lsp.buf.incoming_calls()  -- 現在の関数の呼び出し元を取得して表示
+end, { noremap = true, silent = true })
+
+-- 現在カーソル位置の関数の呼び出し先を表示
+keymap('n', 'co', function()
+  vim.lsp.buf.outgoing_calls()  -- 現在の関数の呼び出し先を取得して表示
+end, { noremap = true, silent = true })
+
+-- ターミナルを使う
+-- akinsho/toggleterm.nvim プラグインを使う
+require("toggleterm").setup{
+  open_mapping = [[<c-\>]],  -- Ctrl + \ でターミナルをトグル
+  size = 20,                 -- ターミナルウィンドウの高さ
+  direction = 'float',  -- ターミナルの表示方向（horizontal, vertical, float）
+}
+
+-- ターミナルをトグルするためのキーバインディング
+keymap('n', 'tt', '<cmd>ToggleTerm<CR>', { noremap = true, silent = true })
