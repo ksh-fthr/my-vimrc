@@ -1,5 +1,4 @@
 require("base")
-require("keymaps")
 
 -- plugin 管理
 require("plugins")
@@ -16,6 +15,9 @@ require("plugins-config/auto-tag-config")
 require("plugins-config/tab-config")
 require("plugins-config/telescope-config")
 require("plugins-config/markdown-config")
+
+-- keymap は依存しているプラグインのインストールが完了してから設定する
+require("keymaps")
 
 -- *********************************************************
 -- Fern 関連はここで設定する
