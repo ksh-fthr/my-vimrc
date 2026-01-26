@@ -16,14 +16,6 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Modes
---   normal_mode = 'n',
---   insert_mode = 'i',
---   visual_mode = 'v',
---   visual_block_mode = 'x',
---   term_mode = 't',
---   command_mode = 'c',
-
 -- ---------------------------------
 -- Normal Mode
 -- ---------------------------------
@@ -84,7 +76,6 @@ keymap('n', '<C-p>', '<cmd>bprevious<cr>', opts)
 -- バッファを閉じる
 keymap('n', '<C-q>', '<cmd>b#<cr><cmd>bd#<cr>', opts)
 keymap('n', '<C-d>', '<cmd>b#<cr><cmd>bd#<cr>', opts)
--- keymap("n",  "<C-d>",  ":bd<Return>",  opts)
 
 -- ---------------------------------
 -- Insert Mode
@@ -107,20 +98,6 @@ keymap("v", "v", "$h", opts)
 
 -- 0番レジスタを使いやすくした
 keymap("v", "<C-p>", '"0p', opts)
-
--- ターミナルを使う
--- akinsho/toggleterm.nvim プラグインを使う
-require("toggleterm").setup {
-    -- open_mapping = [[<c-\>]], -- Ctrl + \ でターミナルをトグル
-    -- size = 20, -- ターミナルウィンドウの高さ
-    -- direction = 'float' -- ターミナルの表示方向（horizontal, vertical, float）
-    size = 20,
-    open_mapping = [[<c-\>]],
-    direction = 'float',  -- ターミナルの方向 (horizontal, vertical, float)
-    shading_factor = 2,
-    shade_terminals = true,
-    start_in_insert = true,
-}
 
 -- ターミナルをトグルするためのキーバインディング
 keymap('n', 'tt', '<cmd>ToggleTerm<CR>', {

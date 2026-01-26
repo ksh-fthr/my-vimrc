@@ -4,7 +4,6 @@
 vim.cmd("autocmd!")
 
 vim.scriptencoding = "utf-8"
-
 vim.wo.number = true
 
 -- ##############################################
@@ -89,8 +88,8 @@ local options = {
   scrolloff = 8,
   sidescrolloff = 8,
   guifont = "monospace:h17",
-  splitbelow = false, -- オンのとき、ウィンドウを横分割すると新しいウィンドウはカレントウィンドウの下に開かれる
-  splitright = false, -- オンのとき、ウィンドウを縦分割すると新しいウィンドウはカレントウィンドウの右に開かれる
+  splitbelow = false,
+  splitright = false,
 }
 
 vim.opt.shortmess:append("c")
@@ -101,4 +100,3 @@ end
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
-
