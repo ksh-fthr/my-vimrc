@@ -243,12 +243,6 @@ require("lazy").setup({
       require("plugins-config/markdown-config")
     end,
   },
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
-  },
 
   -- HTML / JS / Svelte
   { "othree/html5.vim" },
@@ -262,5 +256,45 @@ require("lazy").setup({
     config = function()
       require("toggleterm").setup()
     end,
+  },
+
+  -- ########################################################
+  -- Copilot Chat
+  -- ########################################################
+-- ########################################################
+  -- Copilot Chat (修正版)
+  -- ########################################################
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    lazy = false,
+    build = "make install",
+    config = function()
+      require("CopilotChat").setup({
+        -- 日本語設定
+        language = "Japanese",
+        -- ウィンドウの配置設定
+        window = {
+          layout = 'float', -- 垂直分割
+          side = 'right',      -- 右側に表示 (ここが重要！)
+          width = 0.4,         -- 画面幅の40%
+          height = 0.8,
+          relative = 'editor', -- エディタ全体に対して右側
+          row = 1,             -- 開始位置を明示
+          col = vim.o.columns, -- 右端に寄せる
+        },
+        -- チャットバッファでのキーマップ表示をスッキリさせる
+        show_help = false,     -- ヘルプ表示をデフォルトで隠す
+      })
+    end,
+    keys = {
+      -- leader(通常は\) + cc で開く
+      { "<leader>cc", "<cmd>CopilotChatOpen<cr>", desc = "CopilotChat - Open" },
+      { "<leader>ct", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" }, -- 切り替え
+      { "<leader>cr", "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Reset" },   -- 履歴リセット
+    },
   },
 })

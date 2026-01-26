@@ -30,12 +30,12 @@
 ```
 
 ## 各種プラグインをインストール
-本リポジトリの構成では [packer](https://github.com/wbthomason/packer.nvim) でプラグイン管理を行っているので、次のコマンドを実行して各プラグインをインストールする。
+本リポジトリの構成では [lazy.nvim](https://github.com/folke/lazy.nvim) でプラグイン管理を行っているので、次のコマンドを実行して各プラグインをインストールする。
 
 
 ```bash
 # nvim 起動後下記を実行する
-:PackerInstall
+:Lazy sync
 ```
 
 
@@ -101,24 +101,6 @@ neovim を起動して次のエラーがでたら...
 % sudo npm install -g @fsouza/prettierd
 ```
 
-### Markdown Preview の設定
-`:PackerInstall` を実行したことで [markdown-preview](https://github.com/iamcco/markdown-preview.nvim) がインストールされているので、その利用のための準備を行う。<br />
-以下を実行して plugin を配置する。
-(See: https://github.com/iamcco/markdown-preview.nvim#install--usage)
-
-```bash
-% cd ~/.local/share/nvim/site/pack/packer/start/
-% git clone https://github.com/iamcco/markdown-preview.nvim.git
-% cd markdown-preview.nvim
-% yarn install # yarn がない場合は npm install で代替する
-% yarn build   # こちらも yarn がない場合は npm run build で代替する
-```
-
-これで Markdown ファイルを開いているときに `:MarkdownPreview` を実行すると、ブラウザが起動して Preview が確認できる。
-
-(補足)<br />
-上記コマンドのうち `yarn build` or `npm run build` は実行せずとも `:MarkdownPreview` は起動した。
-
 ### ripgrep のインストール
 
 `Telescope live_grep` で `grep` を実現させている｡
@@ -128,3 +110,36 @@ neovim を起動して次のエラーがでたら...
 % brew install ripgrep
 ```
 
+
+## Copilot との連携
+
+### Copilot 認証 
+
+```vim
+:Copilot auth
+```
+
+### 補完
+
+```vim
+Ctrl-n / Ctrl-p
+```
+
+### Copilot Chat
+
+```vim
+:CopilotChatOpen: チャットウィンドウを右側に開きます。
+:CopilotChatExplain: 視覚的に選択（Visual Mode）しているコードの解説を求めます。
+:CopilotChatOptimize: 選択したコードの最適化を提案させます。
+:CopilotChatModels: 使用するAIモデル（GPT-4oなど）を切り替えられます。
+```
+
+**便利な使い方***
+
+- コードの改善依頼
+  - 適当な関数をビジュアルモード（v）で選択して `:CopilotChatOptimize` を実行すると、リファクタリング案が日本語で返ってくる
+- コミットメッセージの生成
+  - Git で変更がある時に `:CopilotChatCommit` を打つと、変更内容を読み取ってコミットメッセージのドラフトを作ってくれる
+- ストップウォッチ/タイマーの作成 (例):
+  - 「Go 言語で 5 分のタイマーを作るコードを書いて」のようにチャットに投げるとコードが生成され、それをそのままエディタに貼り付けられる
+  
