@@ -70,7 +70,6 @@ local options = {
   undofile = true,
   updatetime = 300,
   writebackup = false,
-  shell = "fish",
   backupskip = { "/tmp/*", "/private/tmp/*" },
   expandtab = true,
   shiftwidth = 2,

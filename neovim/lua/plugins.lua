@@ -200,10 +200,39 @@ require("lazy").setup({
     },
   },
 
-  -- ターミナル
+-- ########################################################
+  -- Terminal (ToggleTerm) - 復活版
+  -- ########################################################
   {
     "akinsho/toggleterm.nvim",
-    config = function() require("toggleterm").setup() end,
+    version = "*",
+    config = function()
+      require("toggleterm").setup({
+        -- ターミナルを開くキー (Ctrl + t)
+        open_mapping = [[<C-t>]],
+        direction = 'float', -- 浮遊ウィンドウで開く（'horizontal', 'vertical' も可）
+        -- shell をシステム標準のものに強制する（エラー回避）
+        shell = vim.o.shell,
+        float_opts = {
+          border = 'curved',
+          winblend = 3,
+        },
+      })
+
+      -- ターミナル内での操作を快適にするためのキーマップ設定
+      function _G.set_terminal_keymaps()
+        local opts = {buffer = 0}
+        vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+        vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+        vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-w>h]], opts)
+        vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-w>j]], opts)
+        vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-w>k]], opts)
+        vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-w>l]], opts)
+      end
+
+      -- ターミナルを開いた時だけ上記キーマップを有効化
+      vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+    end,
   },
 })
 

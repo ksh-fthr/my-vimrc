@@ -4,6 +4,13 @@
 -- 新しいウィンドウを常に右側に開くようにする
 vim.opt.splitright = true
 
+-- システムに確実に存在するシェルを指定してください
+-- bash を使う場合:
+vim.opt.shell = "/bin/bash"
+
+-- もし zsh を使いたい場合はこちら:
+-- vim.opt.shell = "/bin/zsh"
+
 -- 基本設定の読み込み
 require("base")
 
