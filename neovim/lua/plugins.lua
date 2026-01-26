@@ -1,201 +1,238 @@
 -- ##############################################
--- plugins
+-- plugins.lua (全プラグイン統合版)
 -- ##############################################
-local fn = vim.fn
 
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
     "git",
     "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
   })
-  print("Installing packer close and reopen Neovim...")
-  vim.cmd([[packadd packer.nvim]])
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-  autocmd!
-  autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+require("lazy").setup({
+  -- ユーティリティ
+  { "nvim-lua/plenary.nvim" },
+  { "nvim-tree/nvim-web-devicons" },
 
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
+  -- 見た目・UI
+  {
+    "EdenEast/nightfox.nvim",
+    config = function() vim.cmd("colorscheme nightfox") end,
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    config = function() require("plugins-config/status-line-config") end,
+  },
+  {
+    "akinsho/bufferline.nvim",
+    config = function() require("plugins-config/tab-config") end,
+  },
 
--- Have packer use a popup window
-packer.init({
-  display = {
-    open_fn = function()
-      return require("packer.util").float({ border = "rounded" })
+  -- 編集補助
+  {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup({}) end,
+  },
+  { "tomtom/tcomment_vim" },
+  { "norcalli/nvim-colorizer.lua" },
+
+  -- ########################################################
+  -- LSP & Mason (以前の設定を復元)
+  -- ########################################################
+  {
+    "williamboman/mason.nvim",
+    build = ":MasonUpdate",
+    config = function() require("mason").setup() end
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "mason.nvim",
+      "neovim/nvim-lspconfig",
+      "hrsh7th/nvim-cmp",
+      "onsails/lspkind.nvim",
+    },
+    config = function()
+      -- ここで plugins-config/lsp-config.lua を読み込み、
+      -- 以前の LSP ハンドラや設定を有効にします
+      require("plugins-config/lsp-config")
+    end
+  },
+  { "neovim/nvim-lspconfig" },
+
+  -- 補完エンジン本体
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/vim-vsnip",
+      "saadparwaiz1/cmp_luasnip",
+      "onsails/lspkind.nvim",
+    },
+  },
+
+  -- フォーマッタ
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function() require("plugins-config/formatter-config") end
+  },
+
+  -- ########################################################
+  -- Telescope & Treesitter (最新修正版)
+  -- ########################################################
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.6",
+    dependencies = { "nvim-telescope/telescope-file-browser.nvim" },
+    config = function() require("plugins-config/telescope-config") end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    dependencies = { "windwp/nvim-ts-autotag" },
+    config = function()
+      require("plugins-config/tree-sitter-config")
+      require("plugins-config/auto-tag-config")
+    end,
+  },
+
+  -- ########################################################
+  -- Git & Filer (Fern)
+  -- ########################################################
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function() require("plugins-config/git-config") end,
+  },
+  { "dinhhuy258/git.nvim" },
+
+  -- ########################################################
+  -- Fern (Filer) - アイコンと色を復活
+  -- ########################################################
+  {
+    "lambdalisue/fern.vim",
+    dependencies = {
+      "lambdalisue/nerdfont.vim",              -- アイコンフォント
+      "lambdalisue/fern-renderer-nerdfont.vim", -- FernでNerdfontを使うためのレンダラー
+      "lambdalisue/glyph-palette.vim",          -- アイコンに色を付ける
+      "lambdalisue/fern-git-status.vim",        -- Gitステータス表示
+      "LumaKernel/fern-mapping-reload-all.vim",
+      "yuki-yano/fern-preview.vim",
+    },
+    config = function()
+      -- 起動設定
+      vim.cmd("autocmd VimEnter * ++nested Fern . -drawer -stay -keep -toggle -reveal=%")
+
+      -- 基本設定
+      vim.g["fern#default_hidden"] = 1
+      vim.g["fern#renderer"] = "nerdfont" -- ここでアイコンレンダラーを指定
+
+      -- アイコンに色を付けるための設定 (glyph-palette)
+      vim.cmd([[
+        augroup my-glyph-palette
+          autocmd! *
+          autocmd FileType fern call glyph_palette#apply()
+          autocmd FileType nerdtree,startify call glyph_palette#apply()
+        augroup END
+      ]])
+
+      -- プレビューやリロードのマッピング設定
+      vim.cmd([[
+        function! s:fern_settings() abort
+          nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+          nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+          nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+          nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+          nmap <buffer> R <Plug>(fern-action-reload:all)
+        endfunction
+
+        augroup fern-settings
+          autocmd!
+          autocmd FileType fern call s:fern_settings()
+        augroup END
+      ]])
+    end,
+  },
+
+  -- ########################################################
+  -- GitHub Copilot & Chat (今回の追加分)
+  -- ########################################################
+  {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  },
+  { "zbirenbaum/copilot-cmp", config = function() require("copilot_cmp").setup() end },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    lazy = false,
+    build = "make install",
+    config = function()
+      require("CopilotChat").setup({
+        language = "Japanese",
+        window = {
+          layout = 'float',
+          side = 'right',
+          width = 0.4,
+          height = 0.8,
+          relative = 'editor',
+          row = 1,
+          col = vim.o.columns,
+        },
+        show_help = false,
+      })
+    end,
+    keys = {
+      { "<leader>cc", "<cmd>CopilotChatOpen<cr>", desc = "CopilotChat - Open" },
+      { "<leader>ct", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
+    },
+  },
+
+-- ########################################################
+  -- Terminal (ToggleTerm) - 復活版
+  -- ########################################################
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = function()
+      require("toggleterm").setup({
+        -- ターミナルを開くキー (Ctrl + t)
+        open_mapping = [[<C-t>]],
+        direction = 'float', -- 浮遊ウィンドウで開く（'horizontal', 'vertical' も可）
+        -- shell をシステム標準のものに強制する（エラー回避）
+        shell = vim.o.shell,
+        float_opts = {
+          border = 'curved',
+          winblend = 3,
+        },
+      })
+
+      -- ターミナル内での操作を快適にするためのキーマップ設定
+      function _G.set_terminal_keymaps()
+        local opts = {buffer = 0}
+        vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+        vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+        vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-w>h]], opts)
+        vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-w>j]], opts)
+        vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-w>k]], opts)
+        vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-w>l]], opts)
+      end
+
+      -- ターミナルを開いた時だけ上記キーマップを有効化
+      vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
     end,
   },
 })
-
-
--- Install your plugins here
-packer.startup(function(use)
-  -- packer: プラグインマネージャ
-  use({ "wbthomason/packer.nvim" })
-  use({ "nvim-lua/plenary.nvim" }) -- Common utilities for Lua Library
-
-  -- Colorschemes
-  use({ "EdenEast/nightfox.nvim" }) -- Color scheme
-
-  use({ "nvim-lualine/lualine.nvim" }) -- Statusline
-  use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
-  -- use({ "kyazdani42/nvim-web-devicons" }) -- File icons
-  use({"nvim-tree/nvim-web-devicons"}) -- File icons
-
-  use({ "akinsho/bufferline.nvim" })
-
-  -- cmp plugins
-  use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
-  use({ "hrsh7th/cmp-path" }) -- path completions
-  use({ "hrsh7th/cmp-buffer" }) -- buffer completions
-  use({ "hrsh7th/cmp-cmdline" }) -- cmdline completions
-  use({ "hrsh7th/cmp-nvim-lsp" })
-
-  -- 補完の展開を便利にする
-  use({ "hrsh7th/vim-vsnip"})
-  use({ "hrsh7th/vim-vsnip-integ"})
-
-  -- autocomplete
-  use({ "prabirshrestha/asyncomplete.vim" })
-  use({ "prabirshrestha/asyncomplete-lsp.vim" })
-
-  use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
-  use({ "hrsh7th/cmp-nvim-lua" })
-  use({ "onsails/lspkind.nvim" })
-
-  -- signature: https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
-  use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
-  require'cmp'.setup {
-    sources = {
-      { name = 'nvim_lsp_signature_help' }
-    }
-  }
-
-  -- snippets
-  use({ "L3MON4D3/LuaSnip" }) --snippet engine
-
-  -- LSP
-  use({ "neovim/nvim-lspconfig" }) -- enable LSP
-  use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
-
-  -- LSP Configuration Support
-  use({ 'williamboman/mason.nvim' })
-  use({ 'williamboman/mason-lspconfig.nvim' })
-
-  -- lspsaga はエラーになるので読み込まない(バージョンアップされたら治っているか試す)
-  -- reference: https://github.com/nvimdev/lspsaga.nvim
-  -- use({
-  --     'nvimdev/lspsaga.nvim',
-  --     after = 'nvim-lspconfig',
-  --     config = function()
-  --         require("lspsaga").setup({
-  --           border_style = "single",
-  --           symbol_in_winbar = {
-  --             enable = true,
-  --           },
-  --           code_action_lightbulb = {
-  --             enable = true,
-  --           },
-  --           show_outline = {
-  --             win_width = 50,
-  --             auto_preview = false,
-  --           },
-  --         })
-  --     end
-  -- })
-
-  -- Formatter
-  use({ "MunifTanjim/prettier.nvim" })
-
-  -- Telescope: ファイル検索・テキスト検索
-  use({ "nvim-telescope/telescope.nvim" })
-  use({ "nvim-telescope/telescope-file-browser.nvim" })
-
-  -- telescope-frecency.nvim をいれるとファイル読み込みの際にエラーになるのでコメントアウトしておく(バージョンアップされたら治っているか試す)
-  -- https://github.com/nvim-telescope/telescope-frecency.nvim
-  -- use {
-  --   "nvim-telescope/telescope-frecency.nvim",
-  --   config = function()
-  --     require("telescope").load_extension "frecency"
-  --   end,
-  --   requires = { "kkharji/sqlite.lua" },
-  -- }
-
-  -- Treesitter: シンタックスハイライトやインデントを高速に処理してくれる
-  -- use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
-  use({ "nvim-treesitter/nvim-treesitter" })
-
-  use({ "windwp/nvim-ts-autotag" })
-
-  -- Git
-  use({ "lewis6991/gitsigns.nvim" })
-  use({ "dinhhuy258/git.nvim" })
-
-  -- Fern: ファイラ
-  use({'lambdalisue/fern.vim'})
-
-  -- Fern 上でアイコンを表示する
-  -- 参考: https://qiita.com/youichiro/items/b4748b3e96106d25c5bc#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%83%84%E3%83%AA%E3%83%BC%E3%81%AB%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B
-  use({'lambdalisue/nerdfont.vim'})                -- アイコン表示のための拡張
-  use({'lambdalisue/fern-renderer-nerdfont.vim'})  -- アイコン表示のための拡張
-  use({'lambdalisue/glyph-palette.vim'})           -- アイコン表示のための拡張
-  use({'lambdalisue/fern-git-status.vim'})         -- ファイルツリー上に git 差分を表示
-  use({'LumaKernel/fern-mapping-reload-all.vim'})  -- リロード
-  use({'yuki-yano/fern-preview.vim'})              -- ファイルプレビュー
-
-  -- Wintabs: 開いているbufferをタブラインに表示する
-  use({'zefei/vim-wintabs'})
-  use({'zefei/vim-wintabs-powerline'})
-
-  use({ "tomtom/tcomment_vim" })
-  use({ "norcalli/nvim-colorizer.lua" })
-  use({ "akinsho/nvim-bufferline.lua" })
-
-  -- markdown
-  -- see: https://github.com/preservim/vim-markdown
-  use({'godlygeek/tabular'})
-  use({'preservim/vim-markdown'})
-
-  -- markdown preview
-  -- see: https://github.com/iamcco/markdown-preview.nvim
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
-
-  -- svelte
-  use({'othree/html5.vim'})
-  use({'pangloss/vim-javascript'})
-  use({'evanleck/vim-svelte'})
-
-  -- gitの差分を表示する
-  use({'airblade/vim-gitgutter'})
-
-  -- ターミナルを使う
-  use {
-    "akinsho/toggleterm.nvim",
-    tag = '*',
-    config = function()
-      require("toggleterm").setup()
-    end
-  }
-  
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
-end)
-
 
