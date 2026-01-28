@@ -1,15 +1,18 @@
 -- ##############################################
--- Git 関連
+-- Git 関連 (lua/plugins-config/git-config.lua)
 -- ##############################################
-require('gitsigns').setup {}
-local status, git = pcall(require, "git")
-if (not status) then return end
+local status_gitsigns, gitsigns = pcall(require, "gitsigns")
+if status_gitsigns then
+  gitsigns.setup({})
+end
+
+local status_git, git = pcall(require, "git")
+if not status_git then return end
 
 git.setup({
   keymaps = {
-    -- Open blame window
+    -- 既存のキーマップを完全保持
     blame = "<Leader>gb",
-    -- Open file/folder in git repository
     browse = "<Leader>go",
   }
 })

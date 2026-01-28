@@ -1,108 +1,65 @@
 -- ##############################################
--- Base
+-- base.lua
 -- ##############################################
-vim.cmd("autocmd!")
+local opt = vim.opt
 
-vim.scriptencoding = "utf-8"
--- vim.wo.number = true
+-- 基本設定
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
+opt.title = true
+opt.clipboard = "unnamedplus"
+opt.number = true
+opt.relativenumber = false
+opt.cursorline = true
+opt.mouse = "a"
+opt.termguicolors = true
 
--- ##############################################
--- autocmd
--- ##############################################
-local augroup = vim.api.nvim_create_augroup -- Create/get autocommand group
-local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
+-- インデント設定
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.tabstop = 4
+opt.smartindent = true
 
--- Remove whitespace on save
-autocmd("BufWritePre", {
+-- 検索設定
+opt.hlsearch = true
+opt.ignorecase = true
+opt.smartcase = true
+
+-- システム設定
+opt.backup = false
+opt.writebackup = false
+opt.swapfile = false
+opt.undofile = true
+opt.timeoutlen = 300
+opt.updatetime = 300
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+
+-- Autocmd グループ
+local my_augroup = vim.api.nvim_create_augroup("MyCustomAutocmds", { clear = true })
+
+-- 保存時に行末の空白を削除
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = my_augroup,
   pattern = "*",
-  command = ":%s/\\s\\+$//e",
+  command = [[%s/\s\+$//e]],
 })
 
--- Don't auto commenting new lines
-autocmd("BufEnter", {
-  pattern = "*",
-  command = "set fo-=c fo-=r fo-=o",
-})
-
--- Restore cursor location when file is opened
-autocmd({ "BufReadPost" }, {
-  pattern = { "*" },
+-- カーソル位置の復元
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = my_augroup,
   callback = function()
-    vim.api.nvim_exec('silent! normal! g`"zv', false)
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then
+      vim.api.nvim_win_set_cursor(0, mark)
+    end
   end,
 })
 
--- ##############################################
--- coloerscheme
--- ##############################################
-vim.cmd [[
-try
-  colorscheme nightfox
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme default
-  set background=dark
-endtry
-]]
-
--- ##############################################
--- options
--- ##############################################
-local options = {
-  encoding = "utf-8",
-  fileencoding = "utf-8",
-  title = true,
-  backup = false,
-  clipboard = "unnamedplus",
-  cmdheight = 2,
-  completeopt = { "menuone", "noselect" },
-  conceallevel = 0,
-  hlsearch = true,
-  ignorecase = true,
-  mouse = "a",
-  pumheight = 10,
-  showmode = false,
-  showtabline = 2,
-  smartcase = true,
-  smartindent = true,
-  swapfile = false,
-  termguicolors = true,
-  timeoutlen = 300,
-  undofile = true,
-  updatetime = 300,
-  writebackup = false,
-  backupskip = { "/tmp/*", "/private/tmp/*" },
-  expandtab = true,
-  shiftwidth = 2,
-  tabstop = 4,
-  cursorline = true,
-  number = true,
-  relativenumber = false,
-  numberwidth = 4,
-  signcolumn = "yes",
-  wrap = false,
-  winblend = 0,
-  wildoptions = "pum",
-  pumblend = 5,
-  background = "dark",
-  scrolloff = 8,
-  sidescrolloff = 8,
-  guifont = "monospace:h17",
-  splitbelow = false,
-  splitright = false,
-}
-
-vim.opt.shortmess:append("c")
-
-for k, v in pairs(options) do
-  vim.opt[k] = v
-end
-
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
-
-vim.opt.autoread = true
--- ファイルが外部で書き換えられたら即座に検知する
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  command = "if mode() != 'c' | checktime | endif",
-  pattern = { "*" },
+-- 外部でのファイル変更を検知
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  group = my_augroup,
+  callback = function()
+    if vim.fn.mode() ~= 'c' then vim.cmd('checktime') end
+  end,
 })

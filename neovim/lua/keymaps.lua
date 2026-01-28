@@ -11,10 +11,8 @@ local term_opts = {
 
 local keymap = vim.api.nvim_set_keymap
 
--- 【重要】リーダキーを <Space> にする
+-- スペースキー本来の「右へ一文字移動」を無効化し、リーダーキー専用にする
 keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- ---------------------------------
 -- Normal Mode

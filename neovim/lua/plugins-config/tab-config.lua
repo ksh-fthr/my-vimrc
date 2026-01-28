@@ -1,8 +1,8 @@
 -- ##############################################
--- タブ: Bufferline
+-- タブ: Bufferline (lua/plugins-config/tab-config.lua)
 -- ##############################################
 local status, bufferline = pcall(require, "bufferline")
-if (not status) then return end
+if not status then return end
 
 bufferline.setup({
   options = {
@@ -15,6 +15,6 @@ bufferline.setup({
   },
 })
 
-vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
-vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
-
+-- キーマップ設定（既存機能保持）
+vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', { silent = true })
+vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', { silent = true })
