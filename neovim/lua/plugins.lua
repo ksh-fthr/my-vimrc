@@ -18,7 +18,9 @@ return {
   -- LSP / Mason 統合
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
+    -- event に "VeryLazy" を追加することで、ファイルを開かなくても
+    -- 起動直後にバックグラウンドで読み込まれ、コマンドが登録されます。
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
@@ -26,7 +28,8 @@ return {
     },
     config = function()
       require("plugins-config/lsp-config")
-      require("plugins-config/lspsaga-keymap-config")
+      -- lspsaga-keymap-config がある場合は読み込む
+      pcall(require, "plugins-config/lspsaga-keymap-config")
     end,
   },
 
