@@ -1,10 +1,10 @@
 -- ##############################################
--- status line
+-- Status Line (lua/plugins-config/status-line-config.lua)
 -- ##############################################
 local status, lualine = pcall(require, "lualine")
-if (not status) then return end
+if not status then return end
 
-lualine.setup {
+lualine.setup({
   options = {
     icons_enabled = true,
     theme = 'solarized_dark',
@@ -17,12 +17,15 @@ lualine.setup {
     lualine_b = { 'branch' },
     lualine_c = { {
       'filename',
-      file_status = true, -- displays file status (readonly status, modified status)
-      path = 0 -- 0 = just filename, 1 = relative path, 2 = absolute path
+      file_status = true,
+      path = 0 -- 0 = filename only
     } },
     lualine_x = {
-      { 'diagnostics', sources = { "nvim_diagnostic" }, symbols = { error = ' ', warn = ' ', info = ' ',
-        hint = ' ' } },
+      {
+        'diagnostics',
+        sources = { "nvim_diagnostic" },
+        symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' }
+      },
       'encoding',
       'filetype'
     },
@@ -32,16 +35,10 @@ lualine.setup {
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { {
-      'filename',
-      file_status = true, -- displays file status (readonly status, modified status)
-      path = 1 -- 0 = just filename, 1 = relative path, 2 = absolute path
-    } },
+    lualine_c = { { 'filename', file_status = true, path = 1 } },
     lualine_x = { 'location' },
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
   extensions = { 'fugitive' }
-}
-
+})
