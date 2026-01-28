@@ -162,45 +162,56 @@ require("lazy").setup({
   },
 
   -- ########################################################
-  -- GitHub Copilot & Chat (今回の追加分)
+  -- Copilot Chat (システムプロンプト強化版)
   -- ########################################################
-  {
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-    end,
-  },
-  { "zbirenbaum/copilot-cmp", config = function() require("copilot_cmp").setup() end },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     lazy = false,
     build = "make install",
-    config = function()
-      require("CopilotChat").setup({
-        language = "Japanese",
-        window = {
-          layout = 'float',
-          side = 'right',
-          width = 0.4,
-          height = 0.8,
-          relative = 'editor',
-          row = 1,
-          col = vim.o.columns,
+    dependencies = {
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim" },
+      { "sindrets/diffview.nvim" }, -- Diff連携用
+    },
+    opts = {
+      -- AIの性格を強制的に矯正する設定
+      system_prompt = "あなたは有能なエンジニアです。回答は必ず日本語で行い、コードの修正案は必ずMarkdownのコードブロック形式で記述してください。返答の冒頭に挨拶や承諾の言葉は不要です。すぐにコードを出力してください。今のバッファを直接書き換えることはできないので、必ずこのチャット欄に修正後の全コードを提示してください。",
+      language = "Japanese",
+      window = {
+        layout = 'float',
+        side = 'right',
+        width = 0.4,
+        height = 0.8,
+        relative = 'editor',
+        row = 1,
+        col = vim.o.columns,
+      },
+      show_help = false,
+      -- キーマップ設定
+      mappings = {
+        diff = {
+          normal = '<C-d>', -- チャット内で Ctrl+d を押すと DiffView を起動
         },
-        show_help = false,
-      })
-    end,
+      },
+    },
     keys = {
       { "<leader>cc", "<cmd>CopilotChatOpen<cr>", desc = "CopilotChat - Open" },
       { "<leader>ct", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
+      { "<leader>cr", "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Reset" },
+      -- リファクタリングなどのアクションメニューを Telescope で開く
+      {
+        "<leader>ca",
+        function()
+          local actions = require("CopilotChat.actions")
+          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+        end,
+        desc = "CopilotChat - Prompt actions",
+      },
     },
   },
 
--- ########################################################
+
+  -- ########################################################
   -- Terminal (ToggleTerm) - 復活版
   -- ########################################################
   {
@@ -233,6 +244,14 @@ require("lazy").setup({
       -- ターミナルを開いた時だけ上記キーマップを有効化
       vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
     end,
+  },
+
+  -- ########################################################
+  -- DiffView (差分確認・反映用)
+  -- ########################################################
+  {
+    "sindrets/diffview.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
   },
 })
 
