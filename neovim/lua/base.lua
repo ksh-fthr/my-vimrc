@@ -4,7 +4,7 @@
 vim.cmd("autocmd!")
 
 vim.scriptencoding = "utf-8"
-vim.wo.number = true
+-- vim.wo.number = true
 
 -- ##############################################
 -- autocmd
@@ -99,3 +99,10 @@ end
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
+
+vim.opt.autoread = true
+-- ファイルが外部で書き換えられたら即座に検知する
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
