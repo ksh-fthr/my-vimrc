@@ -11,7 +11,7 @@ local term_opts = {
 
 local keymap = vim.api.nvim_set_keymap
 
--- Remap space as leader key
+-- 【重要】リーダキーを <Space> にする
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -98,6 +98,10 @@ keymap("v", "v", "$h", opts)
 
 -- 0番レジスタを使いやすくした
 keymap("v", "<C-p>", '"0p', opts)
+
+-- lua/keymaps.lua (追記)
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
 
 -- ターミナルをトグルするためのキーバインディング
 keymap('n', 'tt', '<cmd>ToggleTerm<CR>', {
