@@ -13,6 +13,9 @@ if fb_ok then fb_actions = fb_mod end
 
 telescope.setup {
   defaults = {
+    preview = {
+      treesitter = false, -- treesitter プレビューを無効化( 安定性向上 )
+    },
     mappings = {
       n = { ["q"] = actions.close },
     },

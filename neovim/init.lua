@@ -14,7 +14,6 @@ vim.g.maplocalleader = " "
 -- 基本オプション (split系はここに集約)
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.shell = "/bin/bash"
 
 -- 外部設定の読み込み
 require("base")
@@ -23,17 +22,18 @@ require("keymaps")
 -- lazy.nvim ブートストラップ
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
+    lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- プラグインセットアップ
 require("lazy").setup("plugins", {
-    defaults = { lazy = false },
-    ui = { border = "rounded" },
-    performance = {
-        rtp = { disabled_plugins = { "gzip", "tarPlugin", "tohtml", "tutor", "zipPlugin" } },
-    },
+  defaults = { lazy = false },
+  ui = { border = "rounded" },
+  performance = {
+    rtp = { disabled_plugins = { "gzip", "tarPlugin", "tohtml", "tutor", "zipPlugin" } },
+  },
 })
 
 -- プラグイン外のグローバル設定
