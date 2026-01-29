@@ -1,4 +1,5 @@
 # 利用前の準備
+
 ## ドットファイルのシンボリックリンクを作成する
 
 ```bash
@@ -27,19 +28,22 @@
 # ~/.config/nvim に設定ファイルのシンボリックリンクを作成
 #
 % ln -s /path/to/my-vimrc/neovim/lua
+
+# ~/.config/nvim にlua のフォーマット設定ファイルに対するシンボリックリンクを作成
+% ln -s /path/to/my-vimrc/neovim/dotfiles/stylua.toml ./.stylua.toml
 ```
 
 ## 各種プラグインをインストール
-本リポジトリの構成では [lazy.nvim](https://github.com/folke/lazy.nvim) でプラグイン管理を行っているので、次のコマンドを実行して各プラグインをインストールする。
 
+本リポジトリの構成では [lazy.nvim](https://github.com/folke/lazy.nvim) でプラグイン管理を行っているので、次のコマンドを実行して各プラグインをインストールする。
 
 ```bash
 # nvim 起動後下記を実行する
 :Lazy sync
 ```
 
-
 ## 各種プラグインを使うための準備
+
 Lsp や Treesitter を導入しているので、それらを使用するための準備として下記を実行する。
 
 ### Mason を実行して各言語の Lsp / Linter / Formatter をインストール
@@ -50,6 +54,7 @@ Lsp や Treesitter を導入しているので、それらを使用するため�
 ```
 
 **参考: 2024/04現在入れているモノ**
+
 ```text
   Installed
     ◍ typescript-language-server
@@ -72,6 +77,7 @@ Lsp や Treesitter を導入しているので、それらを使用するため�
 ```
 
 ### TSInstall を実行して各言語のシンタックスハイライト等を整える
+
 例)
 typescript のための準備
 
@@ -81,6 +87,7 @@ typescript のための準備
 ```
 
 ### エラーメッセージに応じて適宜環境を整える
+
 例)
 typescript のための準備
 
@@ -89,6 +96,7 @@ typescript のための準備
 ```
 
 ### prettier をインストールする
+
 neovim を起動して次のエラーがでたら...
 
 ```text
@@ -110,10 +118,9 @@ neovim を起動して次のエラーがでたら...
 % brew install ripgrep
 ```
 
-
 ## Copilot との連携
 
-### Copilot 認証 
+### Copilot 認証
 
 ```vim
 :Copilot auth
@@ -134,7 +141,7 @@ Ctrl-n / Ctrl-p
 :CopilotChatModels: 使用するAIモデル（GPT-4oなど）を切り替えられます。
 ```
 
-**便利な使い方***
+**便利な使い方\***
 
 - コードの改善依頼
   - 適当な関数をビジュアルモード（v）で選択して `:CopilotChatOptimize` を実行すると、リファクタリング案が日本語で返ってくる
@@ -142,4 +149,3 @@ Ctrl-n / Ctrl-p
   - Git で変更がある時に `:CopilotChatCommit` を打つと、変更内容を読み取ってコミットメッセージのドラフトを作ってくれる
 - ストップウォッチ/タイマーの作成 (例):
   - 「Go 言語で 5 分のタイマーを作るコードを書いて」のようにチャットに投げるとコードが生成され、それをそのままエディタに貼り付けられる
-  
