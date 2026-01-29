@@ -1,34 +1,37 @@
 -- ##############################################
 -- lua/plugins-config/formatter-config.lua
 -- ##############################################
+local status, null_ls = pcall(require, "null-ls")
+if not status then return end
 
-local status_null, null_ls = pcall(require, "null-ls")
-if status_null then
-  null_ls.setup({
-    sources = {
-      -- 8行目の設定内容を完全保持
-      null_ls.builtins.diagnostics.eslint_d.with({
-        diagnostics_format = '[eslint] #{m}\n(#{c})'
-      }),
-      null_ls.builtins.diagnostics.fish
-    }
-  })
-end
+null_ls.setup({
+  sources = {
+    -- 1. [修正] eslint_d は extras から読み込む (機能を完全保持)
+    require("none-ls.diagnostics.eslint_d").with({
+      diagnostics_format = '[eslint] #{m}\n(#{c})'
+    }),
 
--- prettierの設定を完全保持
-local status_prettier, prettier = pcall(require, "prettier")
-if status_prettier then
-  prettier.setup {
-    bin = 'prettierd',
-    filetypes = {
-      "css",
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "json",
-      "scss",
-      "less"
-    }
-  }
-end
+    -- 2. fish 診断
+    null_ls.builtins.diagnostics.fish,
+
+    -- 3. フォーマッタ (prettierd)
+    null_ls.builtins.formatting.prettierd.with({
+      filetypes = {
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "javascriptreact",
+        "json",
+        "yaml",
+        "markdown",
+        "html",
+        "css",
+        "scss",
+      }
+    }),
+
+    -- 4. Lua / Shell 整形
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.shfmt,
+  },
+})

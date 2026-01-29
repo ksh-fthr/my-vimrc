@@ -50,13 +50,32 @@ return {
   },
 
   -- 編集補助
-  { "windwp/nvim-autopairs",           config = function() require("nvim-autopairs").setup({}) end },
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end
+  },
   { "tomtom/tcomment_vim" },
-  { "norcalli/nvim-colorizer.lua",     config = function() require("colorizer").setup() end },
-  { "jose-elias-alvarez/null-ls.nvim", config = function() require("plugins-config/formatter-config") end },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvimtools/none-ls-extras.nvim",
+    },
+    config = function()
+      require("plugins-config/formatter-config")
+    end
+  },
 
   -- Git
-  { "lewis6991/gitsigns.nvim",         config = function() require("plugins-config/git-config") end },
+  { "lewis6991/gitsigns.nvim", config = function() require("plugins-config/git-config") end },
   { "dinhhuy258/git.nvim" },
 
   -- Fern (自動起動・レンダラー設定を保持)

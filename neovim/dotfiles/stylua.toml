@@ -1,0 +1,18 @@
+# ~/.config/nvim/.stylua.toml
+
+column_width = 120
+indent_type = "Spaces"
+indent_width = 4
+quote_style = "AutoPreferDouble"
+
+# 重要：関数の引数やテーブルの要素を、
+# 可能な限り「1行に1要素」に展開させる設定
+call_parentheses = "Always"
+
+-- "Input" にすると、ユーザーが入れた改行をフォーマッタが消さなくなります。
+-- "ForceVertical" に設定すると、要素が複数ある場合に縦並びを強制します。
+line_endings = "Unix"
+
+[sort_requires]
+enabled = true
+
