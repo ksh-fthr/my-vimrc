@@ -149,7 +149,7 @@ return {
         side = 'right',           -- 右側に表示
         persist_mode = true,      -- 前回のモード( 挿入/ノーマル )を保持
         persist_size = false,     -- マウスでのリサイズを有効にするため false に設定
-        close_on_text = false,    -- プロセス終了後もバッファを保持( 履歴確認用 )
+        close_on_exit = false,    -- プロセス終了後もバッファを保持( 履歴確認用 )
         auto_scroll = true,       -- 出力にあわせて自動スクロール
         start_in_insert = true,   -- 開いた瞬間に挿入モード( Claude 操作可能にする)
       })
@@ -168,14 +168,13 @@ return {
         vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
 
         -- ターミナルモード( t )でのウィンドウ移動
-        vim.keymap.set('t', '<C-h>', [[<Cmd>window h<CR>]], opts)
-        vim.keymap.set('t', '<C-j>', [[<Cmd>window j<CR>]], opts)
-        vim.keymap.set('t', '<C-k>', [[<Cmd>window k<CR>]], opts)
-        vim.keymap.set('t', '<C-l>', [[<Cmd>window l<CR>]], opts)
+        vim.keymap.set('t', '<C-h>', [[<Cmd>windcmd h<CR>]], opts)
+        vim.keymap.set('t', '<C-j>', [[<Cmd>windcmd j<CR>]], opts)
+        vim.keymap.set('t', '<C-k>', [[<Cmd>windcmd k<CR>]], opts)
+        vim.keymap.set('t', '<C-l>', [[<Cmd>windcmd l<CR>]], opts)
 
         -- モード切り替えを楽にする
         vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], opts)
-        vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
         vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
       end
 
