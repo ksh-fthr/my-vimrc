@@ -104,6 +104,52 @@ m_lspconfig.setup({
         },
       })
     end,
+
+    ["gopls"] = function()
+      lspconfig.gopls.setup({
+        capabilities = capabilities,
+        settings = {
+          gopls = {
+            -- 解析設定
+            analyses = {
+              unusedparams = true, -- 未使用パラメータの検出
+              shadow = true,       -- シャドウウィング変数の検出
+              nilness = true,      -- nil チェック
+              unusedwrite = true,  -- 未使用の書き込み検出
+              usesany = true,      -- interface() の使用検出
+            },
+            -- 静的チェック
+            staticcheck = true,
+            -- コードレンズ( テスト実行、ベンチマークなど )
+            codelenses = {
+              gc_details = true,         -- ガベージコレクションの詳細
+              generate = true,           -- go generate コマンド
+              regenerate_cgo = true,     -- cgo の再生成
+              test = true,               -- テストの実行
+              tidy = true,               -- go mod tidy
+              upgrade_dependency = true, -- 依存関係のアップグレード
+              vendor = true,             -- ベンダリング
+            },
+            -- インレイヒント
+            hints = {
+              assignVariableTypes = true,  -- 変数型の表示
+              compositeLiteralFields = true, -- 構造体フィールドの表示
+              compositeLiteralTypes = true, -- 複合リテラル型の表示
+              constantValues = true,       -- 定数値の表示
+              functionTypeParameters = true, -- 関数型パラメータの表示
+              parameterNames = true,       -- パラメータ名の表示
+              rangeVariableTypes = true,   -- range 変数型の表示
+            },
+            -- セマンティックトークン
+            semanticTokens = true,
+            -- 未使用プレースホルダーの扱い
+            usePlaceholders = true,
+            -- ビルドフラグ
+            buildFlags = { "-tags=integration" },
+          },
+        }
+      })
+    end,
   },
 })
 
