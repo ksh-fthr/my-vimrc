@@ -76,7 +76,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
 
 -- ウィンドウセパレータのハイライト設定( カラースキームを読み込み後に設定 )
 vim.api.nvim_create_autocmd("ColorScheme", {
-  gropu = my_augroup,
+  group = my_augroup,
   callback = function()
     -- ウィンドウセパレータを見やすく設定
     vim.api.nvim_set_hl(0, "WinSpeparator", { fg = "#61afef", bold = true })
