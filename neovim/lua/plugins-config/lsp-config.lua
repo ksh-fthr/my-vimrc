@@ -36,7 +36,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- 2. Mason-LSPConfig セットアップ
 -- ##############################################
 m_lspconfig.setup({
-  ensure_installed = { "ts_ls", "tailwindcss", "gopls", "lua_ls" },
+  ensure_installed = {
+    "ts_ls",
+    "tailwindcss",
+    "angularls",
+    "html",
+    "cssls",
+    "pyright",
+    "gopls",
+    "lua_ls",
+
+  },
   handlers = {
     -- デフォルトセットアップ (on_attach の渡しが不要になりスッキリ)
     function(server_name)
@@ -62,6 +72,36 @@ m_lspconfig.setup({
       lspconfig.ts_ls.setup({
         capabilities = capabilities,
         filetypes = { "javascript", "typescript", "typescriptreact", "typescript.tsx" },
+      })
+    end,
+
+    ["angularls"] = function()
+      lspconfig.angularls.setup({
+        capabilities = capabilities,
+        filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx" },
+        root_dir = lspconfig.util.root_pattern("angular.json", "package.json", ".git"),
+      })
+    end,
+
+    ["html"] = function()
+      lspconfig.html.setup({
+        capabilities = capabilities,
+        filetypes = { "html", "htmldjango" },
+      })
+    end,
+
+    ["pyright"] = function()
+      lspconfig.pyright.setup({
+        capabilities = capabilities,
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "basic",
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
       })
     end,
   },

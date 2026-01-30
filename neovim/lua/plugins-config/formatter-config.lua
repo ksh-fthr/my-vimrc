@@ -6,15 +6,13 @@ if not status then return end
 
 null_ls.setup({
   sources = {
-    -- 1. [修正] eslint_d は extras から読み込む (機能を完全保持)
+
+    -- JavaScript / TypeScript Linting and Formatting
     require("none-ls.diagnostics.eslint_d").with({
       diagnostics_format = '[eslint] #{m}\n(#{c})'
     }),
 
-    -- 2. fish 診断
-    null_ls.builtins.diagnostics.fish,
 
-    -- 3. フォーマッタ (prettierd)
     null_ls.builtins.formatting.prettierd.with({
       filetypes = {
         "javascript",
@@ -30,8 +28,13 @@ null_ls.setup({
       }
     }),
 
-    -- 4. Lua / Shell 整形
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.shfmt,
+    -- Python Formatting
+    null_ls.biultins.formatting.black, -- Python フォーマッター
+    null_ls.builtins.diagnostics.ruff, -- 高速 Python Linter
+
+    -- Otherwise
+    null_ls.buitins.diagnostics.fish,   -- fish 診断
+    null_ls.builtins.formatting.stylua, -- Lua 整形
+    null_ls.builtins.formatting.shfmt,  -- Shell 整形
   },
 })

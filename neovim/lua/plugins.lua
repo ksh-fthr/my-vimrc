@@ -232,6 +232,24 @@ return {
   },
   { "sindrets/diffview.nvim" },
 
+  -- python サポート
+  {
+    "linux-cultist/venv-selector.nvim", -- 仮想環境自動切り替え
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "nvim-telescope/telescope.nvim",
+    },
+    ft = "python",
+    config = function()
+      require("venv-selector").setup({
+      -- デフォルト設定のまま
+      })
+    end,
+    keys = {
+      { "<leader>vs", "<cmd>VenvSelect<cr>", desc = "Select Python Virtualenv" },
+    },
+  },
+
   -- 言語サポート
   {
     "evanleck/vim-svelte",
