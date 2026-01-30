@@ -242,7 +242,7 @@ return {
     ft = "python",
     config = function()
       require("venv-selector").setup({
-      -- デフォルト設定のまま
+        -- デフォルト設定のまま
       })
     end,
     keys = {
@@ -254,5 +254,106 @@ return {
   {
     "evanleck/vim-svelte",
     ft = "svelte",
+  },
+
+  -- デバッグ環境( DAP )
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "rcarriga/nvim-dap-ui",            -- DAP UI
+      "theHamsta/nvim-dap-virtual-text", -- 仮想テキスト表示
+      "nvim-neotest/nvim-nio",           -- 非同期 I/O ( nvim-dap-ui の依存関係 )
+    },
+    keys = {
+      { "<leader>db", "<cmd>DapToggleBreakpoint<cr>",           desc = "Toggle Breakpoint" },
+      { "<leader>dc", "<cmd>DapContinue<cr>",                   desc = "Continue" },
+      { "<leader>di", "<cmd>DapStepInto<cr>",                   desc = "Into" },
+      { "<leader>do", "<cmd>DapStepOver<cr>",                   desc = "Step Over" },
+      { "<leader>dO", "<cmd>DapStepOut<cr>",                    desc = "Step Out" },
+      { "<leader>dt", "<cmd>DapTerminate<cr>",                  desc = "Terminate" },
+      { "<leader>du", function() require("dapui").toggle() end, desc = "Toggle DAP UI" },
+    },
+    config = function()
+      local dap = require("dap")
+      local dapui = require("dapui")
+
+      dapui.setup()
+
+      -- 仮想テキスト検証
+      require("nvim-dap-virtual-text").setup()
+
+      -- DAP イベントに合わせて UI を自動開閉
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
+  },
+
+  -- GO デバッグサポート
+  {
+    "leoluz/nvim-dap-go",
+    ft = "go",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      require("plugins-config/dap-go-config").setup()
+    end,
+  },
+
+  -- Go テスト & タグサポート
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-neotest/neotest-go", -- GO テストアダプター
+    },
+    ft = "go",
+    keys = {
+      { "<leader>tt", function() require("neotest").run.run() end,                     desc = "Run Neotest" },
+      { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end,   desc = "Run Neotest File" },
+      { "<leader>ts", function() require("neotest").summary.toggle() end,              desc = "Toggle Neotest Summary" },
+      { "<leader>to", function() require("neotest").output.open({ enter = true }) end, desc = "Open Neotest Output" },
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-go")({
+            experimental = {
+              test_table = true,                   -- テーブル駆動テスト対応
+            },
+            args = { "-count=1", "-timeout=60s" }, -- テスト実行時の引数
+          }),
+        },
+      })
+    end,
+  },
+
+  -- Go struct tag 管理
+  {
+    "fatih/vim-go",
+    ft = "go",
+    build = ":GoUpdateBinaries",
+    config = function()
+      -- LSP を使うため vim-go の LSP 機能は無効化
+      vim.g.go_def_mapping_enabled = 0
+      vim.g.go_code_completion_enabled = 0
+      vim.g.gopls_enabled = 0
+
+      -- struct tag 関連機能のみ有効化
+      vim.g.go_addtags_transform = "camelcase"
+      vim.g.go_highlight_types = 1
+      vim.g.go_highlight_fields = 1
+      vim.g.go_highlight_functions = 1
+      vim.g.go_highlight_function_calls = 1
+      vim.g.go_highlight_operators = 1
+      vim.g.go_highlight_extra_types = 1
+    end,
   }
 }
