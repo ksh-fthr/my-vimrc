@@ -35,6 +35,16 @@ opt.updatetime = 300
 opt.scrolloff = 8
 opt.signcolumn = "yes"
 
+-- ウィンドウセパレータを見やすく設定
+opt.fillchars = {
+  vert = "│",
+  vertleft = "│",
+  vertright = "│",
+  horiz = "─",
+  horizup = "─",
+  horizdown = "─",
+}
+
 -- Autocmd グループ
 local my_augroup = vim.api.nvim_create_augroup("MyCustomAutocmds", { clear = true })
 
@@ -63,3 +73,17 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
     if vim.fn.mode() ~= 'c' then vim.cmd('checktime') end
   end,
 })
+
+-- ウィンドウセパレータのハイライト設定( カラースキームを読み込み後に設定 )
+vim.api.nvim_create_autocmd("ColorScheme", {
+  gropu = my_augroup,
+  callback = function()
+    -- ウィンドウセパレータを見やすく設定
+    vim.api.nvim_set_hl(0, "WinSpeparator", { fg = "#61afef", bold = true })
+    vim.api.nvim_set_hl(0, "VerSplit", { fg = "#61afef", bold = true })
+  end,
+})
+
+-- 初回起動時にも適用
+vim.api.nvim_set_hl(0, "WinSpeparator", { fg = "#61afef", bold = true })
+vim.api.nvim_set_hl(0, "VerSplit", { fg = "#61afef", bold = true })
