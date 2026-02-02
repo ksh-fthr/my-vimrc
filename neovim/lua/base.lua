@@ -79,11 +79,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   group = my_augroup,
   callback = function()
     -- ウィンドウセパレータを見やすく設定
-    vim.api.nvim_set_hl(0, "WinSpeparator", { fg = "#61afef", bold = true })
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#61afef", bold = true })
     vim.api.nvim_set_hl(0, "VerSplit", { fg = "#61afef", bold = true })
   end,
 })
 
 -- 初回起動時にも適用
-vim.api.nvim_set_hl(0, "WinSpeparator", { fg = "#61afef", bold = true })
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#61afef", bold = true })
 vim.api.nvim_set_hl(0, "VerSplit", { fg = "#61afef", bold = true })
