@@ -5,7 +5,7 @@
 ※ [Wezterm](https://wezterm.org/index.html) で使用する場合の設定
 ※ フォントは [HackGen#HackGen_NF_vx.xx.xx.zip](https://github.com/yuru7/HackGen/releases) を指定している
 
-**windows + WSL**
+### windows + WSL
 
 powershell 上で実行.
 
@@ -27,7 +27,7 @@ wezterm.lua を下記にリネームして配置する.
 C:\Users\（ユーザー名）\.wezterm.lua
 ```
 
-**mac**
+### mac
 
 ```bash
 # ~/.wezterm.lua を配置する
@@ -35,9 +35,9 @@ C:\Users\（ユーザー名）\.wezterm.lua
 % ln -s /path/to/my-vimrc/neovim/dotfiles/wezterm.lua ./.wezterm.lua
 ```
 
-### nvim 用の設定ファイル
+## nvim 用の設定ファイル
 
-## ドットファイルのシンボリックリンクを作成する
+### ドットファイルのシンボリックリンクを作成する
 
 ```bash
 #
@@ -57,7 +57,7 @@ C:\Users\（ユーザー名）\.wezterm.lua
 % ln -s /path/to/my-vimrc/neovim/init.lua
 ```
 
-## 各種設定ファイルのディレクトリのシンボリックリンクを作成する
+### 各種設定ファイルのディレクトリのシンボリックリンクを作成する
 
 ```bash
 #
