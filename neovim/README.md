@@ -1,5 +1,41 @@
 # 利用前の準備
 
+## Wezterm 用の設定ファイル
+
+※ [Wezterm](https://wezterm.org/index.html) で使用する場合の設定
+
+**windows + WSL**
+
+powershell 上で実行.
+
+```
+% wsl -l -v
+  NAME            STATE           VERSION
+* Ubuntu-24.04    Running         2
+```
+
+NAME に表示された文字列を dotfiles/wezterm.lua の下記に設定する.
+
+```lua
+    config.default_domain = 'WSL:Ubuntu-24.04'
+```
+
+wezterm.lua を下記にリネームして配置する.
+
+```bash
+C:\Users\（ユーザー名）\.wezterm.lua
+```
+
+**mac**
+
+```bash
+# ~/.wezterm.lua を配置する
+% cd ~/
+% ln -s /path/to/my-vimrc/neovim/dotfiles/wezterm.lua ./.wezterm.lua
+```
+
+### nvim 用の設定ファイル
+
 ## ドットファイルのシンボリックリンクを作成する
 
 ```bash
