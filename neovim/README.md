@@ -1,6 +1,43 @@
 # 利用前の準備
 
-## ドットファイルのシンボリックリンクを作成する
+## Wezterm 用の設定ファイル
+
+※ [Wezterm](https://wezterm.org/index.html) で使用する場合の設定
+※ フォントは [HackGen#HackGen_NF_vx.xx.xx.zip](https://github.com/yuru7/HackGen/releases) を指定している
+
+### windows + WSL
+
+powershell 上で実行.
+
+```
+% wsl -l -v
+  NAME            STATE           VERSION
+* Ubuntu-24.04    Running         2
+```
+
+NAME に表示された文字列を dotfiles/wezterm.lua の下記に設定する.
+
+```lua
+    config.default_domain = 'WSL:Ubuntu-24.04'
+```
+
+wezterm.lua を下記にリネームして配置する.
+
+```bash
+C:\Users\（ユーザー名）\.wezterm.lua
+```
+
+### mac
+
+```bash
+# ~/.wezterm.lua を配置する
+% cd ~/
+% ln -s /path/to/my-vimrc/neovim/dotfiles/wezterm.lua ./.wezterm.lua
+```
+
+## nvim 用の設定ファイル
+
+### ドットファイルのシンボリックリンクを作成する
 
 ```bash
 #
@@ -20,7 +57,7 @@
 % ln -s /path/to/my-vimrc/neovim/init.lua
 ```
 
-## 各種設定ファイルのディレクトリのシンボリックリンクを作成する
+### 各種設定ファイルのディレクトリのシンボリックリンクを作成する
 
 ```bash
 #
