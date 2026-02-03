@@ -3,6 +3,7 @@
 ## Wezterm 用の設定ファイル
 
 ※ [Wezterm](https://wezterm.org/index.html) で使用する場合の設定
+※ フォントは [HackGen#HackGen_NF_vx.xx.xx.zip](https://github.com/yuru7/HackGen/releases) を指定している
 
 **windows + WSL**
 
