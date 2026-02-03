@@ -39,3 +39,6 @@ require("lazy").setup("plugins", {
 -- プラグイン外のグローバル設定
 vim.g["fern#renderer"] = "nerdfont"
 vim.g["fern#default_hidden"] = 1
+
+-- q 単体でのマクロ記録を無効化
+vim.keymap.set('n', 'q', '<Nop>', { noremap = true, silent = true })
