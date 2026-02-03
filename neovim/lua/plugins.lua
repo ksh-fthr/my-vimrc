@@ -156,10 +156,10 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     -- lazy.vim のトリガー設定
-    -- keys = {
-    --   { "<C-t>", desc = "Terminal Right" },
-    --   { "<C-b>", desc = "Terminal Bottom" },
-    -- },
+    keys = {
+      { "<C-t>", desc = "Terminal Right" },
+      { "<C-b>", desc = "Terminal Bottom" },
+    },
     config = function() require("plugins-config/toggle-term-config") end,
   },
 
