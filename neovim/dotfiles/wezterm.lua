@@ -9,7 +9,6 @@ local is_mac = wezterm.target_triple:find("apple") ~= nil
 -- 共通設定 (Mac / Windows 両方)
 -- ==========================================
 config.color_scheme = 'Tokyo Night'
-config.font_size = 12.0
 
 -- ビープ音を無効化（何もしない）
 config.audible_bell = "Disabled"
@@ -35,6 +34,7 @@ if is_windows then
   config.initial_rows = 50
 
   -- Windows用のフォント指定
+  config.font_size = 12.0
   config.font = wezterm.font_with_fallback({
     { family = 'HackGen Console NF' },
     { family = 'JetBrains Mono' },
@@ -62,6 +62,7 @@ if is_mac then
   config.initial_rows = 50
 
   -- Mac用のフォント指定（Mac側にインストールしている名前に合わせる）
+  config.font_size = 16.0
   config.font = wezterm.font_with_fallback({
     { family = 'HackGen Console NF' },
     { family = 'Apple Color Emoji' },
