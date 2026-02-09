@@ -22,9 +22,18 @@ return {
     -- 起動直後にバックグラウンドで読み込まれ、コマンドが登録されます。
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     dependencies = {
-      { "williamboman/mason.nvim", config = true },
+      {
+        "williamboman/mason.nvim", config = true
+      },
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
+      {
+        "nvimdev/lspsaga.nvim",
+        dependencies = {
+          "nvim-treesitter/nvim-treesitter",
+          "nvim-tree/nvim-web-devicons"
+        },
+      },
     },
     config = function()
       require("plugins-config/lsp-config")

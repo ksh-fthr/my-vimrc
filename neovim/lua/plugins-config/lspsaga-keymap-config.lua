@@ -11,14 +11,14 @@ if not status then return end
 saga.setup({}) -- 初期化
 
 -- 検索/定義
-keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
-keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts) -- 直接ジャンプ
-keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts) -- 浮遊窓で確認
-keymap("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", opts)
+keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)           -- 参照個所の検索
+keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)      -- 直接ジャンプ
+keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)      -- フローティングウィンドウで確認
+keymap("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", opts) -- 型定義にジャンプ
 
 -- アクション/名前変更
-keymap({"n","v"}, "ga", "<cmd>Lspsaga code_action<CR>", opts)
-keymap("n", "gr", "<cmd>Lspsaga rename<CR>", opts)
+keymap({ "n", "v" }, "ga", "<cmd>Lspsaga code_action<CR>", opts)
+keymap("n", "gr", "<cmd>Lspsaga rename<CR>", opts) -- リネーム
 
 -- 診断(Diagnostics)
 keymap("n", "sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
