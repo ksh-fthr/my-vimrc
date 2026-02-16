@@ -34,6 +34,7 @@ opt.timeoutlen = 300
 opt.updatetime = 300
 opt.scrolloff = 8
 opt.signcolumn = "yes"
+opt.cmdheight = 1 -- コマンドラインの高さを1に設定(固定)
 
 -- ウィンドウセパレータを見やすく設定
 opt.fillchars = {

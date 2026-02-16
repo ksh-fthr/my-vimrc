@@ -78,12 +78,16 @@ end
 
 -- 画面下部のターミナルを開閉: Ctrl+b
 local function toggle_bottom_terminal()
+  local saved_cmdheight = vim.o.cmdheight -- cmdheight の現在の値を保存
   term_bottom:toggle()
   if term_bottom:is_open() then
     vim.cmd("wincmd J")                    -- 下のウィンドウに移動
     vim.defer_fn(function()
       resize_terminal_window(2, false, 20) -- 画面右ターミナルの高さ20に設定
+      vim.o.cmdheight = saved_cmdheight    -- cmdheight を元の値に戻す
     end, 50)
+  else
+    vim.o.cmdheight = saved_cmdheight -- ターミナルを閉じるときも cmdheight を元の値に戻す
   end
 end
 
