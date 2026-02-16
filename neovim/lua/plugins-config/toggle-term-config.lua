@@ -5,15 +5,15 @@
 
 -- 基本設定
 require("toggleterm").setup({
-  size = 50,                -- 垂直分割字の横幅( 初期値 )
-  open_mapping = [[<c-t>]], -- プラグイン内部での開閉マッピング
-  direction = 'vertical',   -- 垂直分割( サイドパネル形式 )
-  side = 'right',           -- 右側に表示
-  persist_mode = true,      -- 前回のモード( 挿入/ノーマル )を保持
-  persist_size = false,     -- マウスでのリサイズを有効にするため false に設定
-  close_on_exit = false,    -- プロセス終了後もバッファを保持( 履歴確認用 )
-  auto_scroll = true,       -- 出力にあわせて自動スクロール
-  start_in_insert = true,   -- 開いた瞬間に挿入モード( Claude 操作可能にする)
+  size = 50,              -- 垂直分割字の横幅( 初期値 )
+  open_mapping = nil,     -- 独自マッピングを使用するため無効化
+  direction = 'vertical', -- 垂直分割( サイドパネル形式 )
+  side = 'right',         -- 右側に表示
+  persist_mode = true,    -- 前回のモード( 挿入/ノーマル )を保持
+  persist_size = false,   -- マウスでのリサイズを有効にするため false に設定
+  close_on_exit = false,  -- プロセス終了後もバッファを保持( 履歴確認用 )
+  auto_scroll = true,     -- 出力にあわせて自動スクロール
+  start_in_insert = true, -- 開いた瞬間に挿入モード( Claude 操作可能にする)
 })
 
 local Terminal = require("toggleterm.terminal").Terminal
@@ -65,10 +65,8 @@ local function resize_terminal_window(term_id, is_vertical, size)
   end
 end
 
--- キーマッピング設定
--- 画面右のターミナルを開閉: Ctrl+\
-vim.keymap.set('n', 'C-t', function()
-  go_to_normal_window()
+-- 画面右のターミナルを開閉する関数: Ctrl+t
+local function toggle_right_terminal()
   term_right:toggle()
   if term_right:is_open() then
     vim.cmd("wincmd L")                    -- 右のウィンドウに移動
@@ -76,19 +74,25 @@ vim.keymap.set('n', 'C-t', function()
       resize_terminal_window(1, true, 100) -- 画面右ターミナルの幅を100に設定
     end, 50)
   end
-end, { noremap = true, silent = true, desc = "Toggle Right Terminal" })
+end
 
 -- 画面下部のターミナルを開閉: Ctrl+b
-vim.keymap.set('n', '<C-b>', function()
-  go_to_normal_window()
+local function toggle_bottom_terminal()
   term_bottom:toggle()
   if term_bottom:is_open() then
     vim.cmd("wincmd J")                    -- 下のウィンドウに移動
     vim.defer_fn(function()
-      resize_terminal_window(2, false, 20) -- 画面右ターミナルの幅を100に設定
+      resize_terminal_window(2, false, 20) -- 画面右ターミナルの高さ20に設定
     end, 50)
   end
-end, { noremap = true, silent = true, desc = "Toggle Bottom Terminal" })
+end
+
+-- キーマッピングの設定
+-- Ctrl+t で右のターミナルを開閉
+vim.keymap.set('n', '<C-t>', toggle_right_terminal, { noremap = true, silent = true, desc = "Toggle Right Terminal" })
+
+-- Ctrl+b で下のターミナルを開閉
+vim.keymap.set('n', '<C-b>', toggle_bottom_terminal, { noremap = true, silent = true, desc = "Toggle Bottom Terminal" })
 
 -- ターミナルモード専用のキーマッピング設定
 -- 外部( keymaps.lua )からは切り離し、ここで完結させる
@@ -112,6 +116,10 @@ local function set_terminal_keymaps()
   -- モード切り替えを楽にする
   vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], opts)
   vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+
+  -- ターミナルモードからも別のターミナルを開閉できるようにする
+  vim.keymap.set('t', '<C-t>', toggle_right_terminal, opts)
+  vim.keymap.set('t', '<C-b>', toggle_bottom_terminal, opts)
 end
 
 -- ターミナルが作成・表示されるたびにキーマップを適用する
