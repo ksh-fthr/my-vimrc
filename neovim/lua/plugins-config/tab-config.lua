@@ -40,7 +40,7 @@ bufferline.setup({
       fg = '#4b5263',
       bg = '#e5c07b',
     },
-    separaor = {
+    separator = {
       fg = '#4b5263',
       bg = '#2c323c',
     },
