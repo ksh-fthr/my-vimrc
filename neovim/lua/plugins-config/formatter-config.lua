@@ -30,7 +30,6 @@ null_ls.setup({
 
     -- Python Formatting
     null_ls.builtins.formatting.black, -- Python フォーマッター
-    null_ls.builtins.diagnostics.ruff, -- 高速 Python Linter
 
     -- Go Formatting and Linting
     null_ls.builtins.formatting.goimports, -- Go imports 整形
