@@ -43,9 +43,9 @@ m_lspconfig.setup({
     "html",
     "cssls",
     "pyright",
+    "ruff",
     "gopls",
     "lua_ls",
-
   },
   handlers = {
     -- デフォルトセットアップ (on_attach の渡しが不要になりスッキリ)
@@ -105,6 +105,17 @@ m_lspconfig.setup({
       })
     end,
 
+    ["ruff"] = function()
+      lspconfig.ruff.setup({
+        capabilities = capabilities,
+        init_options = {
+          settings = {
+            lineLength = 120,
+          },
+        },
+      })
+    end,
+
     ["gopls"] = function()
       lspconfig.gopls.setup({
         capabilities = capabilities,
@@ -132,13 +143,13 @@ m_lspconfig.setup({
             },
             -- インレイヒント
             hints = {
-              assignVariableTypes = true,  -- 変数型の表示
+              assignVariableTypes = true,    -- 変数型の表示
               compositeLiteralFields = true, -- 構造体フィールドの表示
-              compositeLiteralTypes = true, -- 複合リテラル型の表示
-              constantValues = true,       -- 定数値の表示
+              compositeLiteralTypes = true,  -- 複合リテラル型の表示
+              constantValues = true,         -- 定数値の表示
               functionTypeParameters = true, -- 関数型パラメータの表示
-              parameterNames = true,       -- パラメータ名の表示
-              rangeVariableTypes = true,   -- range 変数型の表示
+              parameterNames = true,         -- パラメータ名の表示
+              rangeVariableTypes = true,     -- range 変数型の表示
             },
             -- セマンティックトークン
             semanticTokens = true,
